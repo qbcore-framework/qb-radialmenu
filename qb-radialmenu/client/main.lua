@@ -184,7 +184,7 @@ end)
 
 RegisterNetEvent('qb-radialmenu:client:giveidkaart')
 AddEventHandler('qb-radialmenu:client:giveidkaart', function(data)
-    print('Im a trigerd event :)')
+    -- ??
 end)
 
 RegisterNetEvent('qb-radialmenu:client:openDoor')
