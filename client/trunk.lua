@@ -268,7 +268,7 @@ Citizen.CreateThread(function()
                 if DoesEntityExist(vehicle) then
                     DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.75, '[E] To get out of the trunk')
 
-                    if IsControlJustPressed(0, Keys["E"]) then
+                    if IsControlJustPressed(0, 38) then
                         if GetVehicleDoorAngleRatio(vehicle, 5) > 0 then
                             local vehCoords = GetOffsetFromEntityInWorldCoords(vehicle, 0, -5.0, 0)
                             DetachEntity(ped, true, true)
@@ -285,7 +285,7 @@ Citizen.CreateThread(function()
 
                     if GetVehicleDoorAngleRatio(vehicle, 5) > 0 then
                         DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.5, '[G] To close the trunk')
-                        if IsControlJustPressed(0, Keys["G"]) then
+                        if IsControlJustPressed(0, 47) then
                             if not IsVehicleSeatFree(vehicle, -1) then
                                 TriggerServerEvent('qb-radialmenu:trunk:server:Door', false, plate, 5)
                             else
@@ -294,7 +294,7 @@ Citizen.CreateThread(function()
                         end
                     else
                         DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.5, '[G] To open the trunk')
-                        if IsControlJustPressed(0, Keys["G"]) then
+                        if IsControlJustPressed(0, 47) then
                             if not IsVehicleSeatFree(vehicle, -1) then
                                 TriggerServerEvent('qb-radialmenu:trunk:server:Door', true, plate, 5)
                             else

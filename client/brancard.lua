@@ -107,7 +107,7 @@ Citizen.CreateThread(function()
                         AttachToBrancard()
                         IsAttached = true
                     end
-                    if IsControlJustPressed(0, Keys["H"]) then
+                    if IsControlJustPressed(0, 74) then
                         FreezeEntityPosition(BrancardObject, true)
                     end
                 else
@@ -121,7 +121,7 @@ Citizen.CreateThread(function()
                 if not IsLayingOnBed then
                     if not IsAttached then
                         DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z + 0.2, '~g~G~w~ - Laying down on the brancard')
-                        if IsControlJustPressed(0, Keys["G"]) or IsDisabledControlJustPressed(0, Keys["G"]) then
+                        if IsControlJustPressed(0, 47) or IsDisabledControlJustPressed(0, 47) then
                             LayOnBrancard()
                         end
                     end
@@ -132,7 +132,7 @@ Citizen.CreateThread(function()
                 else
                     if not IsAttached then
                         DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z + 0.2, '~g~G~w~ - getting off')
-                        if IsControlJustPressed(0, Keys["G"]) or IsDisabledControlJustPressed(0, Keys["G"]) then
+                        if IsControlJustPressed(0, 47) or IsDisabledControlJustPressed(0, 47) then
                             GetOffBrancard()
                         end
                     end
