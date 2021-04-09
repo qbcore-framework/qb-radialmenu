@@ -22,10 +22,10 @@ AddEventHandler('qb-trunk:server:KidnapTrunk', function(targetId, closestVehicle
     TriggerClientEvent('qb-trunk:client:KidnapGetIn', targetId, closestVehicle)
 end)
 
-QBCore.Commands.Add("getintrunk", "Get in trunk", {}, false, function(source, args)
+QBCore.Commands.Add("getintrunk", "Get In Trunk", {}, false, function(source, args)
     TriggerClientEvent('qb-trunk:client:GetIn', source)
 end)
 
-QBCore.Commands.Add("kidnaptrunk", "Get in trunk", {}, false, function(source, args)
+QBCore.Commands.Add("putintrunk", "Put Player In Trunk", {}, false, function(source, args)
     TriggerClientEvent('qb-trunk:server:KidnapTrunk', source)
 end)
