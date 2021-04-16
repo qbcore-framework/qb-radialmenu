@@ -11,7 +11,7 @@ Config.MenuItems = {
                 title = 'Give Contact Details',
                 icon = '#nummer',
                 type = 'client',
-                event = 'qb-phone_new:client:GiveContactDetails',
+                event = 'qb-phone:client:GiveContactDetails',
                 shouldClose = true,
             },
             {
