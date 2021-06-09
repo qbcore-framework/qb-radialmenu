@@ -951,8 +951,8 @@ end)
 
 function log(l) -- Just a simple logging thing, to easily log all kinds of stuff.
 	if l == nil then print("nil") return end
-	if not Config.Debug then return end
-	if type(l) == "table" then print(json.encode(l)) elseif type(l) == "boolean" then print(l) else print(l.." | "..type(l)) end
+	--[[if not Config.Debug then return end
+	if type(l) == "table" then print(json.encode(l)) elseif type(l) == "boolean" then print(l) else print(l.." | "..type(l)) end]]
 end
 
 function GetKey(str)
