@@ -795,8 +795,8 @@ function ResetClothing(anim)
 	LastEquipped = {}
 end
 
-RegisterNetEvent('if-radialmenu:ResetClothing')
-AddEventHandler('if-radialmenu:ResetClothing', ResetClothing)
+RegisterNetEvent('qb-radialmenu:ResetClothing')
+AddEventHandler('qb-radialmenu:ResetClothing', ResetClothing)
 
 function ToggleClothing(whic, extra)
 	local which = whic
@@ -821,7 +821,7 @@ function ToggleClothing(whic, extra)
 	}
 	local Gender = IsMpPed(Ped)
 	if which ~= "Mask" then
-		if not Gender then Notify("Je hebt dit niet") return false end -- We cancel the command here if the person is not using a multiplayer model.
+		if not Gender then Notify("This ped model does not allow for this option.") return false end -- We cancel the command here if the person is not using a multiplayer model.
 	end
 	local Table = Toggle.Table[Gender]
 	if not Toggle.Table.Standalone then -- "Standalone" is for things that dont require a variant, like the shoes just need to be switched to a specific drawable. Looking back at this i should have planned ahead, but it all works so, meh!
@@ -841,7 +841,7 @@ function ToggleClothing(whic, extra)
 				end
 			end
 		end
-		Notify("Je hebt dit niet") return
+		Notify("There dont seem to be any variants for this.") return
 	else
 		if not LastEquipped[which] then
 			if Cur.Drawable ~= Table then 
@@ -878,11 +878,11 @@ function ToggleClothing(whic, extra)
 			return true
 		end
 	end
-	Notify("Je draagt dit al") return false
+	Notify("You are already wearing that.") return false
 end
 
-RegisterNetEvent('if-radialmenu:ToggleClothing')
-AddEventHandler('if-radialmenu:ToggleClothing', ToggleClothing)
+RegisterNetEvent('qb-radialmenu:ToggleClothing')
+AddEventHandler('qb-radialmenu:ToggleClothing', ToggleClothing)
 
 function ToggleProps(whic)
 	local which = whic
@@ -912,86 +912,22 @@ function ToggleProps(whic)
 				PlayToggleEmote(Prop.Emote.On, function() SetPedPropIndex(Ped, Prop.Prop, Last.Prop, Last.Texture, true) end) LastEquipped[which] = false return true
 			end
 		end
-		Notify("Je hebt dit niet") return false
+		Notify("You dont appear to have anything to remove.") return false
 	else
 		local Gender = IsMpPed(Ped)
-		if not Gender then Notify("NotAllowedPed") return false end -- We dont really allow for variants on ped models, Its possible, but im pretty sure 95% of ped models dont really have variants.
+		if not Gender then Notify("This ped model does not allow for this option.") return false end -- We dont really allow for variants on ped models, Its possible, but im pretty sure 95% of ped models dont really have variants.
 		local Variations = Prop.Variants[Gender]
 		for k,v in pairs(Variations) do
 			if Cur.Prop == k then
 				PlayToggleEmote(Prop.Emote.On, function() SetPedPropIndex(Ped, Prop.Prop, v, Cur.Texture, true) end) return true
 			end
 		end
-		Notify("Je hebt dit niet") return false
+		Notify("There dont seem to be any variants for this.") return false
 	end
 end
 
-RegisterNetEvent('if-radialmenu:ToggleProps')
-AddEventHandler('if-radialmenu:ToggleProps', ToggleProps)
-
-function DrawDev() -- Draw text for all the stuff we are wearing, to make grabbing the variants of stuff much simpler for people.
-	local Entries = {}
-	for k,v in PairsKeys(Drawables) do table.insert(Entries, { Name = k, Drawable = v.Drawable }) end
-	for k,v in PairsKeys(Extras) do table.insert(Entries, { Name = k, Drawable = v.Drawable }) end
-	for k,v in PairsKeys(Props) do table.insert(Entries, { Name = k, Prop = v.Prop }) end
-	for k,v in pairs(Entries) do
-		local Ped = PlayerPedId() local Cur
-		if v.Drawable then
-			Cur = { Id = GetPedDrawableVariation(Ped, v.Drawable),  Texture = GetPedTextureVariation(Ped, v.Drawable) }
-		elseif v.Prop then
-			Cur = { Id = GetPedPropIndex(Ped, v.Prop),  Texture = GetPedPropTextureIndex(Ped, v.Prop) }
-		end
-		Text(0.2, 0.8*k/18, 0.30, "~o~"..v.Name.."~w~ = \n     ("..Cur.Id.." , "..Cur.Texture..")", false, 1)
-		DrawRect(0.23, 0.8*k/18+0.025, 0.07, 0.045, 0, 0, 0, 150)
-	end
-end
-
-local TestThreadActive = nil
-function DevTestVariants(d) -- If debug mode is enabled we can try all the variants to check for scuff.
-	if not TestThreadActive then
-		Citizen.CreateThread(function()
-			TestThreadActive = true
-			local Ped = PlayerPedId()
-			local Drawable = Drawables[d]
-			local Prop = Props[d]
-			local Gender = IsMpPed(Ped)
-			if Drawable then
-				if Drawable.Table then
-					if type(Drawable.Table[Gender]) == "table" then
-						for k,v in PairsKeys(Drawable.Table[Gender]) do
-							Notify(d.." : ~o~"..k)
-							SoundPlay("Open")
-							SetPedComponentVariation(Ped, Drawable.Drawable, k, 0, 0)
-							Wait(300)
-							Notify(d.." : ~b~"..v)
-							SoundPlay("Close")
-							SetPedComponentVariation(Ped, Drawable.Drawable, v, 0, 0)
-							Wait(300)
-						end
-					end
-				end
-			elseif Prop then
-				if Prop.Variants then
-					for k,v in PairsKeys(Prop.Variants[Gender]) do
-						Notify(d.." : ~o~"..k)
-						SoundPlay("Open")
-						SetPedPropIndex(Ped, Prop.Prop, k, 0, true)
-						Wait(300)
-						Notify(d.." : ~b~"..v)
-						SoundPlay("Close")
-						SetPedPropIndex(Ped, Prop.Prop, v, 0, true)
-						Wait(300)
-						ClearPedProp(Ped, Prop.Prop)
-						Wait(200)
-					end
-				end
-			end
-			TestThreadActive = false
-		end)
-	else
-		Notify("Already testing variants.")
-	end
-end
+RegisterNetEvent('qb-radialmenu:ToggleProps')
+AddEventHandler('qb-radialmenu:ToggleProps', ToggleProps)
 
 for k,v in pairs(Config.Commands) do
 	RegisterCommand(k, v.Func)
@@ -1086,16 +1022,4 @@ end)
 RegisterNetEvent('dpc:ResetClothing')
 AddEventHandler('dpc:ResetClothing', function()
 	LastEquipped = {}
-end)
-
-RegisterNetEvent('dpc:ToggleMenu')
-AddEventHandler('dpc:ToggleMenu', function()
-	MenuOpened = not MenuOpened
-	if MenuOpened then SoundPlay("Open") SetCursorLocation(Config.GUI.Position.x, Config.GUI.Position.y) else SoundPlay("Close") end
-end)
-
-RegisterNetEvent('dpc:Menu')
-AddEventHandler('dpc:Menu', function(status)
-	MenuOpened = status
-	if MenuOpened then SoundPlay("Open") else SoundPlay("Close") end
 end)
