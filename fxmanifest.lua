@@ -7,15 +7,16 @@ version '1.0.0'
 ui_page "html/index.html"
 
 client_scripts {
+    "config.lua",
     "client/main.lua",
+    "client/clothing.lua",
     "client/trunk.lua",
     "client/brancard.lua",
-	"config.lua",
 }
 
 server_scripts {
-	"server/main.lua",
     "config.lua",
+    "server/main.lua",
     "server/trunk.lua",
     "server/brancard.lua",
 }
