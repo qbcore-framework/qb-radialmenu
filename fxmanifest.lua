@@ -8,6 +8,7 @@ ui_page "html/index.html"
 
 client_scripts {
     "client/main.lua",
+    "client/clothing.lua",
     "client/trunk.lua",
     "client/brancard.lua",
 	"config.lua",
