@@ -165,12 +165,12 @@ AddEventHandler('qb-trunk:client:KidnapGetIn', function(veh)
                                 inTrunk = true
                                 Citizen.Wait(500)
                                 SetVehicleDoorShut(closestVehicle, 5, false)
-                                QBCore.Functions.Notify('Je ligt in de kofferbak.', 'success', 4000)
+                                QBCore.Functions.Notify('You\'re in the trunk.', 'success', 4000)
                                 TrunkCam(true)
 
                                 isKidnapped = true
                             -- else
-                                -- QBCore.Functions.Notify('Is de kofferbak dicht?', 'error', 2500)
+                                -- QBCore.Functions.Notify('Is the trunk closed?', 'error', 2500)
                             -- end
                         else
                             local ped = PlayerPedId()
