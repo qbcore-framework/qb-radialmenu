@@ -419,7 +419,7 @@ RadialMenu.prototype.appendSectorPath = function (startAngleDeg, endAngleDeg, sv
         g.setAttribute('data-index', index);
 
         if (item.title) {
-            var text = self.createText(centerPoint.x, centerPoint.y, item.title + " (" + (index + 1) + ")");
+            var text = self.createText(centerPoint.x, centerPoint.y, item.title);
             if (item.icon) {
                 text.setAttribute('transform', 'translate(0,8)');
             } else {
