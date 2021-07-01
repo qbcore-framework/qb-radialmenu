@@ -9,6 +9,13 @@ end)
 
 local inRadialMenu = false
 
+RegisterCommand('radialmenu', function()
+    openRadial(true)
+    SetCursorLocation(0.5, 0.5)
+end)
+
+RegisterKeyMapping('radialmenu', 'Open Radial Menu', 'keyboard', 'F1')
+
 function setupSubItems()
     QBCore.Functions.GetPlayerData(function(PlayerData)
         if PlayerData.metadata["isdead"] then
@@ -148,17 +155,6 @@ function getNearestVeh()
     local _, _, _, _, vehicleHandle = GetRaycastResult(rayHandle)
     return vehicleHandle
 end
-
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(3)
-
-        if IsControlJustPressed(0, 288) then
-            openRadial(true)
-            SetCursorLocation(0.5, 0.5)
-        end
-    end
-end)
 
 RegisterNUICallback('closeRadial', function()
     closeRadial(false)
