@@ -460,7 +460,39 @@ Config.MenuItems = {
                         type = 'client',
                         event = 'qb-radialmenu:client:setExtra',
                         shouldClose = false,
-                    },                                                                                                                  
+                    },
+					{
+                        id    = 'extra10',
+                        title = 'Extra 10',
+                        icon = '#plus',
+                        type = 'client',
+                        event = 'qb-radialmenu:client:setExtra',
+                        shouldClose = false,
+                    }, 
+					{
+                        id    = 'extra11',
+                        title = 'Extra 11',
+                        icon = '#plus',
+                        type = 'client',
+                        event = 'qb-radialmenu:client:setExtra',
+                        shouldClose = false,
+                    }, 
+					{
+                        id    = 'extra12',
+                        title = 'Extra 12',
+                        icon = '#plus',
+                        type = 'client',
+                        event = 'qb-radialmenu:client:setExtra',
+                        shouldClose = false,
+                    }, 
+					{
+                        id    = 'extra13',
+                        title = 'Extra 13',
+                        icon = '#plus',
+                        type = 'client',
+                        event = 'qb-radialmenu:client:setExtra',
+                        shouldClose = false,
+                    }, 
                 }
             },
             {
@@ -690,7 +722,7 @@ Config.JobInteractions = {
         },
         {
             id = 'policeinteraction',
-            title = 'police interaction',
+            title = 'Police Interaction',
             icon = '#house',
             items = {
                 {
@@ -711,7 +743,7 @@ Config.JobInteractions = {
                 },
                 {
                     id    = 'escort',
-                    title = 'Escorteren',
+                    title = 'Escort',
                     icon = '#general',
                     type = 'client',
                     event = 'police:client:EscortPlayer',
@@ -727,7 +759,7 @@ Config.JobInteractions = {
                 },
                 {
                     id    = 'jailplayer',
-                    title = 'jail',
+                    title = 'Jail',
                     icon = '#general',
                     type = 'client',
                     event = 'police:client:JailPlayer',
