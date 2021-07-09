@@ -690,7 +690,7 @@ Config.JobInteractions = {
         },
         {
             id = 'policeinteraction',
-            title = 'police interaction',
+            title = 'Police Interaction',
             icon = '#house',
             items = {
                 {
@@ -711,7 +711,7 @@ Config.JobInteractions = {
                 },
                 {
                     id    = 'escort',
-                    title = 'Escorteren',
+                    title = 'Escort',
                     icon = '#general',
                     type = 'client',
                     event = 'police:client:EscortPlayer',
@@ -727,7 +727,7 @@ Config.JobInteractions = {
                 },
                 {
                     id    = 'jailplayer',
-                    title = 'jail',
+                    title = 'Jail',
                     icon = '#general',
                     type = 'client',
                     event = 'police:client:JailPlayer',
