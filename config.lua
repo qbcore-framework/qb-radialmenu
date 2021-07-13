@@ -17,7 +17,7 @@ Config.MenuItems = {
             {
                 id    = 'getintrunk',
                 title = 'Get In Trunk',
-                icon = '#vehiclekey',
+                icon = '#vehicle',
                 type = 'client',
                 event = 'qb-trunk:client:GetIn',
                 shouldClose = true,
@@ -33,7 +33,7 @@ Config.MenuItems = {
             {
                 id    = 'togglehotdogsell',
                 title = 'Hotdog Selling',
-                icon = '#cornerselling',
+                icon = '#hotdog',
                 type = 'client',
                 event = 'qb-hotdogjob:client:ToggleSell',
                 shouldClose = true,
@@ -41,12 +41,12 @@ Config.MenuItems = {
             {
                 id = 'interactions',
                 title = 'Interaction',
-                icon = '#illegal',
+                icon = '#peoples',
                 items = {
                     {
                         id    = 'handcuff',
                         title = 'Cuff',
-                        icon = '#general',
+                        icon = '#cuffed',
                         type = 'client',
                         event = 'police:client:CuffPlayerSoft',
                         shouldClose = true,
@@ -54,7 +54,7 @@ Config.MenuItems = {
                     {
                         id    = 'playerinvehicle',
                         title = 'Put In Vehicle',
-                        icon = '#general',
+                        icon = '#vehicle',
                         type = 'client',
                         event = 'police:client:PutPlayerInVehicle',
                         shouldClose = true,
@@ -62,7 +62,7 @@ Config.MenuItems = {
                     {
                         id    = 'playeroutvehicle',
                         title = 'Take Out Of Vehicle',
-                        icon = '#general',
+                        icon = '#vehicle',
                         type = 'client',
                         event = 'police:client:SetPlayerOutVehicle',
                         shouldClose = true,
@@ -70,7 +70,7 @@ Config.MenuItems = {
                     {
                         id    = 'stealplayer',
                         title = 'Rob',
-                        icon = '#general',
+                        icon = '#rob',
                         type = 'client',
                         event = 'police:client:RobPlayer',
                         shouldClose = true,
@@ -78,7 +78,7 @@ Config.MenuItems = {
                     {
                         id    = 'escort',
                         title = 'Kidnap',
-                        icon = '#general',
+                        icon = '#ninja',
                         type = 'client',
                         event = 'police:client:KidnapPlayer',
                         shouldClose = true,
@@ -86,7 +86,7 @@ Config.MenuItems = {
                     {
                         id    = 'escort2',
                         title = 'Escort',
-                        icon = '#general',
+                        icon = '#escort',
                         type = 'client',
                         event = 'police:client:EscortPlayer',
                         shouldClose = true,
@@ -94,7 +94,7 @@ Config.MenuItems = {
                     {
                         id    = 'escort554',
                         title = 'Hostage',
-                        icon = '#general',
+                        icon = '#hostage',
                         type = 'client',
                         event = 'A5:Client:TakeHostage',
                         shouldClose = true,
@@ -134,7 +134,7 @@ Config.MenuItems = {
                     {
                         id    = 'togglelock',
                         title = 'Toggle Doorlock',
-                        icon = '#vehiclekey',
+                        icon = '#door',
                         type = 'client',
                         event = 'qb-houses:client:toggleDoorlock',
                         shouldClose = true,
@@ -142,7 +142,7 @@ Config.MenuItems = {
                     {
                         id    = 'decoratehouse',
                         title = 'Decorate House',
-                        icon = '#vehiclekey',
+                        icon = '#paint',
                         type = 'client',
                         event = 'qb-houses:client:decorate',
                         shouldClose = true,
@@ -155,7 +155,7 @@ Config.MenuItems = {
                             {
                                 id    = 'setstash',
                                 title = 'Set Stash',
-                                icon = '#vehiclekey',
+                                icon = '#stash',
                                 type = 'client',
                                 event = 'qb-houses:client:setLocation',
                                 shouldClose = true,
@@ -163,7 +163,7 @@ Config.MenuItems = {
                             {
                                 id    = 'setoutift',
                                 title = 'Set Wardrobe',
-                                icon = '#vehiclekey',
+                                icon = '#wardrobe',
                                 type = 'client',
                                 event = 'qb-houses:client:setLocation',
                                 shouldClose = true,
@@ -171,7 +171,7 @@ Config.MenuItems = {
                             {
                                 id    = 'setlogout',
                                 title = 'Set Logout',
-                                icon = '#vehiclekey',
+                                icon = '#logout',
                                 type = 'client',
                                 event = 'qb-houses:client:setLocation',
                                 shouldClose = true,
@@ -483,7 +483,7 @@ Config.MenuItems = {
     [4] = {
         id = 'jobinteractions',
         title = 'Work',
-        icon = '#vehicle',
+        icon = '#work',
         items = {},
     },
 }
@@ -558,7 +558,7 @@ Config.JobInteractions = {
         {
             id    = 'statuscheck',
             title = 'Research person',
-            icon = '#general',
+            icon = '#health',
             type = 'client',
             event = 'hospital:client:CheckStatus',
             shouldClose = true,
@@ -566,7 +566,7 @@ Config.JobInteractions = {
         {
             id    = 'treatwounds',
             title = 'Heal wounds',
-            icon = '#general',
+            icon = '#bandaid',
             type = 'client',
             event = 'hospital:client:TreatWounds',
             shouldClose = true,
@@ -574,7 +574,7 @@ Config.JobInteractions = {
         {
             id    = 'emergencybutton2',
             title = 'Emergency button',
-            icon = '#general',
+            icon = '#emerg',
             type = 'client',
             event = 'police:client:SendPoliceEmergencyAlert',
             shouldClose = true,
@@ -582,28 +582,28 @@ Config.JobInteractions = {
         {
             id    = 'escort',
             title = 'Escort',
-            icon = '#general',
+            icon = '#escort',
             type = 'client',
             event = 'police:client:EscortPlayer',
             shouldClose = true,
         },
         {
             id = 'brancardoptions',
-            title = 'Brancard',
-            icon = '#vehicle',
+            title = 'Stretcher',
+            icon = '#stretcher',
             items = {
                 {
                     id    = 'spawnbrancard',
-                    title = 'Spawn brancard',
-                    icon = '#general',
+                    title = 'Spawn Stretcher',
+                    icon = '#stretcher',
                     type = 'client',
                     event = 'hospital:client:TakeBrancard',
                     shouldClose = false,
                 },
                 {
                     id    = 'despawnbrancard',
-                    title = 'Remove brancard',
-                    icon = '#general',
+                    title = 'Remove stretcher',
+                    icon = '#trashy',
                     type = 'client',
                     event = 'hospital:client:RemoveBrancard',
                     shouldClose = false,
@@ -615,7 +615,7 @@ Config.JobInteractions = {
         {
             id    = 'togglemeter',
             title = 'Show/Hide Meter',
-            icon = '#general',
+            icon = '#stop',
             type = 'client',
             event = 'qb-taxi:client:toggleMeter',
             shouldClose = false,
@@ -623,7 +623,7 @@ Config.JobInteractions = {
         {
             id    = 'togglemouse',
             title = 'Start/Stop Meter',
-            icon = '#general',
+            icon = '#taxistart',
             type = 'client',
             event = 'qb-taxi:client:enableMeter',
             shouldClose = true,
@@ -631,7 +631,7 @@ Config.JobInteractions = {
         {
             id    = 'npc_mission',
             title = 'NPC Mission',
-            icon = '#general',
+            icon = '#npctaxi',
             type = 'client',
             event = 'qb-taxi:client:DoTaxiNpc',
             shouldClose = true,
@@ -659,7 +659,7 @@ Config.JobInteractions = {
         {
             id    = 'emergencybutton',
             title = 'Emergency button',
-            icon = '#general',
+            icon = '#emerg',
             type = 'client',
             event = 'police:client:SendPoliceEmergencyAlert',
             shouldClose = true,
@@ -667,7 +667,7 @@ Config.JobInteractions = {
         {
             id    = 'checkvehstatus',
             title = 'Check Tune Status',
-            icon = '#vehiclekey',
+            icon = '#vehicle',
             type = 'client',
             event = 'qb-tunerchip:server:TuneStatus',
             shouldClose = true,
@@ -683,7 +683,7 @@ Config.JobInteractions = {
         {
             id    = 'takedriverlicense',
             title = 'Take drivers license',
-            icon = '#vehicle',
+            icon = '#id',
             type = 'client',
             event = 'police:client:SeizeDriverLicense',
             shouldClose = true,
@@ -691,7 +691,7 @@ Config.JobInteractions = {
         {
             id = 'policeinteraction',
             title = 'Police Interaction',
-            icon = '#house',
+            icon = '#polint',
             items = {
                 {
                     id    = 'statuscheck',
@@ -738,28 +738,28 @@ Config.JobInteractions = {
         {
             id = 'policeobjects',
             title = 'Objects',
-            icon = '#house',
+            icon = '#objects',
             items = {
                 {
                     id    = 'spawnpion',
                     title = 'Cone',
-                    icon = '#vehiclekey',
+                    icon = '#cone',
                     type = 'client',
                     event = 'police:client:spawnCone',
                     shouldClose = false,
                 },
                 {
                     id    = 'spawnhek',
-                    title = 'Gate',
-                    icon = '#vehiclekey',
+                    title = 'Barrier',
+                    icon = '#barrier',
                     type = 'client',
                     event = 'police:client:spawnBarier',
                     shouldClose = false,
                 },
                 {
                     id    = 'spawnschotten',
-                    title = 'Scote',
-                    icon = '#vehiclekey',
+                    title = 'Sign',
+                    icon = '#sign',
                     type = 'client',
                     event = 'police:client:spawnSchotten',
                     shouldClose = false,
@@ -767,7 +767,7 @@ Config.JobInteractions = {
                 {
                     id    = 'spawntent',
                     title = 'Tent',
-                    icon = '#vehiclekey',
+                    icon = '#tent',
                     type = 'client',
                     event = 'police:client:spawnTent',
                     shouldClose = false,
@@ -775,7 +775,7 @@ Config.JobInteractions = {
                 {
                     id    = 'spawnverlichting',
                     title = 'Lighting',
-                    icon = '#vehiclekey',
+                    icon = '#bulb',
                     type = 'client',
                     event = 'police:client:spawnLight',
                     shouldClose = false,
@@ -783,7 +783,7 @@ Config.JobInteractions = {
                 {
                     id    = 'spikestrip',
                     title = 'Spike Strips',
-                    icon = '#vehiclekey',
+                    icon = '#spike',
                     type = 'client',
                     event = 'police:client:SpawnSpikeStrip',
                     shouldClose = false,
@@ -791,7 +791,7 @@ Config.JobInteractions = {
                 {
                     id    = 'deleteobject',
                     title = 'Remove object',
-                    icon = '#vehiclekey',
+                    icon = '#trashy',
                     type = 'client',
                     event = 'police:client:deleteObject',
                     shouldClose = false,
