@@ -80,7 +80,7 @@ svg.menu > g.sector > path {
 svg.menu > g.sector > text,
 svg.menu > g.sector > use {
     margin-top: 5px;
-    font-size: 2.5px;
+    font-size: 3px;
     cursor: pointer;
     fill: white;
 }
