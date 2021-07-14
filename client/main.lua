@@ -40,16 +40,16 @@ function setupSubItems()
             Config.MenuItems[3].items[3].items = {
                 [1] = {
                     id    = -1,
-                    title = 'Bestuurder',
-                    icon = '#vehicleseat',
+                    title = 'Driver',
+                    icon = 'caret-up',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
                     shouldClose = false,
                 },
                 [2] = {
                     id    = 0,
-                    title = 'Bijrijder',
-                    icon = '#vehicleseat',
+                    title = 'Passenger',
+                    icon = 'caret-up',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
                     shouldClose = false,
@@ -59,24 +59,24 @@ function setupSubItems()
             Config.MenuItems[3].items[3].items = {
                 [4] = {
                     id    = -1,
-                    title = 'Bestuurder',
-                    icon = '#vehicleseat',
+                    title = 'Driver',
+                    icon = 'caret-up',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
                     shouldClose = false,
                 },
                 [1] = {
                     id    = 0,
-                    title = 'Bijrijder',
-                    icon = '#vehicleseat',
+                    title = 'Passenger',
+                    icon = 'caret-up',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
                     shouldClose = false,
                 },
                 [3] = {
                     id    = 1,
-                    title = 'Overige',
-                    icon = '#vehicleseat',
+                    title = 'Other',
+                    icon = 'caret-down',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
                     shouldClose = false,
@@ -86,32 +86,32 @@ function setupSubItems()
             Config.MenuItems[3].items[3].items = {
                 [4] = {
                     id    = -1,
-                    title = 'Bestuurder',
-                    icon = '#vehicleseat',
+                    title = 'Driver',
+                    icon = 'caret-up',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
                     shouldClose = false,
                 },
                 [1] = {
                     id    = 0,
-                    title = 'Bijrijder',
-                    icon = '#vehicleseat',
+                    title = 'Passenger',
+                    icon = 'caret-up',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
                     shouldClose = false,
                 },
                 [3] = {
                     id    = 1,
-                    title = 'Achterbank Links',
-                    icon = '#vehicleseat',
+                    title = 'Rear Left',
+                    icon = 'caret-down',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
                     shouldClose = false,
                 },
                 [2] = {
                     id    = 2,
-                    title = 'Achterbank Rechts',
-                    icon = '#vehicleseat',
+                    title = 'Rear Right',
+                    icon = 'caret-down',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
                     shouldClose = false,
@@ -270,10 +270,10 @@ AddEventHandler('qb-radialmenu:trunk:client:Door', function(plate, door, open)
 end)
 
 local Seats = {
-    ["-1"] = "Bestuurder's stoel",
-    ["0"] = "Bijrijder's stoel",
-    ["1"] = "Achterbank Links",
-    ["2"] = "Achterbank Rechts",
+    ["-1"] = "Driver's Seat",
+    ["0"] = "Passenger's Seat",
+    ["1"] = "Rear Left Seat",
+    ["2"] = "Rear Right Seat",
 }
 
 RegisterNetEvent('qb-radialmenu:client:ChangeSeat')
