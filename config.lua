@@ -177,7 +177,7 @@ Config.MenuItems = {
                         shouldClose = true
                     }, {
                         id = 'Ear',
-                        title = 'Oor',
+                        title = 'Ear Piece',
                         icon = 'deaf',
                         type = 'client',
                         event = 'qb-radialmenu:ToggleProps',
@@ -858,7 +858,7 @@ Config.ExtraCommands = {
     ["reset"] = {
         Func = function()
             if not ResetClothing(true) then
-                Notify("Je draagt dit al")
+                Notify('Nothing To Reset', 'error')
             end
         end,
         Sprite = "reset",
