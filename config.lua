@@ -23,7 +23,7 @@ Config.MenuItems = {
             }, {
                 id = 'cornerselling',
                 title = 'Corner Selling',
-                icon = 'prescription',
+                icon = 'cannabis',
                 type = 'client',
                 event = 'qb-drugs:client:cornerselling',
                 shouldClose = true
@@ -113,7 +113,7 @@ Config.MenuItems = {
                         items = {}
                     }, {
                         id = 'removehousekey',
-                        title = 'Remove key of the house',
+                        title = 'Remove House Keys',
                         icon = 'key',
                         type = 'client',
                         event = 'qb-houses:client:removeHouseKey',
@@ -141,7 +141,7 @@ Config.MenuItems = {
                             {
                                 id = 'setstash',
                                 title = 'Set Stash',
-                                icon = 'vault',
+                                icon = 'box-open',
                                 type = 'client',
                                 event = 'qb-houses:client:setLocation',
                                 shouldClose = true
@@ -178,14 +178,14 @@ Config.MenuItems = {
                     }, {
                         id = 'Ear',
                         title = 'Oor',
-                        icon = 'user',
+                        icon = 'deaf',
                         type = 'client',
                         event = 'qb-radialmenu:ToggleProps',
                         shouldClose = true
                     }, {
                         id = 'Neck',
                         title = 'Neck',
-                        icon = 'user',
+                        icon = 'user-tie',
                         type = 'client',
                         event = 'qb-radialmenu:ToggleClothing',
                         shouldClose = true
@@ -213,19 +213,19 @@ Config.MenuItems = {
                     }, {
                         id = 'Shoes',
                         title = 'Shoes',
-                        icon = 'socks',
+                        icon = 'shoe-prints',
                         type = 'client',
                         event = 'qb-radialmenu:ToggleClothing',
                         shouldClose = true
                     }, {
                         id = 'meer',
                         title = 'Extras',
-                        icon = 'user',
+                        icon = 'plus',
                         items = {
                             {
                                 id = 'Hat',
                                 title = 'Hat',
-                                icon = 'hat-cowboy',
+                                icon = 'hat-cowboy-side',
                                 type = 'client',
                                 event = 'qb-radialmenu:ToggleProps',
                                 shouldClose = true
@@ -239,14 +239,14 @@ Config.MenuItems = {
                             }, {
                                 id = 'Visor',
                                 title = 'Visor',
-                                icon = 'user',
+                                icon = 'hat-cowboy-side',
                                 type = 'client',
                                 event = 'qb-radialmenu:ToggleProps',
                                 shouldClose = true
                             }, {
                                 id = 'Mask',
                                 title = 'Mask',
-                                icon = 'mask',
+                                icon = 'theater-masks',
                                 type = 'client',
                                 event = 'qb-radialmenu:ToggleClothing',
                                 shouldClose = true
@@ -260,7 +260,7 @@ Config.MenuItems = {
                             }, {
                                 id = 'Bag',
                                 title = 'Bag',
-                                icon = 'bag-shopping',
+                                icon = 'shopping-bag',
                                 type = 'client',
                                 event = 'qb-radialmenu:ToggleClothing',
                                 shouldClose = true
@@ -470,77 +470,18 @@ Config.MenuItems = {
 }
 
 Config.JobInteractions = {
-    ["doctor"] = {
-        {
-            id = 'statuscheck',
-            title = 'Check Person',
-            icon = 'heart-pulse',
-            type = 'client',
-            event = 'hospital:client:CheckStatus',
-            shouldClose = true
-        }, {
-            id = 'treatwounds',
-            title = 'Heal Wounds',
-            icon = 'bandage',
-            type = 'client',
-            event = 'hospital:client:TreatWounds',
-            shouldClose = true
-        }, {
-            id = 'reviveplayer',
-            title = 'Revive',
-            icon = 'star-of-life',
-            type = 'client',
-            event = 'hospital:client:RevivePlayer',
-            shouldClose = true
-        }, {
-            id = 'emergencybutton2',
-            title = 'Emergency Button',
-            icon = 'bell',
-            type = 'client',
-            event = 'police:client:SendPoliceEmergencyAlert',
-            shouldClose = true
-        }, {
-            id = 'escort',
-            title = 'Escort',
-            icon = 'user-friends',
-            type = 'client',
-            event = 'police:client:EscortPlayer',
-            shouldClose = true
-        }, {
-            id = 'brancardoptions',
-            title = 'Stretcher',
-            icon = 'bed',
-            items = {
-                {
-                    id = 'spawnbrancard',
-                    title = 'Spawn Stretcher',
-                    icon = 'plus',
-                    type = 'client',
-                    event = 'hospital:client:TakeBrancard',
-                    shouldClose = false
-                }, {
-                    id = 'despawnbrancard',
-                    title = 'Remove Stretcher',
-                    icon = 'minus',
-                    type = 'client',
-                    event = 'hospital:client:RemoveBrancard',
-                    shouldClose = false
-                }
-            }
-        }
-    },
     ["ambulance"] = {
         {
             id = 'statuscheck',
-            title = 'Research person',
-            icon = 'heart-pulse',
+            title = 'Check Health Status',
+            icon = 'heartbeat',
             type = 'client',
             event = 'hospital:client:CheckStatus',
             shouldClose = true
         }, {
             id = 'treatwounds',
             title = 'Heal wounds',
-            icon = 'bandage',
+            icon = 'band-aid',
             type = 'client',
             event = 'hospital:client:TreatWounds',
             shouldClose = true
@@ -561,7 +502,7 @@ Config.JobInteractions = {
         }, {
             id = 'brancardoptions',
             title = 'Stretcher',
-            icon = 'bed',
+            icon = 'procedures',
             items = {
                 {
                     id = 'spawnbrancard',
@@ -633,7 +574,7 @@ Config.JobInteractions = {
         }, {
             id = 'checkvehstatus',
             title = 'Check Tune Status',
-            icon = 'magnifying-glass',
+            icon = 'info-circle',
             type = 'car',
             event = 'qb-tunerchip:server:TuneStatus',
             shouldClose = true
@@ -646,7 +587,7 @@ Config.JobInteractions = {
             shouldClose = true
         }, {
             id = 'takedriverlicense',
-            title = 'Take drivers license',
+            title = 'Revoke Drivers License',
             icon = 'id-card',
             type = 'client',
             event = 'police:client:SeizeDriverLicense',
@@ -658,15 +599,15 @@ Config.JobInteractions = {
             items = {
                 {
                     id = 'statuscheck',
-                    title = 'Search person',
-                    icon = 'magnifying-glass',
+                    title = 'Check Health Status',
+                    icon = 'heartbeat',
                     type = 'client',
                     event = 'hospital:client:CheckStatus',
                     shouldClose = true
                 }, {
                     id = 'checkstatus',
                     title = 'Check status',
-                    icon = 'circle-question',
+                    icon = 'question',
                     type = 'client',
                     event = 'police:client:CheckStatus',
                     shouldClose = true
@@ -680,7 +621,7 @@ Config.JobInteractions = {
                 }, {
                     id = 'searchplayer',
                     title = 'Search',
-                    icon = 'magnifying-glass',
+                    icon = 'search',
                     type = 'client',
                     event = 'police:client:SearchPlayer',
                     shouldClose = true
@@ -714,8 +655,8 @@ Config.JobInteractions = {
                     shouldClose = false
                 }, {
                     id = 'spawnschotten',
-                    title = 'Speed Sign',
-                    icon = 'shield-blank',
+                    title = 'Speed Limit Sign',
+                    icon = 'sign',
                     type = 'client',
                     event = 'police:client:spawnSchotten',
                     shouldClose = false
@@ -743,7 +684,7 @@ Config.JobInteractions = {
                 }, {
                     id = 'deleteobject',
                     title = 'Remove object',
-                    icon = 'trash-can',
+                    icon = 'trash',
                     type = 'client',
                     event = 'police:client:deleteObject',
                     shouldClose = false
