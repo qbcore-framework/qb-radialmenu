@@ -48,9 +48,10 @@ function createMenu(items) {
     });
 }
 
-$(document).on('keydown', function() {
-    switch(event.keyCode) {
-        case 27: // ESC
+$(document).on('keydown', function(e) {
+    switch(e.key) {
+        case "Escape":
+        case "f1":
             QBRadialMenu.close();
             break;
     }

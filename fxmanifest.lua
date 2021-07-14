@@ -27,7 +27,6 @@ server_scripts {
 files {
     'html/index.html',
     'html/css/main.css',
-    'html/css/RadialMenu.css',
     'html/js/main.js',
-    'html/js/RadialMenu.js'
+    'html/js/RadialMenu.js',
 }
