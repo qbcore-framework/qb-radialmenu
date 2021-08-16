@@ -1,37 +1,35 @@
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 body {
-	/* font-family: 'Lato';
-	font-size: 10px;
-	font-weight: lighter; */
+    /* font-family: 'Lato';
+    font-size: 10px;
+    font-weight: lighter; */
 }
 
 h1 {
-	font-weight: normal;
-	color: white;
+    font-weight: normal;
+    color: white;
 }
 
 div.info {
-	margin: 12px 0;
+    margin: 12px 0;
 }
 
 div.info * {
-	color: white;
-	text-shadow: 1px 1px 0 #000000D0;
+    color: white;
 }
 
 #icons {
-	display: none;
-	filter:url(#drop-shadow);
+    display: none;
+    filter:url(#drop-shadow);
 }
 
 .container {
-	position: absolute;
-	left: 1000px;
+    position: absolute;
+    left: 1000px;
 }
 
 #vehicle {
-	fill: white;
+    fill: white;
 }
 
 
@@ -53,7 +51,7 @@ svg.icons {
 svg.menu {
     position: absolute;
     overflow: visible;
-    transition: 0.1s;
+    transition: .3s;
     transition-timing-function: ease-out;
 }
 
@@ -69,8 +67,8 @@ svg.menu.outer {
 }
 
 svg.menu > g > path {
-    fill-opacity: 0.7;
-    fill: #00000080;
+    fill: rgb(23 23 23 / 80%);
+    transition: 1.2s;
 }
 
 svg.menu > g.sector > path {
@@ -79,27 +77,27 @@ svg.menu > g.sector > path {
 
 svg.menu > g.sector > text,
 svg.menu > g.sector > use {
+    font-family: 'Poppins', sans-serif;
     margin-top: 5px;
-    font-size: 3px;
+    font-size: 2.5px;
+    text-transform: uppercase;
     cursor: pointer;
     fill: white;
 }
 
 svg.menu > g.sector:hover > path {
-    fill: #ff3019;
-    fill-opacity: 0.6;
+    fill: #dc143c;
 
 }
 
 svg.menu > g.center:hover > circle {
-    fill:#ff3019;
-    fill-opacity: 0.6;
+    fill:#dc143c;
 }
 
 svg.menu > g.center > circle {
     cursor: pointer;
-    fill: #00000080;
-    fill-opacity: 0.4;
+    fill: rgb(23 23 23 / 80%);
+    transition: 1.2s;
 }
 
 svg.menu > g.center > text,
