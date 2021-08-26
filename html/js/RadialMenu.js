@@ -51,7 +51,7 @@ RadialMenu.prototype.close = function () {
     var self = this;
 
     if (self.currentMenu) {
-        $.post('https://qb-radialmenu/closeRadial');
+        $.post(`https://${GetParentResourceName()}/closeRadial`);
         var parentMenu;
         while (parentMenu = self.parentMenu.pop()) {
             parentMenu.remove();
