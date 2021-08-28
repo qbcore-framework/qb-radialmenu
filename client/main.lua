@@ -247,7 +247,7 @@ AddEventHandler('qb-radialmenu:client:setExtra', function(data)
                 QBCore.Functions.Notify('Extra ' .. extra .. ' Its not pressent on this vehicle ', 'error', 2500)
             end
         else
-            QBCore.Functions.Notify('Your not a driver of a vehicle !', 'error', 2500)
+            QBCore.Functions.Notify('You\'re not a driver of a vehicle !', 'error', 2500)
         end
     end
 end)
@@ -290,13 +290,13 @@ AddEventHandler('qb-radialmenu:client:ChangeSeat', function(data)
                 SetPedIntoVehicle(PlayerPedId(), Veh, data.id)
                 QBCore.Functions.Notify('Your now on the  '..data.title..'!')
             else
-                QBCore.Functions.Notify('The vehicle goes to fast..')
+                QBCore.Functions.Notify('The vehicle goes too fast..')
             end
         else
             QBCore.Functions.Notify('This seat is occupied..')
         end
     else
-        QBCore.Functions.Notify('You have a race harnas on u cant switch..', 'error')
+        QBCore.Functions.Notify('You have a race harness on u cant switch..', 'error')
     end
 end)
 
