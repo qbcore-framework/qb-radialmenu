@@ -500,23 +500,23 @@ Config.JobInteractions = {
             event = 'police:client:EscortPlayer',
             shouldClose = true
         }, {
-            id = 'brancardoptions',
+            id = 'stretcheroptions',
             title = 'Stretcher',
             icon = 'procedures',
             items = {
                 {
-                    id = 'spawnbrancard',
+                    id = 'spawnstretcher',
                     title = 'Spawn Stretcher',
                     icon = 'plus',
                     type = 'client',
-                    event = 'hospital:client:TakeBrancard',
+                    event = 'hospital:client:TakeStretcher',
                     shouldClose = false
                 }, {
-                    id = 'despawnbrancard',
+                    id = 'despawnstretcher',
                     title = 'Remove Stretcher',
                     icon = 'minus',
                     type = 'client',
-                    event = 'hospital:client:RemoveBrancard',
+                    event = 'hospital:client:RemoveStretcher',
                     shouldClose = false
                 }
             }
