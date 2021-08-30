@@ -28,8 +28,8 @@ AddEventHandler('hospital:client:TakeBrancard', function()
 
     if Vehicle ~= 0 then
         local VehCoords = GetOffsetFromEntityInWorldCoords(PlayerPed, 0, 0.75, 0)
-        LoadModel("prop_ld_binbag_01")
-        Obj = CreateObject(GetHashKey('prop_ld_binbag_01'), GetEntityCoords(PlayerPedId()), true)
+        LoadModel("v_med_emptybed")
+        Obj = CreateObject(GetHashKey('v_med_emptybed'), GetEntityCoords(PlayerPedId()), true)
         if Obj ~= nil or Obj ~= 0 then
             SetEntityRotation(Obj, 0.0, 0.0, GetEntityHeading(Vehicle), false, false)
             FreezeEntityPosition(Obj, true)
@@ -75,7 +75,7 @@ end)
 function SetClosestBrancard()
     local Ped = PlayerPedId()
     local c = GetEntityCoords(Ped)
-    local Object = GetClosestObjectOfType(c.x, c.y, c.z, 10.0, GetHashKey("prop_ld_binbag_01"), false, false, false)
+    local Object = GetClosestObjectOfType(c.x, c.y, c.z, 10.0, GetHashKey("v_med_emptybed"), false, false, false)
 
     if Object ~= 0 then
         BrancardObject = Object
@@ -201,7 +201,7 @@ function LayOnBrancard()
     local inBedAnims = "ko_front"
     local PlayerPed = PlayerPedId()
     local PlayerPos = GetEntityCoords(PlayerPed)
-    local Object = GetClosestObjectOfType(PlayerPos.x, PlayerPos.y, PlayerPos.z, 3.0, GetHashKey("prop_ld_binbag_01"), false, false, false)
+    local Object = GetClosestObjectOfType(PlayerPos.x, PlayerPos.y, PlayerPos.z, 3.0, GetHashKey("v_med_emptybed"), false, false, false)
     local player, distance = GetClosestPlayer()
 
     if player == -1 then
@@ -252,7 +252,7 @@ AddEventHandler('qb-radialmenu:client:Result', function(IsBusy, type)
     local inBedAnims = "ko_front"
     local PlayerPed = PlayerPedId()
     local PlayerPos = GetEntityCoords(PlayerPed)
-    local Object = GetClosestObjectOfType(PlayerPos.x, PlayerPos.y, PlayerPos.z, 3.0, GetHashKey("prop_ld_binbag_01"), false, false, false)
+    local Object = GetClosestObjectOfType(PlayerPos.x, PlayerPos.y, PlayerPos.z, 3.0, GetHashKey("v_med_emptybed"), false, false, false)
     
     if type == "lay" then
         if not IsBusy then
@@ -364,7 +364,7 @@ Citizen.CreateThread(function()
     Wait(1000)
     local Ped = PlayerPedId()
     local Pos = GetEntityCoords(Ped)
-    local Object = GetClosestObjectOfType(Pos.x, Pos.y, Pos.z, 5.0, GetHashKey("prop_ld_binbag_01"), false, false, false)
+    local Object = GetClosestObjectOfType(Pos.x, Pos.y, Pos.z, 5.0, GetHashKey("v_med_emptybed"), false, false, false)
     DeleteObject(Object)
     ClearPedTasksImmediately(PlayerPedId())
 end)
