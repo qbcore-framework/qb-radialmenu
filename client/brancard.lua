@@ -20,8 +20,8 @@ function CheckForVehicles()
     return veh
 end
 
-RegisterNetEvent('hospital:client:TakeStretcher')
-AddEventHandler('hospital:client:TakeStretcher', function()
+RegisterNetEvent('qb-radialmenu:client:TakeStretcher')
+AddEventHandler('qb-radialmenu:client:TakeStretcher', function()
     local PlayerPed = PlayerPedId()
     local PlayerPos = GetEntityCoords(PlayerPed)
     local Vehicle = CheckForVehicles()
@@ -47,8 +47,8 @@ AddEventHandler('hospital:client:TakeStretcher', function()
     end
 end)
 
-RegisterNetEvent('hospital:client:RemoveStretcher')
-AddEventHandler('hospital:client:RemoveStretcher', function()
+RegisterNetEvent('qb-radialmenu:client:RemoveStretcher')
+AddEventHandler('qb-radialmenu:client:RemoveStretcher', function()
     local PlayerPed = PlayerPedId()
     local PlayerPos = GetOffsetFromEntityInWorldCoords(PlayerPed, 0, 1.5, 0)
 
