@@ -516,14 +516,14 @@ Config.JobInteractions = {
                     title = 'Spawn Stretcher',
                     icon = 'plus',
                     type = 'client',
-                    event = 'hospital:client:TakeStretcher',
+                    event = 'qb-radialmenu:client:TakeStretcher',
                     shouldClose = false
                 }, {
                     id = 'despawnstretcher',
                     title = 'Remove Stretcher',
                     icon = 'minus',
                     type = 'client',
-                    event = 'hospital:client:RemoveStretcher',
+                    event = 'qb-radialmenu:client:RemoveStretcher',
                     shouldClose = false
                 }
             }
