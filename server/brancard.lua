@@ -1,12 +1,12 @@
-RegisterServerEvent('qb-radialmenu:server:RemoveBrancard')
-AddEventHandler('qb-radialmenu:server:RemoveBrancard', function(PlayerPos, BrancardObject)
-    TriggerClientEvent('qb-radialmenu:client:RemoveBrancardFromArea', -1, PlayerPos, BrancardObject)
+RegisterServerEvent('qb-radialmenu:server:RemoveStretcher')
+AddEventHandler('qb-radialmenu:server:RemoveStretcher', function(PlayerPos, StretcherObject)
+    TriggerClientEvent('qb-radialmenu:client:RemoveStretcherFromArea', -1, PlayerPos, StretcherObject)
 end)
 
-RegisterServerEvent('qb-radialmenu:Brancard:BusyCheck')
-AddEventHandler('qb-radialmenu:Brancard:BusyCheck', function(id, type)
+RegisterServerEvent('qb-radialmenu:Stretcher:BusyCheck')
+AddEventHandler('qb-radialmenu:Stretcher:BusyCheck', function(id, type)
     local MyId = source
-    TriggerClientEvent('qb-radialmenu:Brancard:client:BusyCheck', id, MyId, type)
+    TriggerClientEvent('qb-radialmenu:Stretcher:client:BusyCheck', id, MyId, type)
 end)
 
 RegisterServerEvent('qb-radialmenu:server:BusyResult')
