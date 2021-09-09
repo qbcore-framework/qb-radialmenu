@@ -1,17 +1,17 @@
 local IsAttached = false
-local BrancardObject = nil
+local StretcherObject = nil
 local IsLayingOnBed = false
 
-local ValidVIEKELS = {
-    "fordambo",
+-- Add your vehicles here that will allow Ambulance to get a stretcher out.
+local AllowedStretcherVehicles = {
     "ambulance",
-}
+	}
 
 function CheckForVehicles()
     local PlayerPed = PlayerPedId()
     local PlayerPos = GetEntityCoords(PlayerPed)
     local veh = 0
-    for k, v in pairs(ValidVIEKELS) do
+    for k, v in pairs(AllowedStretcherVehicles) do
         veh = GetClosestVehicle(PlayerPos.x, PlayerPos.y, PlayerPos.z, 7.5, GetHashKey(v), 70)
         if veh ~= 0 then
             break
@@ -20,8 +20,8 @@ function CheckForVehicles()
     return veh
 end
 
-RegisterNetEvent('hospital:client:TakeBrancard')
-AddEventHandler('hospital:client:TakeBrancard', function()
+RegisterNetEvent('hospital:client:TakeStretcher')
+AddEventHandler('hospital:client:TakeStretcher', function()
     local PlayerPed = PlayerPedId()
     local PlayerPos = GetEntityCoords(PlayerPed)
     local Vehicle = CheckForVehicles()
@@ -34,36 +34,36 @@ AddEventHandler('hospital:client:TakeBrancard', function()
             SetEntityRotation(Obj, 0.0, 0.0, GetEntityHeading(Vehicle), false, false)
             FreezeEntityPosition(Obj, true)
             PlaceObjectOnGroundProperly(Obj)
-            BrancardObject = Obj
+            StretcherObject = Obj
             SetTimeout(200, function()
-                AttachToBrancard()
+                AttachToStretcher()
                 IsAttached = true
             end)
         else
             QBCore.Functions.Notify("Something went wrong..", 'error')
         end
     else
-        QBCore.Functions.Notify("You're not near an ambulance..", 'error')
+        QBCore.Functions.Notify("You're not near an Ambulance..", 'error')
     end
 end)
 
-RegisterNetEvent('hospital:client:RemoveBrancard')
-AddEventHandler('hospital:client:RemoveBrancard', function()
+RegisterNetEvent('hospital:client:RemoveStretcher')
+AddEventHandler('hospital:client:RemoveStretcher', function()
     local PlayerPed = PlayerPedId()
     local PlayerPos = GetOffsetFromEntityInWorldCoords(PlayerPed, 0, 1.5, 0)
 
-    if BrancardObject ~= nil then
-        local BCoords = GetEntityCoords(BrancardObject)
+    if StretcherObject ~= nil then
+        local BCoords = GetEntityCoords(StretcherObject)
         local Dist = #(PlayerPos - BCoords)
 
         if Dist < 3.0 then
-            if DoesEntityExist(BrancardObject) then
-                DeleteEntity(BrancardObject)
+            if DoesEntityExist(StretcherObject) then
+                DeleteEntity(StretcherObject)
                 ClearPedTasks(PlayerPed)
                 DetachEntity(PlayerPed, false, true)
-                TriggerServerEvent('qb-radialmenu:server:RemoveBrancard', PlayerPos, BrancardObject)
+                TriggerServerEvent('qb-radialmenu:server:RemoveStretcher', PlayerPos, StretcherObject)
                 IsAttached = false
-                BrancardObject = nil
+                StretcherObject = nil
                 IsLayingOnBed = false
             end
         else
@@ -72,19 +72,19 @@ AddEventHandler('hospital:client:RemoveBrancard', function()
     end
 end)
 
-function SetClosestBrancard()
+function SetClosestStretcher()
     local Ped = PlayerPedId()
     local c = GetEntityCoords(Ped)
     local Object = GetClosestObjectOfType(c.x, c.y, c.z, 10.0, GetHashKey("prop_ld_binbag_01"), false, false, false)
 
     if Object ~= 0 then
-        BrancardObject = Object
+        StretcherObject = Object
     end
 end
 
 Citizen.CreateThread(function()
     while true do
-        SetClosestBrancard()
+        SetClosestStretcher()
         Citizen.Wait(1000)
     end
 end)
@@ -95,45 +95,45 @@ Citizen.CreateThread(function()
         local PlayerPed = PlayerPedId()
         local PlayerPos = GetEntityCoords(PlayerPed)
         
-        if BrancardObject ~= nil then
-            local ObjectCoords = GetEntityCoords(BrancardObject)
-            local OffsetCoords = GetOffsetFromEntityInWorldCoords(BrancardObject, 0, 0.85, 0)
+        if StretcherObject ~= nil then
+            local ObjectCoords = GetEntityCoords(StretcherObject)
+            local OffsetCoords = GetOffsetFromEntityInWorldCoords(StretcherObject, 0, 0.85, 0)
             local Distance = #(PlayerPos - OffsetCoords)
 
             if Distance <= 1.0 then
                 if not IsAttached then
-                    DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z, 'Press ~g~E~w~ to pick up the stretcher / ~g~H~w~ to lock it')
+                    DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z, '~g~E~w~ -Push Stretcher')
                     if IsControlJustPressed(0, 51) then
-                        AttachToBrancard()
+                        AttachToStretcher()
                         IsAttached = true
                     end
                     if IsControlJustPressed(0, 74) then
-                        FreezeEntityPosition(BrancardObject, true)
+                        FreezeEntityPosition(StretcherObject, true)
                     end
                 else
-                    DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z, 'Press ~g~E~w~ - to let go of the stretcher')
+                    DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z, '~g~E~w~ - Stop Pushing')
                     if IsControlJustPressed(0, 51) then
-                        DetachBrancard()
+                        DetachStretcher()
                         IsAttached = false
                     end
                 end
 
                 if not IsLayingOnBed then
                     if not IsAttached then
-                        DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z + 0.2, 'Press ~g~G~w~ - to lay down on the stretcher')
+                        DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z + 0.2, '~g~G~w~ - Lay On Stretcher')
                         if IsControlJustPressed(0, 47) or IsDisabledControlJustPressed(0, 47) then
-                            LayOnBrancard()
+                            LayOnStretcher()
                         end
                     end
                 end
             elseif Distance <= 2 then
                 if not IsLayingOnBed then
-                    DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z, 'Stand Here')
+                    DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z, 'Push Here')
                 else
                     if not IsAttached then
-                        DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z + 0.2, 'Press ~g~G~w~ - to get off the stretcher')
+                        DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z + 0.2, '~g~G~w~ - Get Off Stretcher')
                         if IsControlJustPressed(0, 47) or IsDisabledControlJustPressed(0, 47) then
-                            GetOffBrancard()
+                            GetOffStretcher()
                         end
                     end
                 end
@@ -168,19 +168,19 @@ function GetClosestPlayer()
 end
 
 
-RegisterNetEvent('qb-radialmenu:client:RemoveBrancardFromArea')
-AddEventHandler('qb-radialmenu:client:RemoveBrancardFromArea', function(PlayerPos, BObject)
+RegisterNetEvent('qb-radialmenu:client:RemoveStretcherFromArea')
+AddEventHandler('qb-radialmenu:client:RemoveStretcherFromArea', function(PlayerPos, BObject)
     local Ped = PlayerPedId()
     local Pos = GetEntityCoords(Ped)
 
     if Pos ~= PlayerPos then
         local Distance = #(Pos - PlayerPos)
 
-        if BrancardObject ~= nil or BrancardObject ~= 0 then
-            if BrancardObject == BObject then
+        if StretcherObject ~= nil or StretcherObject ~= 0 then
+            if StretcherObject == BObject then
                 if Distance < 10 then
                     if IsEntityPlayingAnim(Ped, 'anim@heists@box_carry@', 'idle', false) then
-                        DetachBrancard()
+                        DetachStretcher()
                     end
 
                     if IsEntityPlayingAnim(Ped, "anim@gangops@morgue@table@", "ko_front", false) then
@@ -196,7 +196,7 @@ AddEventHandler('qb-radialmenu:client:RemoveBrancardFromArea', function(PlayerPo
     end
 end)
 
-function LayOnBrancard()
+function LayOnStretcher()
     local inBedDicts = "anim@gangops@morgue@table@"
     local inBedAnims = "ko_front"
     local PlayerPed = PlayerPedId()
@@ -208,12 +208,12 @@ function LayOnBrancard()
         LoadAnim(inBedDicts)
         if Object ~= nil or Object ~= 0 then
             TaskPlayAnim(PlayerPedId(), inBedDicts, inBedAnims, 8.0, 8.0, -1, 69, 1, false, false, false)
-            AttachEntityToEntity(PlayerPed, Object, 0, 0, 0.0, 1.6, 0.0, 0.0, 360.0, 0.0, false, false, false, false, 2, true)
+            AttachEntityToEntity(PlayerPed, Object, 0, 0, 0.0, 1.0, 0.0, 0.0, 180.0, 0.0, false, false, false, false, 2, true)
             IsLayingOnBed = true
         end
     else
         if distance < 2.0 then
-            TriggerServerEvent('qb-radialmenu:Brancard:BusyCheck', GetPlayerServerId(player), "lay")
+            TriggerServerEvent('qb-radialmenu:Stretcher:BusyCheck', GetPlayerServerId(player), "lay")
         else
             LoadAnim(inBedDicts)
             if Object ~= nil or Object ~= 0 then
@@ -225,8 +225,8 @@ function LayOnBrancard()
     end
 end
 
-RegisterNetEvent('qb-radialmenu:Brancard:client:BusyCheck')
-AddEventHandler('qb-radialmenu:Brancard:client:BusyCheck', function(OtherId, type)
+RegisterNetEvent('qb-radialmenu:Stretcher:client:BusyCheck')
+AddEventHandler('qb-radialmenu:Stretcher:client:BusyCheck', function(OtherId, type)
     local ped = PlayerPedId()
     if type == "lay" then
         LoadAnim("anim@gangops@morgue@table@")
@@ -256,7 +256,7 @@ AddEventHandler('qb-radialmenu:client:Result', function(IsBusy, type)
     
     if type == "lay" then
         if not IsBusy then
-            NetworkRequestControlOfEntity(BrancardObject)
+            NetworkRequestControlOfEntity(StretcherObject)
             LoadAnim(inBedDicts)
             TaskPlayAnim(PlayerPedId(), inBedDicts, inBedAnims, 8.0, 8.0, -1, 69, 1, false, false, false)
             AttachEntityToEntity(PlayerPed, Object, 0, 0, 0.0, 1.6, 0.0, 0.0, 360.0, 0.0, false, false, false, false, 2, true)
@@ -267,11 +267,11 @@ AddEventHandler('qb-radialmenu:client:Result', function(IsBusy, type)
         end
     else
         if not IsBusy then
-            NetworkRequestControlOfEntity(BrancardObject)
+            NetworkRequestControlOfEntity(StretcherObject)
             LoadAnim("anim@heists@box_carry@")
             TaskPlayAnim(PlayerPed, 'anim@heists@box_carry@', 'idle', 8.0, 8.0, -1, 50, 0, false, false, false)
             SetTimeout(150, function()
-                AttachEntityToEntity(BrancardObject, PlayerPed, GetPedBoneIndex(PlayerPed, 28422), 0.0, -1.0, -1.0, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2, true)
+                AttachEntityToEntity(StretcherObject, PlayerPed, GetPedBoneIndex(PlayerPed, 28422), 0.0, -1.0, -1.0, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2, true)
             end)
             FreezeEntityPosition(Obj, false)
             IsAttached = true
@@ -282,10 +282,10 @@ AddEventHandler('qb-radialmenu:client:Result', function(IsBusy, type)
     end
 end)
 
-function GetOffBrancard()
+function GetOffStretcher()
     local PlayerPed = PlayerPedId()
     local PlayerPos = GetEntityCoords(PlayerPed)
-    local Coords = GetOffsetFromEntityInWorldCoords(BrancardObject, 0.85, 0.0, 0)
+    local Coords = GetOffsetFromEntityInWorldCoords(StretcherObject, 0.85, 0.0, 0)
 
     ClearPedTasks(PlayerPed)
     DetachEntity(PlayerPed, false, true)
@@ -299,20 +299,20 @@ Citizen.CreateThread(function()
         if IsAttached then
             for _, PressedKey in pairs(DetachKeys) do
                 if IsControlJustPressed(0, PressedKey) or IsDisabledControlJustPressed(0, PressedKey) then
-                    DetachBrancard()
+                    DetachStretcher()
                 end
             end
 
             if IsPedShooting(PlayerPedId()) or IsPlayerFreeAiming(PlayerId()) or IsPedInMeleeCombat(PlayerPedId()) then
-                DetachBrancard()
+                DetachStretcher()
             end
 
             if IsPedDeadOrDying(PlayerPedId(), false) then
-                DetachBrancard()
+                DetachStretcher()
             end
 
             if IsPedRagdoll(PlayerPedId()) then
-                DetachBrancard()
+                DetachStretcher()
             end
         else
             Citizen.Wait(1000)
@@ -321,30 +321,30 @@ Citizen.CreateThread(function()
     end
 end)
 
-function AttachToBrancard()
+function AttachToStretcher()
     local PlayerPed = PlayerPedId()
     local ClosestPlayer, distance = GetClosestPlayer()
     local PlayerPed = PlayerPedId()
     local PlayerPos = GetEntityCoords(PlayerPed)
 
-    if BrancardObject ~= nil then
+    if StretcherObject ~= nil then
         if ClosestPlayer == -1 then
-            NetworkRequestControlOfEntity(BrancardObject)
+            NetworkRequestControlOfEntity(StretcherObject)
             LoadAnim("anim@heists@box_carry@")
             TaskPlayAnim(PlayerPed, 'anim@heists@box_carry@', 'idle', 8.0, 8.0, -1, 50, 0, false, false, false)
             SetTimeout(150, function()
-                AttachEntityToEntity(BrancardObject, PlayerPed, GetPedBoneIndex(PlayerPed, 28422), 0.0, -1.0, -1.0, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2, true)
+                AttachEntityToEntity(StretcherObject, PlayerPed, GetPedBoneIndex(PlayerPed, 28422), 0.0, -1.0, -0.50, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2, true)
             end)
             FreezeEntityPosition(Obj, false)
         else
             if distance < 2.0 then
-                TriggerServerEvent('qb-radialmenu:Brancard:BusyCheck', GetPlayerServerId(ClosestPlayer), "attach")
+                TriggerServerEvent('qb-radialmenu:Stretcher:BusyCheck', GetPlayerServerId(ClosestPlayer), "attach")
             else
-                NetworkRequestControlOfEntity(BrancardObject)
+                NetworkRequestControlOfEntity(StretcherObject)
                 LoadAnim("anim@heists@box_carry@")
                 TaskPlayAnim(PlayerPed, 'anim@heists@box_carry@', 'idle', 8.0, 8.0, -1, 50, 0, false, false, false)
                 SetTimeout(150, function()
-                    AttachEntityToEntity(BrancardObject, PlayerPed, GetPedBoneIndex(PlayerPed, 28422), 0.0, -1.0, -1.0, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2, true)
+                    AttachEntityToEntity(StretcherObject, PlayerPed, GetPedBoneIndex(PlayerPed, 28422), 0.0, -1.0, -1.0, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2, true)
                 end)
                 FreezeEntityPosition(Obj, false)
             end
@@ -353,9 +353,9 @@ function AttachToBrancard()
 end
 
 
-function DetachBrancard()
+function DetachStretcher()
     local PlayerPed = PlayerPedId()
-    DetachEntity(BrancardObject, false, true)
+    DetachEntity(StretcherObject, false, true)
     ClearPedTasksImmediately(PlayerPedId())
     IsAttached = false
 end
@@ -371,9 +371,9 @@ end)
 
 AddEventHandler('onResourceStop', function(resource)
     if resource == GetCurrentResourceName() then
-        if BrancardObject ~= nil then
-            DetachBrancard()
-            DeleteObject(BrancardObject)
+        if StretcherObject ~= nil then
+            DetachStretcher()
+            DeleteObject(StretcherObject)
             ClearPedTasksImmediately(PlayerPedId())
         end
     end
