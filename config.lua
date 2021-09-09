@@ -559,7 +559,7 @@ Config.JobInteractions = {
             title = 'Toggle NPC',
             icon = 'toggle-on',
             type = 'client',
-            event = 'jobs:client:ToggleNpc',
+            event = 'qb-tow:client:ToggleNpc',
             shouldClose = true
         }, {
             id = 'towvehicle',
