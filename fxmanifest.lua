@@ -15,13 +15,13 @@ client_scripts {
     'client/main.lua',
     'client/clothing.lua',
     'client/trunk.lua',
-    'client/brancard.lua'
+    'client/stretcher.lua'
 }
 
 server_scripts {
     'server/main.lua',
     'server/trunk.lua',
-    'server/brancard.lua'
+    'server/stretcher.lua'
 }
 
 files {
