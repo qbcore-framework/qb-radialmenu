@@ -163,7 +163,7 @@ end)
 
 RegisterNetEvent('qb-radialmenu:client:noPlayers')
 AddEventHandler('qb-radialmenu:client:noPlayers', function(data)
-    QBCore.Functions.Notify('There arrent any people close', 'error', 2500)
+    QBCore.Functions.Notify('There arent any people close', 'error', 2500)
 end)
 
 RegisterNetEvent('qb-radialmenu:client:giveidkaart')
@@ -244,10 +244,10 @@ AddEventHandler('qb-radialmenu:client:setExtra', function(data)
                     QBCore.Functions.Notify('Extra ' .. extra .. ' Activated', 'success', 2500)
                 end    
             else
-                QBCore.Functions.Notify('Extra ' .. extra .. ' Its not pressent on this vehicle ', 'error', 2500)
+                QBCore.Functions.Notify('Extra ' .. extra .. ' is not present on this vehicle ', 'error', 2500)
             end
         else
-            QBCore.Functions.Notify('You\'re not a driver of a vehicle !', 'error', 2500)
+            QBCore.Functions.Notify('You\'re not a driver of a vehicle!', 'error', 2500)
         end
     end
 end)
@@ -288,15 +288,15 @@ AddEventHandler('qb-radialmenu:client:ChangeSeat', function(data)
         if IsSeatFree then
             if kmh <= 100.0 then
                 SetPedIntoVehicle(PlayerPedId(), Veh, data.id)
-                QBCore.Functions.Notify('Your now on the  '..data.title..'!')
+                QBCore.Functions.Notify('You are now on the  '..data.title..'!')
             else
-                QBCore.Functions.Notify('The vehicle goes too fast..')
+                QBCore.Functions.Notify('This vehicle is going too fast..')
             end
         else
             QBCore.Functions.Notify('This seat is occupied..')
         end
     else
-        QBCore.Functions.Notify('You have a race harness on u cant switch..', 'error')
+        QBCore.Functions.Notify('You have a race harness on you cant switch..', 'error')
     end
 end)
 
