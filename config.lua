@@ -582,8 +582,8 @@ Config.JobInteractions = {
             id = 'checkvehstatus',
             title = 'Check Tune Status',
             icon = 'info-circle',
-            type = 'car',
-            event = 'qb-tunerchip:server:TuneStatus',
+            type = 'client',
+            event = 'qb-tunerchip:client:TuneStatus',
             shouldClose = true
         }, {
             id = 'resethouse',
