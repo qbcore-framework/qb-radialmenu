@@ -482,8 +482,8 @@ Config.JobInteractions = {
             id = 'revivep',
             title = 'Revive',
             icon = 'user-md',
-            type = 'server',
-            event = 'hospital:server:RevivePlayer',
+            type = 'client',
+            event = 'hospital:client:RevivePlayer',
             shouldClose = true
         },{
             id = 'treatwounds',
