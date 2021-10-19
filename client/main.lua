@@ -1,6 +1,7 @@
 local inRadialMenu = false
 
 RegisterCommand('radialmenu', function()
+    if IsPauseMenuActive() then return end
     openRadial(true)
     SetCursorLocation(0.5, 0.5)
 end)
