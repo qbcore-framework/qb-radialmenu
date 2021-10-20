@@ -1,9 +1,12 @@
 local inRadialMenu = false
 
 RegisterCommand('radialmenu', function()
-    if IsPauseMenuActive() then return end
-    openRadial(true)
-    SetCursorLocation(0.5, 0.5)
+	QBCore.Functions.GetPlayerData(function(PlayerData)
+        if not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() then
+			openRadial(true)
+			SetCursorLocation(0.5, 0.5)
+		end
+	end)
 end)
 
 RegisterKeyMapping('radialmenu', 'Open Radial Menu', 'keyboard', 'F1')
