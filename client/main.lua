@@ -5,6 +5,8 @@ RegisterCommand('radialmenu', function()
         if not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() then
 			openRadial(true)
 			SetCursorLocation(0.5, 0.5)
+        else
+            QBCore.Functions.Notify('Unable to Use Radial Menu', 'error', 2500)        
 		end
 	end)
 end)
