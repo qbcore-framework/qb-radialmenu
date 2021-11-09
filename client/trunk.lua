@@ -105,7 +105,7 @@ Citizen.CreateThread(function()
         local ped = PlayerPedId()
         local vehicle = GetEntityAttachedTo(PlayerPedId())
         local drawPos = GetOffsetFromEntityInWorldCoords(vehicle, 0, -5.5, 0)
-    
+
         local vehHeading = GetEntityHeading(vehicle)
 
         if cam ~= nil then
@@ -143,7 +143,7 @@ AddEventHandler('qb-trunk:client:KidnapGetIn', function(veh)
     local ped = PlayerPedId()
     local closestVehicle = veh
     local vehClass = GetVehicleClass(closestVehicle)
-    local plate = GetVehicleNumberPlateText(closestVehicle)
+    local plate = QBCore.Functions.GetPlate(closestVehicle)
 
     if Config.TrunkClasses[vehClass].allowed then
         QBCore.Functions.TriggerCallback('qb-trunk:server:getTrunkBusy', function(isBusy)
@@ -175,8 +175,8 @@ AddEventHandler('qb-trunk:client:KidnapGetIn', function(veh)
                         else
                             local ped = PlayerPedId()
                             local vehicle = GetEntityAttachedTo(PlayerPedId())
-                            local plate = GetVehicleNumberPlateText(vehicle)
-            
+                            local plate = QBCore.Functions.GetPlate(vehicle)
+
                             if GetVehicleDoorAngleRatio(vehicle, 5) > 0 then
                                 local vehCoords = GetOffsetFromEntityInWorldCoords(vehicle, 0, -5.0, 0)
                                 DetachEntity(ped, true, true)
@@ -192,10 +192,10 @@ AddEventHandler('qb-trunk:client:KidnapGetIn', function(veh)
                         end
                     else
                         QBCore.Functions.Notify('Anyone in there yet?', 'error', 2500)
-                    end 
+                    end
                 else
                     QBCore.Functions.Notify('Your already in the trunk', 'error', 2500)
-                end 
+                end
             else
                 QBCore.Functions.Notify('You cant get in this trunk..', 'error', 2500)
             end
@@ -212,7 +212,7 @@ AddEventHandler('qb-trunk:client:GetIn', function(isKidnapped)
 
     if closestVehicle ~= 0 then
         local vehClass = GetVehicleClass(closestVehicle)
-        local plate = GetVehicleNumberPlateText(closestVehicle)
+        local plate = QBCore.Functions.GetPlate(closestVehicle)
         if Config.TrunkClasses[vehClass].allowed then
             QBCore.Functions.TriggerCallback('qb-trunk:server:getTrunkBusy', function(isBusy)
                 if not disabledCarCheck(closestVehicle) then
@@ -239,10 +239,10 @@ AddEventHandler('qb-trunk:client:GetIn', function(isKidnapped)
                             end
                         else
                             QBCore.Functions.Notify('Looks like there is some 1 in there?', 'error', 2500)
-                        end 
+                        end
                     else
                         QBCore.Functions.Notify('You are already in the trunk', 'error', 2500)
-                    end 
+                    end
                 else
                     QBCore.Functions.Notify('You cant get in this trunk..', 'error', 2500)
                 end
@@ -263,7 +263,7 @@ Citizen.CreateThread(function()
                 local ped = PlayerPedId()
                 local vehicle = GetEntityAttachedTo(PlayerPedId())
                 local drawPos = GetOffsetFromEntityInWorldCoords(vehicle, 0, -2.5, 0)
-                local plate = GetVehicleNumberPlateText(vehicle)
+                local plate = QBCore.Functions.GetPlate(vehicle)
 
                 if DoesEntityExist(vehicle) then
                     DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.75, '[E] To get out of the trunk')

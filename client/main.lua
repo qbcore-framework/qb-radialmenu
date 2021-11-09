@@ -29,7 +29,7 @@ function setupSubItems()
         else
             if Config.JobInteractions[PlayerData.job.name] ~= nil and next(Config.JobInteractions[PlayerData.job.name]) ~= nil then
                 Config.MenuItems[4].items = Config.JobInteractions[PlayerData.job.name]
-            else 
+            else
                 Config.MenuItems[4].items = {}
             end
         end
@@ -125,7 +125,7 @@ function setupSubItems()
     end
 end
 
-function openRadial(bool)    
+function openRadial(bool)
     setupSubItems()
 
     SetNuiFocus(bool, bool)
@@ -137,7 +137,7 @@ function openRadial(bool)
     inRadialMenu = bool
 end
 
-function closeRadial(bool)    
+function closeRadial(bool)
     SetNuiFocus(false, false)
     inRadialMenu = bool
 end
@@ -191,7 +191,7 @@ AddEventHandler('qb-radialmenu:client:openDoor', function(data)
 
     if closestVehicle ~= 0 then
         if closestVehicle ~= GetVehiclePedIsIn(ped) then
-            local plate = GetVehicleNumberPlateText(closestVehicle)
+            local plate = QBCore.Functions.GetPlate(closestVehicle)
             if GetVehicleDoorAngleRatio(closestVehicle, door) > 0.0 then
                 if not IsVehicleSeatFree(closestVehicle, -1) then
                     TriggerServerEvent('qb-radialmenu:trunk:server:Door', false, plate, door)
@@ -225,17 +225,17 @@ AddEventHandler('qb-radialmenu:client:setExtra', function(data)
     local ped = PlayerPedId()
     local veh = GetVehiclePedIsIn(ped)
     if veh ~= nil then
-        local plate = GetVehicleNumberPlateText(closestVehicle)
+        local plate = QBCore.Functions.GetPlate(closestVehicle)
         if GetPedInVehicleSeat(veh, -1) == PlayerPedId() then
             SetVehicleAutoRepairDisabled(veh, true) -- Forces Auto Repair off when Toggling Extra [GTA 5 Niche Issue]
-            if DoesExtraExist(veh, extra) then 
+            if DoesExtraExist(veh, extra) then
                 if IsVehicleExtraTurnedOn(veh, extra) then
                     SetVehicleExtra(veh, extra, 1)
                     QBCore.Functions.Notify('Extra ' .. extra .. ' Deactivated', 'error', 2500)
                 else
                     SetVehicleExtra(veh, extra, 0)
                     QBCore.Functions.Notify('Extra ' .. extra .. ' Activated', 'success', 2500)
-                end    
+                end
             else
                 QBCore.Functions.Notify('Extra ' .. extra .. ' is not present on this vehicle ', 'error', 2500)
             end
@@ -250,7 +250,7 @@ AddEventHandler('qb-radialmenu:trunk:client:Door', function(plate, door, open)
     local veh = GetVehiclePedIsIn(PlayerPedId())
 
     if veh ~= 0 then
-        local pl = GetVehicleNumberPlateText(veh)
+        local pl = QBCore.Functions.GetPlate(veh)
 
         if pl == plate then
             if open then
@@ -276,7 +276,7 @@ AddEventHandler('qb-radialmenu:client:ChangeSeat', function(data)
     local speed = GetEntitySpeed(Veh)
     local HasHarnass = exports['qb-smallresources']:HasHarness()
     if not HasHarnass then
-        local kmh = (speed * 3.6);  
+        local kmh = (speed * 3.6);
 
         if IsSeatFree then
             if kmh <= 100.0 then
