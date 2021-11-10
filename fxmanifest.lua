@@ -6,10 +6,7 @@ version '1.0.0'
 
 ui_page 'html/index.html'
 
-shared_scripts { 
-	'@qb-core/import.lua',
-	'config.lua'
-}
+shared_script 'config.lua'
 
 client_scripts {
     'client/main.lua',
@@ -19,7 +16,6 @@ client_scripts {
 }
 
 server_scripts {
-    'server/main.lua',
     'server/trunk.lua',
     'server/stretcher.lua'
 }
@@ -30,3 +26,5 @@ files {
     'html/js/main.js',
     'html/js/RadialMenu.js',
 }
+
+lua54 'yes'
