@@ -6,11 +6,6 @@ AddEventHandler('qb-radialmenu:trunk:server:Door', function(open, plate, door)
     TriggerClientEvent('qb-radialmenu:trunk:client:Door', -1, plate, door, open)
 end)
 
-RegisterServerEvent('qb-radialmenu:trunk:server:Door')
-AddEventHandler('qb-radialmenu:trunk:server:Door', function(open, plate, door)
-    TriggerClientEvent('qb-radialmenu:trunk:client:Door', -1, plate, door, open)
-end)
-
 RegisterServerEvent('qb-trunk:server:setTrunkBusy')
 AddEventHandler('qb-trunk:server:setTrunkBusy', function(plate, busy)
     trunkBusy[plate] = busy
