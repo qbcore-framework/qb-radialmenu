@@ -45,8 +45,7 @@ function disabledCarCheck(veh)
     return false
 end
 
-RegisterNetEvent('qb-kidnapping:client:SetKidnapping')
-AddEventHandler('qb-kidnapping:client:SetKidnapping', function(bool)
+RegisterNetEvent('qb-kidnapping:client:SetKidnapping', function(bool)
     isKidnapping = bool
 end)
 
@@ -100,7 +99,7 @@ function TrunkCam(bool)
     end
 end
 
-Citizen.CreateThread(function()
+CreateThread(function()
     while true do
         local ped = PlayerPedId()
         local vehicle = GetEntityAttachedTo(PlayerPedId())
@@ -112,15 +111,14 @@ Citizen.CreateThread(function()
             SetCamRot(cam, -2.5, 0.0, vehHeading, 0.0)
             SetCamCoord(cam, drawPos.x, drawPos.y, drawPos.z + 2)
         else
-            Citizen.Wait(1000)
+            Wait(1000)
         end
 
-        Citizen.Wait(1)
+        Wait(1)
     end
 end)
 
-RegisterNetEvent('qb-trunk:client:KidnapTrunk')
-AddEventHandler('qb-trunk:client:KidnapTrunk', function()
+RegisterNetEvent('qb-trunk:client:KidnapTrunk', function()
     closestPlayer, distance = QBCore.Functions.GetClosestPlayer()
     local closestPlayerPed = GetPlayerPed(closestPlayer)
     if (distance ~= -1 and distance < 2) then
@@ -129,7 +127,7 @@ AddEventHandler('qb-trunk:client:KidnapTrunk', function()
             if closestVehicle ~= 0 then
                 TriggerEvent('police:client:KidnapPlayer')
                 TriggerServerEvent("police:server:CuffPlayer", GetPlayerServerId(closestPlayer), false)
-                Citizen.Wait(50)
+                Wait(50)
                 TriggerServerEvent("qb-trunk:server:KidnapTrunk", GetPlayerServerId(closestPlayer), closestVehicle)
             end
         else
@@ -138,8 +136,7 @@ AddEventHandler('qb-trunk:client:KidnapTrunk', function()
     end
 end)
 
-RegisterNetEvent('qb-trunk:client:KidnapGetIn')
-AddEventHandler('qb-trunk:client:KidnapGetIn', function(veh)
+RegisterNetEvent('qb-trunk:client:KidnapGetIn', function(veh)
     local ped = PlayerPedId()
     local closestVehicle = veh
     local vehClass = GetVehicleClass(closestVehicle)
@@ -163,7 +160,7 @@ AddEventHandler('qb-trunk:client:KidnapGetIn', function(veh)
                                 AttachEntityToEntity(ped, closestVehicle, 0, offset.x, offset.y, offset.z, 0, 0, 40.0, 1, 1, 1, 1, 1, 1)
                                 TriggerServerEvent('qb-trunk:server:setTrunkBusy', plate, true)
                                 inTrunk = true
-                                Citizen.Wait(500)
+                                Wait(500)
                                 SetVehicleDoorShut(closestVehicle, 5, false)
                                 QBCore.Functions.Notify('You\'re in the trunk.', 'success', 4000)
                                 TrunkCam(true)
@@ -205,8 +202,7 @@ AddEventHandler('qb-trunk:client:KidnapGetIn', function(veh)
     end
 end)
 
-RegisterNetEvent('qb-trunk:client:GetIn')
-AddEventHandler('qb-trunk:client:GetIn', function(isKidnapped)
+RegisterNetEvent('qb-trunk:client:GetIn', function(isKidnapped)
     local ped = PlayerPedId()
     local closestVehicle = getNearestVeh()
 
@@ -230,7 +226,7 @@ AddEventHandler('qb-trunk:client:GetIn', function(isKidnapped)
                                 AttachEntityToEntity(ped, closestVehicle, 0, offset.x, offset.y, offset.z, 0, 0, 40.0, 1, 1, 1, 1, 1, 1)
                                 TriggerServerEvent('qb-trunk:server:setTrunkBusy', plate, true)
                                 inTrunk = true
-                                Citizen.Wait(500)
+                                Wait(500)
                                 SetVehicleDoorShut(closestVehicle, 5, false)
                                 QBCore.Functions.Notify('You are already in the trunk.', 'Goodluck', 4000)
                                 TrunkCam(true)
@@ -255,7 +251,7 @@ AddEventHandler('qb-trunk:client:GetIn', function(isKidnapped)
     end
 end)
 
-Citizen.CreateThread(function()
+CreateThread(function()
     while true do
 
         if inTrunk then
@@ -307,9 +303,9 @@ Citizen.CreateThread(function()
         end
 
         if not inTrunk then
-            Citizen.Wait(1000)
+            Wait(1000)
         end
 
-        Citizen.Wait(3)
+        Wait(3)
     end
 end)
