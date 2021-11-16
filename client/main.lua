@@ -166,18 +166,15 @@ RegisterNUICallback('selectItem', function(data)
     end
 end)
 
-RegisterNetEvent('qb-radialmenu:client:noPlayers')
-AddEventHandler('qb-radialmenu:client:noPlayers', function(data)
+RegisterNetEvent('qb-radialmenu:client:noPlayers', function(data)
     QBCore.Functions.Notify('There arent any people close', 'error', 2500)
 end)
 
-RegisterNetEvent('qb-radialmenu:client:giveidkaart')
-AddEventHandler('qb-radialmenu:client:giveidkaart', function(data)
+RegisterNetEvent('qb-radialmenu:client:giveidkaart', function(data)
     -- ??
 end)
 
-RegisterNetEvent('qb-radialmenu:client:openDoor')
-AddEventHandler('qb-radialmenu:client:openDoor', function(data)
+RegisterNetEvent('qb-radialmenu:client:openDoor', function(data)
     local string = data.id
     local replace = string:gsub("door", "")
     local door = tonumber(replace)
@@ -218,8 +215,7 @@ AddEventHandler('qb-radialmenu:client:openDoor', function(data)
     end
 end)
 
-RegisterNetEvent('qb-radialmenu:client:setExtra')
-AddEventHandler('qb-radialmenu:client:setExtra', function(data)
+RegisterNetEvent('qb-radialmenu:client:setExtra', function(data)
     local string = data.id
     local replace = string:gsub("extra", "")
     local extra = tonumber(replace)
@@ -246,8 +242,7 @@ AddEventHandler('qb-radialmenu:client:setExtra', function(data)
     end
 end)
 
-RegisterNetEvent('qb-radialmenu:trunk:client:Door')
-AddEventHandler('qb-radialmenu:trunk:client:Door', function(plate, door, open)
+RegisterNetEvent('qb-radialmenu:trunk:client:Door', function(plate, door, open)
     local veh = GetVehiclePedIsIn(PlayerPedId())
 
     if veh ~= 0 then
@@ -270,8 +265,7 @@ local Seats = {
     ["2"] = "Rear Right Seat",
 }
 
-RegisterNetEvent('qb-radialmenu:client:ChangeSeat')
-AddEventHandler('qb-radialmenu:client:ChangeSeat', function(data)
+RegisterNetEvent('qb-radialmenu:client:ChangeSeat', function(data)
     local Veh = GetVehiclePedIsIn(PlayerPedId())
     local IsSeatFree = IsVehicleSeatFree(Veh, data.id)
     local speed = GetEntitySpeed(Veh)

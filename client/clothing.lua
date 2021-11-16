@@ -8,7 +8,7 @@ function AddNewVariation(which, gender, one, two, single)
 	end
 end
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	-- Male Visor/Hat Variations
 	AddNewVariation("Visor", "Male", 9, 10)
 	AddNewVariation("Visor", "Male", 18, 67)
@@ -700,10 +700,10 @@ local Extras = {
 		Table = {
 			Standalone = true, Male = 252, Female = 74,
 			Extra = { 
-						{Drawable = 8, Id = 15, Tex = 0, Name = "Extra Undershirt"},
-			 			{Drawable = 3, Id = 15, Tex = 0, Name = "Extra Gloves"},
-			 			{Drawable = 10, Id = 0, Tex = 0, Name = "Extra Decals"},
-			  		}
+				{Drawable = 8, Id = 15, Tex = 0, Name = "Extra Undershirt"},
+				{Drawable = 3, Id = 15, Tex = 0, Name = "Extra Gloves"},
+				{Drawable = 10, Id = 0, Tex = 0, Name = "Extra Decals"},
+				}
 			},
 		Emote = {Dict = "clothingtie", Anim = "try_tie_negative_a", Move = 51, Dur = 1200}
 	},
@@ -795,8 +795,7 @@ function ResetClothing(anim)
 	LastEquipped = {}
 end
 
-RegisterNetEvent('qb-radialmenu:ResetClothing')
-AddEventHandler('qb-radialmenu:ResetClothing', ResetClothing)
+RegisterNetEvent('qb-radialmenu:ResetClothing', function(ResetClothing)
 
 function ToggleClothing(whic, extra)
 	local which = whic
@@ -881,8 +880,7 @@ function ToggleClothing(whic, extra)
 	Notify("You are already wearing that.") return false
 end
 
-RegisterNetEvent('qb-radialmenu:ToggleClothing')
-AddEventHandler('qb-radialmenu:ToggleClothing', ToggleClothing)
+RegisterNetEvent('qb-radialmenu:ToggleClothing', function(ToggleClothing)
 
 function ToggleProps(whic)
 	local which = whic
@@ -926,8 +924,7 @@ function ToggleProps(whic)
 	end
 end
 
-RegisterNetEvent('qb-radialmenu:ToggleProps')
-AddEventHandler('qb-radialmenu:ToggleProps', ToggleProps)
+RegisterNetEvent('qb-radialmenu:ToggleProps', function(ToggleProps)
 
 for k,v in pairs(Config.Commands) do
 	RegisterCommand(k, v.Func)
@@ -961,7 +958,7 @@ function GetKey(str)
 end
 
 function IncurCooldown(ms)
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		Cooldown = true Wait(ms) Cooldown = false
 	end)
 end
@@ -1007,8 +1004,7 @@ function IsMpPed(ped)
 	if CurrentModel == Male then return "Male" elseif CurrentModel == Female then return "Female" else return false end
 end
 
-RegisterNetEvent('dpc:EquipLast')
-AddEventHandler('dpc:EquipLast', function()
+RegisterNetEvent('dpc:EquipLast', function()
 	local Ped = PlayerPedId()
 	for k,v in pairs(LastEquipped) do
 		if v then
@@ -1019,7 +1015,6 @@ AddEventHandler('dpc:EquipLast', function()
 	LastEquipped = {}
 end)
 
-RegisterNetEvent('dpc:ResetClothing')
-AddEventHandler('dpc:ResetClothing', function()
+RegisterNetEvent('dpc:ResetClothing', function()
 	LastEquipped = {}
 end)

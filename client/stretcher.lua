@@ -20,8 +20,7 @@ function CheckForVehicles()
     return veh
 end
 
-RegisterNetEvent('qb-radialmenu:client:TakeStretcher')
-AddEventHandler('qb-radialmenu:client:TakeStretcher', function()
+RegisterNetEvent('qb-radialmenu:client:TakeStretcher', function()
     local PlayerPed = PlayerPedId()
     local PlayerPos = GetEntityCoords(PlayerPed)
     local Vehicle = CheckForVehicles()
@@ -47,8 +46,7 @@ AddEventHandler('qb-radialmenu:client:TakeStretcher', function()
     end
 end)
 
-RegisterNetEvent('qb-radialmenu:client:RemoveStretcher')
-AddEventHandler('qb-radialmenu:client:RemoveStretcher', function()
+RegisterNetEvent('qb-radialmenu:client:RemoveStretcher', function()
     local PlayerPed = PlayerPedId()
     local PlayerPos = GetOffsetFromEntityInWorldCoords(PlayerPed, 0, 1.5, 0)
 
@@ -82,15 +80,14 @@ function SetClosestStretcher()
     end
 end
 
-Citizen.CreateThread(function()
+CreateThread(function()
     while true do
         SetClosestStretcher()
-        Citizen.Wait(1000)
+        Wait(1000)
     end
 end)
 
-
-Citizen.CreateThread(function()
+CreateThread(function()
     while true do
         local PlayerPed = PlayerPedId()
         local PlayerPos = GetEntityCoords(PlayerPed)
@@ -139,10 +136,10 @@ Citizen.CreateThread(function()
                 end
             end
         else
-            Citizen.Wait(1000)
+            Wait(1000)
         end
 
-        Citizen.Wait(3)
+        Wait(3)
     end
 end)
 
@@ -167,9 +164,7 @@ function GetClosestPlayer()
 	return closestPlayer, closestDistance
 end
 
-
-RegisterNetEvent('qb-radialmenu:client:RemoveStretcherFromArea')
-AddEventHandler('qb-radialmenu:client:RemoveStretcherFromArea', function(PlayerPos, BObject)
+RegisterNetEvent('qb-radialmenu:client:RemoveStretcherFromArea', function(PlayerPos, BObject)
     local Ped = PlayerPedId()
     local Pos = GetEntityCoords(Ped)
 
@@ -225,8 +220,7 @@ function LayOnStretcher()
     end
 end
 
-RegisterNetEvent('qb-radialmenu:Stretcher:client:BusyCheck')
-AddEventHandler('qb-radialmenu:Stretcher:client:BusyCheck', function(OtherId, type)
+RegisterNetEvent('qb-radialmenu:Stretcher:client:BusyCheck', function(OtherId, type)
     local ped = PlayerPedId()
     if type == "lay" then
         LoadAnim("anim@gangops@morgue@table@")
@@ -246,8 +240,7 @@ AddEventHandler('qb-radialmenu:Stretcher:client:BusyCheck', function(OtherId, ty
     end
 end)
 
-RegisterNetEvent('qb-radialmenu:client:Result')
-AddEventHandler('qb-radialmenu:client:Result', function(IsBusy, type)
+RegisterNetEvent('qb-radialmenu:client:Result', function(IsBusy, type)
     local inBedDicts = "anim@gangops@morgue@table@"
     local inBedAnims = "ko_front"
     local PlayerPed = PlayerPedId()
@@ -294,7 +287,8 @@ function GetOffStretcher()
 end
 
 local DetachKeys = {157, 158, 160, 164, 165, 73, 36}
-Citizen.CreateThread(function()
+
+CreateThread(function()
     while true do
         if IsAttached then
             for _, PressedKey in pairs(DetachKeys) do
@@ -315,9 +309,9 @@ Citizen.CreateThread(function()
                 DetachStretcher()
             end
         else
-            Citizen.Wait(1000)
+            Wait(1000)
         end 
-        Citizen.Wait(5)
+        Wait(5)
     end
 end)
 
@@ -352,7 +346,6 @@ function AttachToStretcher()
     end
 end
 
-
 function DetachStretcher()
     local PlayerPed = PlayerPedId()
     DetachEntity(StretcherObject, false, true)
@@ -360,7 +353,7 @@ function DetachStretcher()
     IsAttached = false
 end
 
-Citizen.CreateThread(function()
+CreateThread(function()
     Wait(1000)
     local Ped = PlayerPedId()
     local Pos = GetEntityCoords(Ped)
@@ -382,13 +375,13 @@ end)
 function LoadAnim(dict)
     while not HasAnimDictLoaded(dict) do
         RequestAnimDict(dict)
-        Citizen.Wait(1)
+        Wait(1)
     end
 end
 
 function LoadModel(model)
     while not HasModelLoaded(model) do
         RequestModel(model)
-        Citizen.Wait(1)
+        Wait(1)
     end
 end
