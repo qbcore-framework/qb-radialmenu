@@ -243,7 +243,7 @@ RegisterNetEvent('qb-radialmenu:client:setExtra', function(data)
                     SetVehicleEngineHealth(veh, enginehealth)
                     SetVehicleBodyHealth(veh, bodydamage)
                     QBCore.Functions.Notify('Extra ' .. extra .. ' Activated', 'success', 2500)
-                end    
+                end
             else
                 QBCore.Functions.Notify('Extra ' .. extra .. ' is not present on this vehicle ', 'error', 2500)
             end
