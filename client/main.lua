@@ -221,18 +221,29 @@ RegisterNetEvent('qb-radialmenu:client:setExtra', function(data)
     local extra = tonumber(replace)
     local ped = PlayerPedId()
     local veh = GetVehiclePedIsIn(ped)
+    local enginehealth = 1000.0
+    local bodydamage = 1000.0
+
     if veh ~= nil then
-        local plate = QBCore.Functions.GetPlate(closestVehicle)
+        local plate = GetVehicleNumberPlateText(closestVehicle)
+
         if GetPedInVehicleSeat(veh, -1) == PlayerPedId() then
-            SetVehicleAutoRepairDisabled(veh, true) -- Forces Auto Repair off when Toggling Extra [GTA 5 Niche Issue]
-            if DoesExtraExist(veh, extra) then
+            if DoesExtraExist(veh, extra) then 
                 if IsVehicleExtraTurnedOn(veh, extra) then
+                    enginehealth = GetVehicleEngineHealth(veh)
+                    bodydamage = GetVehicleBodyHealth(veh)
                     SetVehicleExtra(veh, extra, 1)
+                    SetVehicleEngineHealth(veh, enginehealth)
+                    SetVehicleBodyHealth(veh, bodydamage)
                     QBCore.Functions.Notify('Extra ' .. extra .. ' Deactivated', 'error', 2500)
                 else
+                    enginehealth = GetVehicleEngineHealth(veh)
+                    bodydamage = GetVehicleBodyHealth(veh)
                     SetVehicleExtra(veh, extra, 0)
+                    SetVehicleEngineHealth(veh, enginehealth)
+                    SetVehicleBodyHealth(veh, bodydamage)
                     QBCore.Functions.Notify('Extra ' .. extra .. ' Activated', 'success', 2500)
-                end
+                end    
             else
                 QBCore.Functions.Notify('Extra ' .. extra .. ' is not present on this vehicle ', 'error', 2500)
             end
