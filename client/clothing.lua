@@ -820,7 +820,7 @@ function ToggleClothing(whic, extra)
 	}
 	local Gender = IsMpPed(Ped)
 	if which ~= "Mask" then
-		if not Gender then Notify("This ped model does not allow for this option.") return false end -- We cancel the command here if the person is not using a multiplayer model.
+		if not Gender then Notify(Lang:t("info.wrong_ped")) return false end -- We cancel the command here if the person is not using a multiplayer model.
 	end
 	local Table = Toggle.Table[Gender]
 	if not Toggle.Table.Standalone then -- "Standalone" is for things that dont require a variant, like the shoes just need to be switched to a specific drawable. Looking back at this i should have planned ahead, but it all works so, meh!
@@ -840,7 +840,7 @@ function ToggleClothing(whic, extra)
 				end
 			end
 		end
-		Notify("There dont seem to be any variants for this.") return
+		Notify(Lang:t("info.no_variants")) return
 	else
 		if not LastEquipped[which] then
 			if Cur.Drawable ~= Table then
@@ -877,7 +877,7 @@ function ToggleClothing(whic, extra)
 			return true
 		end
 	end
-	Notify("You are already wearing that.") return false
+	Notify(Lang:t("info.already_wearing")) return false
 end
 
 RegisterNetEvent('qb-radialmenu:ToggleClothing', ToggleClothing)
@@ -910,17 +910,17 @@ function ToggleProps(whic)
 				PlayToggleEmote(Prop.Emote.On, function() SetPedPropIndex(Ped, Prop.Prop, Last.Prop, Last.Texture, true) end) LastEquipped[which] = false return true
 			end
 		end
-		Notify("You dont appear to have anything to remove.") return false
+		Notify(Lang:t("info.nothing_to_remove")) return false
 	else
 		local Gender = IsMpPed(Ped)
-		if not Gender then Notify("This ped model does not allow for this option.") return false end -- We dont really allow for variants on ped models, Its possible, but im pretty sure 95% of ped models dont really have variants.
+		if not Gender then Notify(Lang:t("info.wrong_ped")) return false end -- We dont really allow for variants on ped models, Its possible, but im pretty sure 95% of ped models dont really have variants.
 		local Variations = Prop.Variants[Gender]
 		for k,v in pairs(Variations) do
 			if Cur.Prop == k then
 				PlayToggleEmote(Prop.Emote.On, function() SetPedPropIndex(Ped, Prop.Prop, v, Cur.Texture, true) end) return true
 			end
 		end
-		Notify("There dont seem to be any variants for this.") return false
+		Notify(Lang:t("info.no_variants")) return false
 	end
 end
 

@@ -10,7 +10,7 @@ RegisterCommand('radialmenu', function()
 	end)
 end)
 
-RegisterKeyMapping('radialmenu', 'Open Radial Menu', 'keyboard', 'F1')
+RegisterKeyMapping('radialmenu', Lang:t("general.command_description"), 'keyboard', 'F1')
 
 function setupSubItems()
     QBCore.Functions.GetPlayerData(function(PlayerData)
@@ -19,7 +19,7 @@ function setupSubItems()
                 Config.MenuItems[4].items = {
                     [1] = {
                         id = 'emergencybutton2',
-                        title = 'Emergencybutton',
+                        title = Lang:t("options.emergency_button"),
                         icon = '#general',
                         type = 'client',
                         event = 'police:client:SendPoliceEmergencyAlert',
@@ -45,7 +45,7 @@ function setupSubItems()
             Config.MenuItems[3].items[3].items = {
                 [1] = {
                     id    = -1,
-                    title = 'Driver',
+                    title = Lang:t("options.driver_seat"),
                     icon = 'caret-up',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -53,7 +53,7 @@ function setupSubItems()
                 },
                 [2] = {
                     id    = 0,
-                    title = 'Passenger',
+                    title = Lang:t("options.passenger_seat"),
                     icon = 'caret-up',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -64,7 +64,7 @@ function setupSubItems()
             Config.MenuItems[3].items[3].items = {
                 [4] = {
                     id    = -1,
-                    title = 'Driver',
+                    title = Lang:t("options.driver_seat"),
                     icon = 'caret-up',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -72,7 +72,7 @@ function setupSubItems()
                 },
                 [1] = {
                     id    = 0,
-                    title = 'Passenger',
+                    title = Lang:t("options.passenger_seat"),
                     icon = 'caret-up',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -80,7 +80,7 @@ function setupSubItems()
                 },
                 [3] = {
                     id    = 1,
-                    title = 'Other',
+                    title = Lang:t("options.other_seats"),
                     icon = 'caret-down',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -91,7 +91,7 @@ function setupSubItems()
             Config.MenuItems[3].items[3].items = {
                 [4] = {
                     id    = -1,
-                    title = 'Driver',
+                    title = Lang:t("options.driver_seat"),
                     icon = 'caret-up',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -99,7 +99,7 @@ function setupSubItems()
                 },
                 [1] = {
                     id    = 0,
-                    title = 'Passenger',
+                    title = Lang:t("options.passenger_seat"),
                     icon = 'caret-up',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -107,7 +107,7 @@ function setupSubItems()
                 },
                 [3] = {
                     id    = 1,
-                    title = 'Rear Left',
+                    title = Lang:t("options.rear_left_seat"),
                     icon = 'caret-down',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -115,7 +115,7 @@ function setupSubItems()
                 },
                 [2] = {
                     id    = 2,
-                    title = 'Rear Right',
+                    title = Lang:t("options.rear_right_seat"),
                     icon = 'caret-down',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -167,11 +167,7 @@ RegisterNUICallback('selectItem', function(data)
 end)
 
 RegisterNetEvent('qb-radialmenu:client:noPlayers', function(data)
-    QBCore.Functions.Notify('There arent any people close', 'error', 2500)
-end)
-
-RegisterNetEvent('qb-radialmenu:client:giveidkaart', function(data)
-    -- ??
+    QBCore.Functions.Notify(Lang:t("error.no_people_nearby"), 'error', 2500)
 end)
 
 RegisterNetEvent('qb-radialmenu:client:openDoor', function(data)
@@ -179,14 +175,7 @@ RegisterNetEvent('qb-radialmenu:client:openDoor', function(data)
     local replace = string:gsub("door", "")
     local door = tonumber(replace)
     local ped = PlayerPedId()
-    local closestVehicle = nil
-
-    if IsPedInAnyVehicle(ped, false) then
-        closestVehicle = GetVehiclePedIsIn(ped)
-    else
-        closestVehicle = getNearestVeh()
-    end
-
+    local closestVehicle = GetVehiclePedIsIn(ped) ~= 0 and GetVehiclePedIsIn(ped) or getNearestVeh()
     if closestVehicle ~= 0 then
         if closestVehicle ~= GetVehiclePedIsIn(ped) then
             local plate = QBCore.Functions.GetPlate(closestVehicle)
@@ -211,7 +200,7 @@ RegisterNetEvent('qb-radialmenu:client:openDoor', function(data)
             end
         end
     else
-        QBCore.Functions.Notify('There is no vehicle in sight...', 'error', 2500)
+        QBCore.Functions.Notify(Lang:t("error.no_vehicle_found"), 'error', 2500)
     end
 end)
 
@@ -222,31 +211,29 @@ RegisterNetEvent('qb-radialmenu:client:setExtra', function(data)
     local ped = PlayerPedId()
     local veh = GetVehiclePedIsIn(ped)
     if veh ~= nil then
-        if GetPedInVehicleSeat(veh, -1) == PlayerPedId() then
+        if GetPedInVehicleSeat(veh, -1) == ped then
             SetVehicleAutoRepairDisabled(veh, true) -- Forces Auto Repair off when Toggling Extra [GTA 5 Niche Issue]
             if DoesExtraExist(veh, extra) then
                 if IsVehicleExtraTurnedOn(veh, extra) then
                     SetVehicleExtra(veh, extra, 1)
-                    QBCore.Functions.Notify('Extra ' .. extra .. ' Deactivated', 'error', 2500)
+                    QBCore.Functions.Notify(Lang:t("error.extra_deactivated", {extra = extra}), 'error', 2500)
                 else
                     SetVehicleExtra(veh, extra, 0)
-                    QBCore.Functions.Notify('Extra ' .. extra .. ' Activated', 'success', 2500)
+                    QBCore.Functions.Notify(Lang:t("success.extra_activated", {extra = extra}), 'success', 2500)
                 end
             else
-                QBCore.Functions.Notify('Extra ' .. extra .. ' is not present on this vehicle ', 'error', 2500)
+                QBCore.Functions.Notify(Lang:t("error.extra_not_present", {extra = extra}), 'error', 2500)
             end
         else
-            QBCore.Functions.Notify('You\'re not a driver of a vehicle!', 'error', 2500)
+            QBCore.Functions.Notify(Lang:t("error.not_driver"), 'error', 2500)
         end
     end
 end)
 
 RegisterNetEvent('qb-radialmenu:trunk:client:Door', function(plate, door, open)
     local veh = GetVehiclePedIsIn(PlayerPedId())
-
     if veh ~= 0 then
         local pl = QBCore.Functions.GetPlate(veh)
-
         if pl == plate then
             if open then
                 SetVehicleDoorOpen(veh, door, false, false)
@@ -257,33 +244,25 @@ RegisterNetEvent('qb-radialmenu:trunk:client:Door', function(plate, door, open)
     end
 end)
 
-local Seats = {
-    ["-1"] = "Driver's Seat",
-    ["0"] = "Passenger's Seat",
-    ["1"] = "Rear Left Seat",
-    ["2"] = "Rear Right Seat",
-}
-
 RegisterNetEvent('qb-radialmenu:client:ChangeSeat', function(data)
     local Veh = GetVehiclePedIsIn(PlayerPedId())
     local IsSeatFree = IsVehicleSeatFree(Veh, data.id)
     local speed = GetEntitySpeed(Veh)
     local HasHarnass = exports['qb-smallresources']:HasHarness()
     if not HasHarnass then
-        local kmh = (speed * 3.6);
-
+        local kmh = speed * 3.6
         if IsSeatFree then
             if kmh <= 100.0 then
                 SetPedIntoVehicle(PlayerPedId(), Veh, data.id)
-                QBCore.Functions.Notify('You are now on the  '..data.title..'!')
+                QBCore.Functions.Notify(Lang:t("info.switched_seats"), {seat = data.title})
             else
-                QBCore.Functions.Notify('This vehicle is going too fast..')
+                QBCore.Functions.Notify(Lang:t("error.vehicle_driving_fast"), 'error')
             end
         else
-            QBCore.Functions.Notify('This seat is occupied..')
+            QBCore.Functions.Notify(Lang:t("error.seat_occupied"), 'error')
         end
     else
-        QBCore.Functions.Notify('You have a race harness on you cant switch..', 'error')
+        QBCore.Functions.Notify(Lang:t("error.race_harness_on"), 'error')
     end
 end)
 

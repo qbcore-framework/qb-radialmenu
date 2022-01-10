@@ -3,8 +3,7 @@ RegisterNetEvent('qb-radialmenu:server:RemoveStretcher', function(PlayerPos, Str
 end)
 
 RegisterNetEvent('qb-radialmenu:Stretcher:BusyCheck', function(id, type)
-    local MyId = source
-    TriggerClientEvent('qb-radialmenu:Stretcher:client:BusyCheck', id, MyId, type)
+    TriggerClientEvent('qb-radialmenu:Stretcher:client:BusyCheck', id, source, type)
 end)
 
 RegisterNetEvent('qb-radialmenu:server:BusyResult', function(IsBusy, OtherId, type)
