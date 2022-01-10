@@ -14,16 +14,14 @@ RegisterNetEvent('qb-trunk:server:KidnapTrunk', function(targetId, closestVehicl
 end)
 
 QBCore.Functions.CreateCallback('qb-trunk:server:getTrunkBusy', function(source, cb, plate)
-    if trunkBusy[plate] then
-        cb(true)
-    end
+    if trunkBusy[plate] then cb(true) return end
     cb(false)
 end)
 
-QBCore.Commands.Add("getintrunk", "Get In Trunk", {}, false, function(source, args)
+QBCore.Commands.Add("getintrunk", Lang:t("general.getintrunk_command_desc"), {}, false, function(source, args)
     TriggerClientEvent('qb-trunk:client:GetIn', source)
 end)
 
-QBCore.Commands.Add("putintrunk", "Put Player In Trunk", {}, false, function(source, args)
+QBCore.Commands.Add("putintrunk", Lang:t("general.putintrunk_command_desc"), {}, false, function(source, args)
     TriggerClientEvent('qb-trunk:server:KidnapTrunk', source)
 end)
