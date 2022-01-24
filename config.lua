@@ -662,14 +662,14 @@ Config.JobInteractions = {
                     title = 'Gate',
                     icon = 'torii-gate',
                     type = 'client',
-                    event = 'police:client:spawnBarier',
+                    event = 'police:client:spawnBarrier',
                     shouldClose = false
                 }, {
                     id = 'spawnschotten',
                     title = 'Speed Limit Sign',
                     icon = 'sign',
                     type = 'client',
-                    event = 'police:client:spawnSchotten',
+                    event = 'police:client:spawnRoadSign',
                     shouldClose = false
                 }, {
                     id = 'spawntent',
