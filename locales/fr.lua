@@ -44,8 +44,8 @@ local Translations = {
     },
     options = {
         emergency_button = "Le Bouton d'Urgence",
-        driver_seat = "La Siège du Conducteur",
-        passenger_seat = "La Siège Passager",
+        driver_seat = "Le Siège du Conducteur",
+        passenger_seat = "Le Siège Passager",
         other_seats = "L'Autre Siège",
         rear_left_seat = "Le Siège Arrière Gauche",
         rear_right_seat = "Le Siège Arrière Droit"
