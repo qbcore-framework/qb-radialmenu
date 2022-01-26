@@ -751,14 +751,14 @@ Config.Commands = {
         Name = "Torso"
     },
     ["gloves"] = {
-        Func = function() ToggleClothing("Gloves") end,
+        Func = function() ToggleClothing("gloves") end,
         Sprite = "gloves",
         Desc = "Take your gloves off/on",
         Button = 2,
         Name = "Gloves"
     },
     ["visor"] = {
-        Func = function() ToggleProps("Visor") end,
+        Func = function() ToggleProps("visor") end,
         Sprite = "visor",
         Desc = "Toggle hat variation",
         Button = 3,
@@ -786,7 +786,7 @@ Config.Commands = {
         Name = "Vest"
     },
     ["hair"] = {
-        Func = function() ToggleClothing("Hair") end,
+        Func = function() ToggleClothing("hair") end,
         Sprite = "hair",
         Desc = "Put your hair up/down/in a bun/ponytail.",
         Button = 7,
@@ -844,7 +844,7 @@ Config.Commands = {
     }
 }
 
-local Bags = {[40] = true, [41] = true, [44] = true, [45] = true}
+local bags = {[40] = true, [41] = true, [44] = true, [45] = true}
 
 Config.ExtraCommands = {
     ["pants"] = {
@@ -883,14 +883,14 @@ Config.ExtraCommands = {
             local Bag = GetPedDrawableVariation(PlayerPedId(), 5)
             local BagOff = LastEquipped["Bagoff"]
             if LastEquipped["Bagoff"] then
-                if Bags[BagOff.Drawable] then
+                if bags[BagOff.Drawable] then
                     return "bagoff"
                 else
                     return "paraoff"
                 end
             end
             if Bag ~= 0 then
-                if Bags[Bag] then
+                if bags[Bag] then
                     return "bagoff"
                 else
                     return "paraoff"
