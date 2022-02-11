@@ -28,10 +28,10 @@ end
 local function checkForVehicles()
     local PlayerPed = PlayerPedId()
     local PlayerPos = GetEntityCoords(PlayerPed)
-    local veh = 0
-    for k, v in pairs(allowedStretcherVehicles) do
-        veh = GetClosestVehicle(PlayerPos.x, PlayerPos.y, PlayerPos.z, 7.5, GetHashKey(v), 70)
-        if veh ~= 0 then
+    local targetCoords = GetEntityCoords(PlayerPedId()) + GetEntityForwardVector(PlayerPedId()) * 2.0
+    local rayHandle = StartShapeTestRay(pedCoords, targetCoords, 16+8+4+2, player, 0)	_,_,_,_, rayresult = GetShapeTestResult(rayHandle)
+    for k, v in pairs(AllowedStretcherVehicles) do
+        if GetHashKey("v") == GetEntityModel(rayresult) then
             break
         end
     end
