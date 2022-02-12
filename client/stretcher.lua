@@ -93,7 +93,7 @@ local function LayOnStretcher()
             loadAnim(inBedDicts)
             if stretcherObject and #(coords - GetEntityCoords(stretcherObject)) <= 3.0 then
                 TaskPlayAnim(PlayerPedId(), inBedDicts, inBedAnims, 8.0, 8.0, -1, 69, 1, false, false, false)
-                AttachEntityToEntity(ped, stretcherObject, 0, 0, 0.0, 1.6, 0.0, 0.0, 360.0, 0.0, false, false, false, false, 2, true)
+                AttachEntityToEntity(ped, stretcherObject, 0, 0, 0.0, 1.0, 0.0, 0.0, 180.0, 0.0, false, false, false, false, 2, true)
                 isLayingOnBed = true
             end
         end
@@ -129,7 +129,7 @@ local function attachToStretcher()
                 loadAnim("anim@heists@box_carry@")
                 TaskPlayAnim(ped, 'anim@heists@box_carry@', 'idle', 8.0, 8.0, -1, 50, 0, false, false, false)
                 SetTimeout(150, function()
-                    AttachEntityToEntity(stretcherObject, ped, GetPedBoneIndex(ped, 28422), 0.0, -1.0, -1.0, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2, true)
+                    AttachEntityToEntity(stretcherObject, ped, GetPedBoneIndex(ped, 28422), 0.0, -1.0, -0.50, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2, true)
                 end)
                 FreezeEntityPosition(stretcherObject, false)
             end
