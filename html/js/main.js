@@ -10,7 +10,7 @@ $(document).ready(function(){
                     createMenu(event.data.items)
                     QBRadialMenu.open();
                 } else {
-                    QBRadialMenu.close();
+                    QBRadialMenu.close(true);
                 }
         }
     });
@@ -23,7 +23,7 @@ function createMenu(items) {
         menuItems   : items,
         onClick     : function(item) {
             if (item.shouldClose) {
-                QBRadialMenu.close();
+                QBRadialMenu.close(true);
             }
             
             if (item.items == null && item.shouldClose != null) {
@@ -38,6 +38,13 @@ function createMenu(items) {
 $(document).on('keydown', function(e) {
     switch(e.key) {
         case "Escape":
+            QBRadialMenu.close();
+            break;
+    }
+});
+
+$(document).on('keyup', function(e) {
+    switch(e.key) {
         case "F1":
             QBRadialMenu.close();
             break;
