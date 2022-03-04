@@ -4,7 +4,7 @@ local inRadialMenu = false
 
 -- Functions
 
-RegisterKeyMapping('radialmenu', Lang:t("general.command_description"), 'keyboard', 'Z')
+RegisterKeyMapping('radialmenu2', Lang:t("general.command_description"), 'keyboard', 'F1')
 
 -- Sets the metadata when the player spawns
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
