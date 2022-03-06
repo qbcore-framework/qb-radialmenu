@@ -4,34 +4,60 @@ local inRadialMenu = false
 
 -- Functions
 
-RegisterKeyMapping('radialmenu2', Lang:t("general.command_description"), 'keyboard', 'F1')
-
--- Sets the metadata when the player spawns
-RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
-    PlayerData = QBCore.Functions.GetPlayerData()
-end)
-
--- Sets the playerdata to an empty table when the player has quit or did /logout
-RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
-    PlayerData = {}
-end)
-
--- This will update all the PlayerData that doesn't get updated with a specific event other than this like the metadata
-RegisterNetEvent('QBCore:Player:SetPlayerData', function(val)
-    PlayerData = val
-end)
-
-function setupSubItems()
-    for i = 4, #Config.MenuItems do Config.MenuItems[i] = nil end
-
-    SetupJobMenu()
-    SetupVehicleMenu()
-    SetupCustomsMenu()
+local function SetupJobMenu()
+    local index = #Config.MenuItems + 1
+    if PlayerData.metadata["isdead"] then
+        if PlayerData.job.name == "police" or PlayerData.job.name == "ambulance" then
+            if not Config.MenuItems[index] then
+                Config.MenuItems[index] = {
+                    id = 'jobinteractions',
+                    title = 'Work',
+                    icon = 'briefcase',
+                    items = {}
+                }
+            end
+            Config.MenuItems[index].items = {
+                [1] = {
+                    id = 'emergencybutton2',
+                    title = Lang:t("options.emergency_button"),
+                    icon = '#general',
+                    type = 'client',
+                    event = 'police:client:SendPoliceEmergencyAlert',
+                    shouldClose = true,
+                },
+            }
+        else
+            if Config.JobInteractions[PlayerData.job.name] and
+                next(Config.JobInteractions[PlayerData.job.name]) then
+                if not Config.MenuItems[index] then
+                    Config.MenuItems[index] = {
+                        id = 'jobinteractions',
+                        title = 'Work',
+                        icon = 'briefcase',
+                        items = {}
+                    }
+                end
+                Config.MenuItems[index].items = Config.JobInteractions[PlayerData.job.name]
+            end
+        end
+    else
+        if Config.JobInteractions[PlayerData.job.name] and
+            next(Config.JobInteractions[PlayerData.job.name]) then
+            if not Config.MenuItems[index] then
+                Config.MenuItems[index] = {
+                    id = 'jobinteractions',
+                    title = 'Work',
+                    icon = 'briefcase',
+                    items = {}
+                }
+            end
+            Config.MenuItems[index].items = Config.JobInteractions[PlayerData.job.name]
+        end
+    end
 end
 
-function SetupVehicleMenu()
-    local Vehicle = GetVehiclePedIsIn(PlayerPedId())
-
+local function SetupVehicleMenu(ped)
+    local Vehicle = GetVehiclePedIsIn(ped)
     if Vehicle ~= 0 then
         local AmountOfSeats = GetVehicleModelNumberOfSeats(GetEntityModel(Vehicle))
         if AmountOfSeats == 2 then
@@ -119,63 +145,10 @@ function SetupVehicleMenu()
     end
 end
 
-function SetupJobMenu()
-    local index = #Config.MenuItems + 1
-    if PlayerData.metadata["isdead"] then
-        if PlayerData.job.name == "police" or PlayerData.job.name == "ambulance" then
-            if not Config.MenuItems[index] then
-                Config.MenuItems[index] = {
-                    id = 'jobinteractions',
-                    title = 'Work',
-                    icon = 'briefcase',
-                    items = {}
-                }
-            end
-            Config.MenuItems[index].items = {
-                [1] = {
-                    id = 'emergencybutton2',
-                    title = Lang:t("options.emergency_button"),
-                    icon = '#general',
-                    type = 'client',
-                    event = 'police:client:SendPoliceEmergencyAlert',
-                    shouldClose = true,
-                },
-            }
-        else
-            if Config.JobInteractions[PlayerData.job.name] and
-                next(Config.JobInteractions[PlayerData.job.name]) then
-                if not Config.MenuItems[index] then
-                    Config.MenuItems[index] = {
-                        id = 'jobinteractions',
-                        title = 'Work',
-                        icon = 'briefcase',
-                        items = {}
-                    }
-                end
-                Config.MenuItems[index].items = Config.JobInteractions[PlayerData.job.name]
-            end
-        end
-    else
-        if Config.JobInteractions[PlayerData.job.name] and
-            next(Config.JobInteractions[PlayerData.job.name]) then
-            if not Config.MenuItems[index] then
-                Config.MenuItems[index] = {
-                    id = 'jobinteractions',
-                    title = 'Work',
-                    icon = 'briefcase',
-                    items = {}
-                }
-            end
-            Config.MenuItems[index].items = Config.JobInteractions[PlayerData.job.name]
-        end
-    end
-end
-
-function SetupCustomsMenu()
+local function SetupCustomsMenu(ped)
     local CustomsData = exports['qb-customs']:GetCustomsData()
-    local Vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
+    local Vehicle = GetVehiclePedIsIn(ped, false)
     if not CustomsData or Vehicle == 0 then return end
-
     local index = #Config.MenuItems + 1
     local customsMenu = {
         id = 'customs',
@@ -185,8 +158,15 @@ function SetupCustomsMenu()
         event = 'qb-customs:client:EnterCustoms',
         shouldClose = true
     }
-
     Config.MenuItems[index] = customsMenu
+end
+
+local function setupSubItems()
+    for i = 4, #Config.MenuItems do Config.MenuItems[i] = nil end
+    local ped = PlayerPedId()
+    SetupJobMenu()
+    SetupVehicleMenu(ped)
+    SetupCustomsMenu(ped)
 end
 
 local function deepcopy(orig) -- modified the deep copy function from http://lua-users.org/wiki/CopyTable
@@ -387,7 +367,6 @@ end)
 -- NUI Callbacks
 
 RegisterNUICallback('closeRadial', function(data)
-    print('closeRadial', data.delay)
     setRadialState(false, false, data.delay)
 end)
 
