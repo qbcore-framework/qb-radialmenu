@@ -700,11 +700,18 @@ local Extras = {
 		Table = {
 			Standalone = true, male = 252, female = 74,
 			Extra = {
-				{Drawable = 8, Id = 15, Tex = 0, Name = "Extra Undershirt"},
-				{Drawable = 3, Id = 15, Tex = 0, Name = "Extra Gloves"},
-				{Drawable = 10, Id = 0, Tex = 0, Name = "Extra Decals"},
-				}
-			},
+				male = {
+					{Drawable = 8, Id = 15, Tex = 0, Name = "Extra Undershirt"},
+					{Drawable = 3, Id = 15, Tex = 0, Name = "Extra Gloves"},
+					{Drawable = 10, Id = 0, Tex = 0, Name = "Extra Decals"},
+				},
+				female = {
+					{Drawable = 8, Id = 15, Tex = 0, Name = "Extra Undershirt"},
+					{Drawable = 3, Id = 15, Tex = 0, Name = "Extra Gloves"},
+					{Drawable = 10, Id = 0, Tex = 0, Name = "Extra Decals"},
+				},
+			}
+		},
 		Emote = {Dict = "clothingtie", Anim = "try_tie_negative_a", Move = 51, Dur = 1200}
 	},
 	["Pants"] = {
@@ -849,6 +856,12 @@ function ToggleClothing(whic, extra)
 					SetPedComponentVariation(Ped, Toggle.Drawable, Table, 0, 0)
 					if Toggle.Table.Extra then
 						local Extras = Toggle.Table.Extra
+						if Toggle.Table.Extra.male then
+							Extras = Toggle.Table.Extra.male
+							if(IsMpPed(Ped) == "female") then
+								Extras = Toggle.Table.Extra.female
+							end
+						end
 						for k,v in pairs(Extras) do
 							local ExtraCur = {Drawable = GetPedDrawableVariation(Ped, v.Drawable),  Texture = GetPedTextureVariation(Ped, v.Drawable), Id = v.Drawable}
 							SetPedComponentVariation(Ped, v.Drawable, v.Id, v.Tex, 0)
