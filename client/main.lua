@@ -1,4 +1,4 @@
-QBCore = exports['qb-core']:GetCoreObject()
+QBCore = exports['qbr-core']:GetCoreObject()
 PlayerData = QBCore.Functions.GetPlayerData() -- Setting this for when you restart the resource in game
 local inRadialMenu = false
 
@@ -213,14 +213,24 @@ end
 
 -- Command
 
-RegisterCommand('radialmenu', function()
-    if not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not inRadialMenu then
-        setRadialState(true, true)
-        SetCursorLocation(0.5, 0.5)
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+        if IsControlJustReleased(0, 0xA8E3F467) then -- key open inventory F1
+            print("RADIAL MENU")
+        end
     end
 end)
 
-RegisterKeyMapping('radialmenu', Lang:t("general.command_description"), 'keyboard', 'F1')
+
+RegisterCommand('radialmenu', function()
+    --if not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not inRadialMenu then
+        setRadialState(true, true)
+        SetCursorLocation(0.5, 0.5)
+    --end
+end)
+
+--RegisterKeyMapping('radialmenu', Lang:t("general.command_description"), 'keyboard', 'F1')
 
 -- Events
 

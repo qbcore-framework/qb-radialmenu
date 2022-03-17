@@ -38,7 +38,7 @@ function createMenu(items) {
 $(document).on('keydown', function(e) {
     switch(e.key) {
         case "Escape":
-        case "F1":
+        //case "F1":
             QBRadialMenu.close();
             break;
     }
