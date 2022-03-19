@@ -194,6 +194,7 @@ local function selectOption(t, t2)
 end
 
 local function setRadialState(bool, sendMessage, delay)
+    -- Menuitems have to be added only once
     if not radialMenuSetup then
         setupSubItems()
         radialMenuSetup = true
