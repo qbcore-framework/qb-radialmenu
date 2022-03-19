@@ -203,6 +203,9 @@ local function setRadialState(bool, sendMessage, delay)
     local items
     if bool then
         items = deepcopy(Config.MenuItems)
+        TriggerEvent('qb-radialmenu:client:onRadialmenuOpen')
+    else
+        TriggerEvent('qb-radialmenu:client:onRadialmenuClose')
     end
     SetNuiFocus(bool, bool)
     if sendMessage then
