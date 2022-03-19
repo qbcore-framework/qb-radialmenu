@@ -202,8 +202,8 @@ local function setRadialState(bool, sendMessage, delay)
     
     local items
     if bool then
-        items = deepcopy(Config.MenuItems)
         TriggerEvent('qb-radialmenu:client:onRadialmenuOpen')
+        items = deepcopy(Config.MenuItems)
     else
         TriggerEvent('qb-radialmenu:client:onRadialmenuClose')
     end
