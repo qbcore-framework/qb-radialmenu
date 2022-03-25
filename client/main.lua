@@ -1,6 +1,7 @@
 QBCore = exports['qb-core']:GetCoreObject()
 PlayerData = QBCore.Functions.GetPlayerData() -- Setting this for when you restart the resource in game
 local inRadialMenu = false
+local radialMenuSetup = false
 
 -- Functions
 
@@ -145,28 +146,10 @@ local function SetupVehicleMenu(ped)
     end
 end
 
-local function SetupCustomsMenu(ped)
-    local CustomsData = exports['qb-customs']:GetCustomsData()
-    local Vehicle = GetVehiclePedIsIn(ped, false)
-    if not CustomsData or Vehicle == 0 then return end
-    local index = #Config.MenuItems + 1
-    local customsMenu = {
-        id = 'customs',
-        title = 'Enter Customs',
-        icon = 'wrench',
-        type = 'client',
-        event = 'qb-customs:client:EnterCustoms',
-        shouldClose = true
-    }
-    Config.MenuItems[index] = customsMenu
-end
-
 local function setupSubItems()
-    for i = 4, #Config.MenuItems do Config.MenuItems[i] = nil end
     local ped = PlayerPedId()
     SetupJobMenu()
     SetupVehicleMenu(ped)
-    SetupCustomsMenu(ped)
 end
 
 local function deepcopy(orig) -- modified the deep copy function from http://lua-users.org/wiki/CopyTable
@@ -211,10 +194,18 @@ local function selectOption(t, t2)
 end
 
 local function setRadialState(bool, sendMessage, delay)
+    -- Menuitems have to be added only once
+    if not radialMenuSetup then
+        setupSubItems()
+        radialMenuSetup = true
+    end
+    
     local items
     if bool then
-        setupSubItems()
+        TriggerEvent('qb-radialmenu:client:onRadialmenuOpen')
         items = deepcopy(Config.MenuItems)
+    else
+        TriggerEvent('qb-radialmenu:client:onRadialmenuClose')
     end
     SetNuiFocus(bool, bool)
     if sendMessage then
@@ -252,6 +243,7 @@ RegisterKeyMapping('radialmenu', Lang:t("general.command_description"), 'keyboar
 -- Sets the metadata when the player spawns
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
     PlayerData = QBCore.Functions.GetPlayerData()
+    setupSubItems()
 end)
 
 -- Sets the playerdata to an empty table when the player has quit or did /logout
@@ -387,3 +379,13 @@ RegisterNUICallback('selectItem', function(data)
         end
     end
 end)
+
+exports('AddOption', function(data, id)
+    local menuId = id ~= nil and id or (#Config.MenuItems + 1)
+    Config.MenuItems[menuId] = data
+    return menuId
+ end)
+ 
+ exports('RemoveOption', function(id)
+    Config.MenuItems[id] = nil
+ end)
