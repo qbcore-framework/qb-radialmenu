@@ -1,23 +1,21 @@
 QBCore = exports['qb-core']:GetCoreObject()
 PlayerData = QBCore.Functions.GetPlayerData() -- Setting this for when you restart the resource in game
 local inRadialMenu = false
-local radialMenuSetup = false
 
 -- Functions
 
 local function SetupJobMenu()
-    local index = #Config.MenuItems + 1
     if PlayerData.metadata["isdead"] then
         if PlayerData.job.name == "police" or PlayerData.job.name == "ambulance" then
-            if not Config.MenuItems[index] then
-                Config.MenuItems[index] = {
+            if not Config.MenuItems[4] then
+                Config.MenuItems[4] = {
                     id = 'jobinteractions',
                     title = 'Work',
                     icon = 'briefcase',
                     items = {}
                 }
             end
-            Config.MenuItems[index].items = {
+            Config.MenuItems[4].items = {
                 [1] = {
                     id = 'emergencybutton2',
                     title = Lang:t("options.emergency_button"),
@@ -30,35 +28,37 @@ local function SetupJobMenu()
         else
             if Config.JobInteractions[PlayerData.job.name] and
                 next(Config.JobInteractions[PlayerData.job.name]) then
-                if not Config.MenuItems[index] then
-                    Config.MenuItems[index] = {
+                if not Config.MenuItems[4] then
+                    Config.MenuItems[4] = {
                         id = 'jobinteractions',
                         title = 'Work',
                         icon = 'briefcase',
                         items = {}
                     }
                 end
-                Config.MenuItems[index].items = Config.JobInteractions[PlayerData.job.name]
+                Config.MenuItems[4].items = Config.JobInteractions[PlayerData.job.name]
             end
         end
     else
         if Config.JobInteractions[PlayerData.job.name] and
             next(Config.JobInteractions[PlayerData.job.name]) then
-            if not Config.MenuItems[index] then
-                Config.MenuItems[index] = {
+            if not Config.MenuItems[4] then
+                Config.MenuItems[4] = {
                     id = 'jobinteractions',
                     title = 'Work',
                     icon = 'briefcase',
                     items = {}
                 }
             end
-            Config.MenuItems[index].items = Config.JobInteractions[PlayerData.job.name]
+            Config.MenuItems[4].items = Config.JobInteractions[PlayerData.job.name]
+        else
+            Config.MenuItems[4] = nil
         end
     end
 end
 
-local function SetupVehicleMenu(ped)
-    local Vehicle = GetVehiclePedIsIn(ped)
+local function SetupVehicleMenu()
+    local Vehicle = GetVehiclePedIsIn(PlayerPedId())
     if Vehicle ~= 0 then
         local AmountOfSeats = GetVehicleModelNumberOfSeats(GetEntityModel(Vehicle))
         if AmountOfSeats == 2 then
@@ -147,9 +147,8 @@ local function SetupVehicleMenu(ped)
 end
 
 local function setupSubItems()
-    local ped = PlayerPedId()
     SetupJobMenu()
-    SetupVehicleMenu(ped)
+    SetupVehicleMenu()
 end
 
 local function deepcopy(orig) -- modified the deep copy function from http://lua-users.org/wiki/CopyTable
@@ -195,10 +194,7 @@ end
 
 local function setRadialState(bool, sendMessage, delay)
     -- Menuitems have to be added only once
-    if not radialMenuSetup then
-        setupSubItems()
-        radialMenuSetup = true
-    end
+    setupSubItems()
     
     local items
     if bool then
