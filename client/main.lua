@@ -2,154 +2,12 @@ QBCore = exports['qb-core']:GetCoreObject()
 PlayerData = QBCore.Functions.GetPlayerData() -- Setting this for when you restart the resource in game
 local inRadialMenu = false
 
+local jobIndex = nil
+local vehicleIndex = nil
+
+local DynamicMenuItems = {}
+local FinalMenuItems = {}
 -- Functions
-
-local function SetupJobMenu()
-    if PlayerData.metadata["isdead"] then
-        if PlayerData.job.name == "police" or PlayerData.job.name == "ambulance" then
-            if not Config.MenuItems[4] then
-                Config.MenuItems[4] = {
-                    id = 'jobinteractions',
-                    title = 'Work',
-                    icon = 'briefcase',
-                    items = {}
-                }
-            end
-            Config.MenuItems[4].items = {
-                [1] = {
-                    id = 'emergencybutton2',
-                    title = Lang:t("options.emergency_button"),
-                    icon = '#general',
-                    type = 'client',
-                    event = 'police:client:SendPoliceEmergencyAlert',
-                    shouldClose = true,
-                },
-            }
-        else
-            if Config.JobInteractions[PlayerData.job.name] and
-                next(Config.JobInteractions[PlayerData.job.name]) then
-                if not Config.MenuItems[4] then
-                    Config.MenuItems[4] = {
-                        id = 'jobinteractions',
-                        title = 'Work',
-                        icon = 'briefcase',
-                        items = {}
-                    }
-                end
-                Config.MenuItems[4].items = Config.JobInteractions[PlayerData.job.name]
-            end
-        end
-    else
-        if Config.JobInteractions[PlayerData.job.name] and
-            next(Config.JobInteractions[PlayerData.job.name]) then
-            if not Config.MenuItems[4] then
-                Config.MenuItems[4] = {
-                    id = 'jobinteractions',
-                    title = 'Work',
-                    icon = 'briefcase',
-                    items = {}
-                }
-            end
-            Config.MenuItems[4].items = Config.JobInteractions[PlayerData.job.name]
-        else
-            Config.MenuItems[4] = nil
-        end
-    end
-end
-
-local function SetupVehicleMenu()
-    local Vehicle = GetVehiclePedIsIn(PlayerPedId())
-    if Vehicle ~= 0 then
-        local AmountOfSeats = GetVehicleModelNumberOfSeats(GetEntityModel(Vehicle))
-        if AmountOfSeats == 2 then
-            Config.MenuItems[3].items[3].items = {
-                [1] = {
-                    id = -1,
-                    title = Lang:t("options.driver_seat"),
-                    icon = 'caret-up',
-                    type = 'client',
-                    event = 'qb-radialmenu:client:ChangeSeat',
-                    shouldClose = false,
-                },
-                [2] = {
-                    id = 0,
-                    title = Lang:t("options.passenger_seat"),
-                    icon = 'caret-up',
-                    type = 'client',
-                    event = 'qb-radialmenu:client:ChangeSeat',
-                    shouldClose = false,
-                },
-            }
-        elseif AmountOfSeats == 3 then
-            Config.MenuItems[3].items[3].items = {
-                [4] = {
-                    id = -1,
-                    title = Lang:t("options.driver_seat"),
-                    icon = 'caret-up',
-                    type = 'client',
-                    event = 'qb-radialmenu:client:ChangeSeat',
-                    shouldClose = false,
-                },
-                [1] = {
-                    id = 0,
-                    title = Lang:t("options.passenger_seat"),
-                    icon = 'caret-up',
-                    type = 'client',
-                    event = 'qb-radialmenu:client:ChangeSeat',
-                    shouldClose = false,
-                },
-                [3] = {
-                    id = 1,
-                    title = Lang:t("options.other_seats"),
-                    icon = 'caret-down',
-                    type = 'client',
-                    event = 'qb-radialmenu:client:ChangeSeat',
-                    shouldClose = false,
-                },
-            }
-        elseif AmountOfSeats == 4 then
-            Config.MenuItems[3].items[3].items = {
-                [4] = {
-                    id = -1,
-                    title = Lang:t("options.driver_seat"),
-                    icon = 'caret-up',
-                    type = 'client',
-                    event = 'qb-radialmenu:client:ChangeSeat',
-                    shouldClose = false,
-                },
-                [1] = {
-                    id = 0,
-                    title = Lang:t("options.passenger_seat"),
-                    icon = 'caret-up',
-                    type = 'client',
-                    event = 'qb-radialmenu:client:ChangeSeat',
-                    shouldClose = false,
-                },
-                [3] = {
-                    id = 1,
-                    title = Lang:t("options.rear_left_seat"),
-                    icon = 'caret-down',
-                    type = 'client',
-                    event = 'qb-radialmenu:client:ChangeSeat',
-                    shouldClose = false,
-                },
-                [2] = {
-                    id = 2,
-                    title = Lang:t("options.rear_right_seat"),
-                    icon = 'caret-down',
-                    type = 'client',
-                    event = 'qb-radialmenu:client:ChangeSeat',
-                    shouldClose = false,
-                },
-            }
-        end
-    end
-end
-
-local function setupSubItems()
-    SetupJobMenu()
-    SetupVehicleMenu()
-end
 
 local function deepcopy(orig) -- modified the deep copy function from http://lua-users.org/wiki/CopyTable
     local orig_type = type(orig)
@@ -178,6 +36,111 @@ local function deepcopy(orig) -- modified the deep copy function from http://lua
     return copy
 end
 
+local function getNearestVeh()
+    local pos = GetEntityCoords(PlayerPedId())
+    local entityWorld = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 20.0, 0.0)
+    local rayHandle = CastRayPointToPoint(pos.x, pos.y, pos.z, entityWorld.x, entityWorld.y, entityWorld.z, 10, PlayerPedId(), 0)
+    local _, _, _, _, vehicleHandle = GetRaycastResult(rayHandle)
+    return vehicleHandle
+end
+
+local function AddOption(data, id)
+    local menuID = id ~= nil and id or (#DynamicMenuItems + 1)
+    DynamicMenuItems[menuID] = deepcopy(data)
+    return menuID
+end
+
+local function RemoveOption(id)
+    DynamicMenuItems[id] = nil
+end
+
+local function SetupJobMenu()
+    local JobMenu = {
+        id = 'jobinteractions',
+        title = 'Work',
+        icon = 'briefcase',
+        items = {}
+    }
+    if PlayerData.metadata["isdead"] and (PlayerData.job.name == "police" or PlayerData.job.name == "ambulance") then
+        JobMenu.items = {
+            [1] = {
+                id = 'emergencybutton2',
+                title = Lang:t("options.emergency_button"),
+                icon = '#general',
+                type = 'client',
+                event = 'police:client:SendPoliceEmergencyAlert',
+                shouldClose = true,
+            },
+        }
+    elseif Config.JobInteractions[PlayerData.job.name] and next(Config.JobInteractions[PlayerData.job.name]) then
+        JobMenu.items = Config.JobInteractions[PlayerData.job.name]
+    end
+
+    if #JobMenu.items == 0 then
+        if jobIndex then
+            RemoveOption(jobIndex)
+            jobIndex = nil
+        end
+    else
+        jobIndex = AddOption(JobMenu, jobIndex)
+    end
+end
+
+local function SetupVehicleMenu()
+    local VehicleMenu = {
+        id = 'vehicle',
+        title = 'Vehicle',
+        icon = 'car',
+        items = {}
+    }
+
+    local ped = PlayerPedId()
+    local Vehicle = GetVehiclePedIsIn(ped) ~= 0 and GetVehiclePedIsIn(ped) or getNearestVeh()
+    if Vehicle ~= 0 then
+        VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleDoors
+        if Config.EnableExtraMenu then VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleExtras end
+
+        if IsPedInAnyVehicle(ped) then
+            local seatIndex = #VehicleMenu.items+1
+            VehicleMenu.items[seatIndex] = deepcopy(Config.VehicleSeats)
+
+            local seatTable = {
+                [1] = Lang:t("options.driver_seat"),
+                [2] = Lang:t("options.passenger_seat"),
+                [3] = Lang:t("options.rear_left_seat"),
+                [4] = Lang:t("options.rear_right_seat"),
+            }
+
+            local AmountOfSeats = GetVehicleModelNumberOfSeats(GetEntityModel(Vehicle))
+            for i = 1, AmountOfSeats do
+                local newIndex = #VehicleMenu.items[seatIndex].items+1
+                VehicleMenu.items[seatIndex].items[newIndex] = {
+                    id = i - 2,
+                    title = seatTable[i] or Lang:t("options.other_seats"),
+                    icon = 'caret-up',
+                    type = 'client',
+                    event = 'qb-radialmenu:client:ChangeSeat',
+                    shouldClose = false,
+                }
+            end
+        end
+    end
+
+    if #VehicleMenu.items == 0 then
+        if vehicleIndex then
+            RemoveOption(vehicleIndex)
+            vehicleIndex = nil
+        end
+    else
+        vehicleIndex = AddOption(VehicleMenu, vehicleIndex)
+    end
+end
+
+local function SetupSubItems()
+    SetupJobMenu()
+    SetupVehicleMenu()
+end
+
 local function selectOption(t, t2)
     for k, v in pairs(t) do
         if v.items then
@@ -194,33 +157,30 @@ end
 
 local function setRadialState(bool, sendMessage, delay)
     -- Menuitems have to be added only once
-    setupSubItems()
-    
-    local items
+
     if bool then
+        FinalMenuItems = {}
+
+        SetupSubItems()
+        FinalMenuItems = deepcopy(Config.MenuItems)
+        for _, v in pairs(DynamicMenuItems) do
+            FinalMenuItems[#FinalMenuItems+1] = v
+        end
         TriggerEvent('qb-radialmenu:client:onRadialmenuOpen')
-        items = deepcopy(Config.MenuItems)
     else
         TriggerEvent('qb-radialmenu:client:onRadialmenuClose')
     end
+
     SetNuiFocus(bool, bool)
     if sendMessage then
         SendNUIMessage({
             action = "ui",
             radial = bool,
-            items = items
+            items = FinalMenuItems
         })
     end
     if delay then Wait(500) end
     inRadialMenu = bool
-end
-
-local function getNearestVeh()
-    local pos = GetEntityCoords(PlayerPedId())
-    local entityWorld = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 20.0, 0.0)
-    local rayHandle = CastRayPointToPoint(pos.x, pos.y, pos.z, entityWorld.x, entityWorld.y, entityWorld.z, 10, PlayerPedId(), 0)
-    local _, _, _, _, vehicleHandle = GetRaycastResult(rayHandle)
-    return vehicleHandle
 end
 
 -- Command
@@ -239,7 +199,6 @@ RegisterKeyMapping('radialmenu', Lang:t("general.command_description"), 'keyboar
 -- Sets the metadata when the player spawns
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
     PlayerData = QBCore.Functions.GetPlayerData()
-    setupSubItems()
 end)
 
 -- Sets the playerdata to an empty table when the player has quit or did /logout
@@ -340,7 +299,7 @@ RegisterNetEvent('qb-radialmenu:client:ChangeSeat', function(data)
         if IsSeatFree then
             if kmh <= 100.0 then
                 SetPedIntoVehicle(PlayerPedId(), Veh, data.id)
-                QBCore.Functions.Notify(Lang:t("info.switched_seats"), {seat = data.title})
+                QBCore.Functions.Notify(Lang:t("info.switched_seats", {seat = data.title}))
             else
                 QBCore.Functions.Notify(Lang:t("error.vehicle_driving_fast"), 'error')
             end
@@ -360,7 +319,8 @@ end)
 
 RegisterNUICallback('selectItem', function(data)
     local itemData = data.itemData
-    local found, action = selectOption(Config.MenuItems, itemData)
+    local found, action = selectOption(FinalMenuItems, itemData)
+
     if itemData and found then
         if action then
             action(itemData)
@@ -376,12 +336,5 @@ RegisterNUICallback('selectItem', function(data)
     end
 end)
 
-exports('AddOption', function(data, id)
-    local menuId = id ~= nil and id or (#Config.MenuItems + 1)
-    Config.MenuItems[menuId] = data
-    return menuId
- end)
- 
- exports('RemoveOption', function(id)
-    Config.MenuItems[id] = nil
- end)
+exports('AddOption', AddOption)
+exports('RemoveOption', RemoveOption)

@@ -83,7 +83,7 @@ local function LayOnStretcher()
         loadAnim(inBedDicts)
         if stretcherObject and #(coords - GetEntityCoords(stretcherObject)) <= 3.0 then
             TaskPlayAnim(PlayerPedId(), inBedDicts, inBedAnims, 8.0, 8.0, -1, 69, 1, false, false, false)
-            AttachEntityToEntity(ped, stretcherObject, 0, 0, 0.0, 1.0, 0.0, 0.0, 180.0, 0.0, false, false, false, false, 2, true)
+            AttachEntityToEntity(ped, stretcherObject, 0, 0, 0.0, 1.0, 0.0, 0.0, 180.0, 0.0, false, false, false, false, 2)
             isLayingOnBed = true
         end
     else
@@ -93,7 +93,7 @@ local function LayOnStretcher()
             loadAnim(inBedDicts)
             if stretcherObject and #(coords - GetEntityCoords(stretcherObject)) <= 3.0 then
                 TaskPlayAnim(PlayerPedId(), inBedDicts, inBedAnims, 8.0, 8.0, -1, 69, 1, false, false, false)
-                AttachEntityToEntity(ped, stretcherObject, 0, 0, 0.0, 1.6, 0.0, 0.0, 360.0, 0.0, false, false, false, false, 2, true)
+                AttachEntityToEntity(ped, stretcherObject, 0, 0, 0.0, 1.6, 0.0, 0.0, 360.0, 0.0, false, false, false, false, 2)
                 isLayingOnBed = true
             end
         end
@@ -118,7 +118,7 @@ local function attachToStretcher()
             loadAnim("anim@heists@box_carry@")
             TaskPlayAnim(ped, 'anim@heists@box_carry@', 'idle', 8.0, 8.0, -1, 50, 0, false, false, false)
             SetTimeout(150, function()
-                AttachEntityToEntity(stretcherObject, ped, GetPedBoneIndex(ped, 28422), 0.0, -1.0, -0.50, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2, true)
+                AttachEntityToEntity(stretcherObject, ped, GetPedBoneIndex(ped, 28422), 0.0, -1.0, -0.50, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2)
             end)
             FreezeEntityPosition(stretcherObject, false)
         else
@@ -129,7 +129,7 @@ local function attachToStretcher()
                 loadAnim("anim@heists@box_carry@")
                 TaskPlayAnim(ped, 'anim@heists@box_carry@', 'idle', 8.0, 8.0, -1, 50, 0, false, false, false)
                 SetTimeout(150, function()
-                    AttachEntityToEntity(stretcherObject, ped, GetPedBoneIndex(ped, 28422), 0.0, -1.0, -1.0, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2, true)
+                    AttachEntityToEntity(stretcherObject, ped, GetPedBoneIndex(ped, 28422), 0.0, -1.0, -1.0, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2)
                 end)
                 FreezeEntityPosition(stretcherObject, false)
             end
@@ -218,7 +218,6 @@ RegisterNetEvent('qb-radialmenu:Stretcher:client:BusyCheck', function(otherId, t
     local ped = PlayerPedId()
     if type == "lay" then
         loadAnim("anim@gangops@morgue@table@")
-        IsEntityPlayingAnim(entity, animDict, animName, p4)
         if IsEntityPlayingAnim(ped, "anim@gangops@morgue@table@", "ko_front", 3) then
             TriggerServerEvent('qb-radialmenu:server:BusyResult', true, otherId, type)
         else
@@ -243,7 +242,7 @@ RegisterNetEvent('qb-radialmenu:client:Result', function(isBusy, type)
             NetworkRequestControlOfEntity(stretcherObject)
             loadAnim(inBedDicts)
             TaskPlayAnim(ped, inBedDicts, inBedAnims, 8.0, 8.0, -1, 69, 1, false, false, false)
-            AttachEntityToEntity(ped, stretcherObject, 0, 0, 0.0, 1.6, 0.0, 0.0, 360.0, 0.0, false, false, false, false, 2, true)
+            AttachEntityToEntity(ped, stretcherObject, 0, 0, 0.0, 1.6, 0.0, 0.0, 360.0, 0.0, false, false, false, false, 2)
             isLayingOnBed = true
         else
             QBCore.Functions.Notify(Lang:t("error.stretcher_in_use"), "error")
@@ -255,7 +254,7 @@ RegisterNetEvent('qb-radialmenu:client:Result', function(isBusy, type)
             loadAnim("anim@heists@box_carry@")
             TaskPlayAnim(ped, 'anim@heists@box_carry@', 'idle', 8.0, 8.0, -1, 50, 0, false, false, false)
             SetTimeout(150, function()
-                AttachEntityToEntity(stretcherObject, ped, GetPedBoneIndex(ped, 28422), 0.0, -1.0, -1.0, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2, true)
+                AttachEntityToEntity(stretcherObject, ped, GetPedBoneIndex(ped, 28422), 0.0, -1.0, -1.0, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2)
             end)
             FreezeEntityPosition(stretcherObject, false)
             isAttached = true
@@ -371,6 +370,8 @@ CreateThread(function()
     local ped = PlayerPedId()
     local pos = GetEntityCoords(ped)
     local object = GetClosestObjectOfType(pos.x, pos.y, pos.z, 5.0, `prop_ld_binbag_01`, false, false, false)
-    DeleteObject(object)
-    ClearPedTasksImmediately(ped)
+    if object ~= 0 then
+        DeleteObject(object)
+        ClearPedTasksImmediately(ped)
+    end
 end)
