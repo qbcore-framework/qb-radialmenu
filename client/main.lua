@@ -61,18 +61,7 @@ local function SetupJobMenu()
         icon = 'briefcase',
         items = {}
     }
-    if PlayerData.metadata["isdead"] and (PlayerData.job.name == "police" or PlayerData.job.name == "ambulance") then
-        JobMenu.items = {
-            [1] = {
-                id = 'emergencybutton2',
-                title = Lang:t("options.emergency_button"),
-                icon = '#general',
-                type = 'client',
-                event = 'police:client:SendPoliceEmergencyAlert',
-                shouldClose = true,
-            },
-        }
-    elseif Config.JobInteractions[PlayerData.job.name] and next(Config.JobInteractions[PlayerData.job.name]) then
+    if Config.JobInteractions[PlayerData.job.name] and next(Config.JobInteractions[PlayerData.job.name]) then
         JobMenu.items = Config.JobInteractions[PlayerData.job.name]
     end
 
@@ -155,18 +144,43 @@ local function selectOption(t, t2)
     return false
 end
 
-local function setRadialState(bool, sendMessage, delay)
-    -- Menuitems have to be added only once
+local function IsPoliceOrEMS()
+    return (PlayerData.job.name == "police" or PlayerData.job.name == "ambulance")
+end
 
-    if bool then
-        FinalMenuItems = {}
+local function IsDowned()
+    return (PlayerData.metadata["isdead"] or PlayerData.metadata["inlaststand"])
+end
 
+local function SetupRadialMenu()
+    FinalMenuItems = {}
+    if (IsDowned() and IsPoliceOrEMS()) then
+            FinalMenuItems = {
+                [1] = {
+                    id = 'emergencybutton2',
+                    title = Lang:t("options.emergency_button"),
+                    icon = '#general',
+                    type = 'client',
+                    event = 'police:client:SendPoliceEmergencyAlert',
+                    shouldClose = true,
+                },
+            }
+    else
         SetupSubItems()
         FinalMenuItems = deepcopy(Config.MenuItems)
         for _, v in pairs(DynamicMenuItems) do
             FinalMenuItems[#FinalMenuItems+1] = v
         end
+
+    end
+end
+
+local function setRadialState(bool, sendMessage, delay)
+    -- Menuitems have to be added only once
+
+    if bool then
         TriggerEvent('qb-radialmenu:client:onRadialmenuOpen')
+        SetupRadialMenu()
     else
         TriggerEvent('qb-radialmenu:client:onRadialmenuClose')
     end
@@ -186,7 +200,7 @@ end
 -- Command
 
 RegisterCommand('radialmenu', function()
-    if not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not inRadialMenu then
+    if ((IsDowned() and IsPoliceOrEMS()) or not IsDowned()) and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not inRadialMenu then
         setRadialState(true, true)
         SetCursorLocation(0.5, 0.5)
     end
