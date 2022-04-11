@@ -145,22 +145,22 @@ Config.MenuItems = {
                                 title = 'Set Stash',
                                 icon = 'box-open',
                                 type = 'client',
-                                event = 'qb-houses:client:setLocation',
-                                shouldClose = true
+                                event = 'qb-houses:client:setStash',
+                                shouldClose = true,
                             }, {
                                 id = 'setoutift',
                                 title = 'Set Wardrobe',
                                 icon = 'tshirt',
                                 type = 'client',
-                                event = 'qb-houses:client:setLocation',
-                                shouldClose = true
+                                event = 'qb-houses:client:setOutfit',
+                                shouldClose = true,
                             }, {
                                 id = 'setlogout',
                                 title = 'Set Logout',
                                 icon = 'door-open',
                                 type = 'client',
-                                event = 'qb-houses:client:setLocation',
-                                shouldClose = true
+                                event = 'qb-houses:client:setLogout',
+                                shouldClose = true,
                             }
                         }
                     }
