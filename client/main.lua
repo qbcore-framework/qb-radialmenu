@@ -335,8 +335,6 @@ RegisterNUICallback('selectItem', function(data)
     local itemData = data.itemData
     local found, action, data = selectOption(FinalMenuItems, itemData)
 
-    print(dump(data))
-
     if data and found then
         if action then
             action(data)
