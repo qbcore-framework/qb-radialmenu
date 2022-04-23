@@ -404,7 +404,7 @@ RadialMenu.prototype.createUseTag = function (x, y, link, parent, center) {
 
     svg.setAttribute('data-id', parent.getAttribute('data-id'));
     svg.setAttribute('data-index', parent.getAttribute('data-index'));
-    svg.setAttribute('class', parent.getAttribute('class'));
+    svg.setAttribute('class', (parent.getAttribute('class') + " icon").trim());
 
     path.setAttribute('d', icos[link][4]);
     svg.appendChild(path);
