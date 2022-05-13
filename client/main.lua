@@ -131,7 +131,7 @@ local function SetupSubItems()
 end
 
 local function selectOption(t, t2)
-    for k, v in pairs(t) do
+    for _, v in pairs(t) do
         if v.items then
             local found, hasAction, val = selectOption(v.items, t2)
             if found then return true, hasAction, val end
@@ -333,7 +333,8 @@ end)
 
 RegisterNUICallback('selectItem', function(data)
     local itemData = data.itemData
-    local found, action, data = selectOption(FinalMenuItems, itemData)
+    local found, action
+    found, action, data = selectOption(FinalMenuItems, itemData)
 
     if data and found then
         if action then
