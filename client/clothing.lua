@@ -786,7 +786,7 @@ function ResetClothing(anim)
 	local Ped = PlayerPedId()
 	local e = drawables.Top.Emote
 	if anim then TaskPlayAnim(Ped, e.Dict, e.Anim, 3.0, 3.0, 3000, e.Move, 0, false, false, false) end
-	for k,v in pairs(LastEquipped) do
+	for _, v in pairs(LastEquipped) do
 		if v then
 			if v.Drawable then SetPedComponentVariation(Ped, v.Id, v.Drawable, v.Texture, 0)
 			elseif v.Prop then ClearPedProp(Ped, v.Id) SetPedPropIndex(Ped, v.Id, v.Prop, v.Texture, true) end
@@ -800,9 +800,7 @@ RegisterNetEvent('qb-radialmenu:ResetClothing', ResetClothing)
 function ToggleClothing(whic, extra)
 	local which = whic
 	if type(whic) == "table" then
-    	which = tostring(whic.id)
-	else
-		which = whic
+		which = tostring(whic.id)
 	end
 	Wait(50)
 
@@ -848,8 +846,8 @@ function ToggleClothing(whic, extra)
 					LastEquipped[which] = Cur
 					SetPedComponentVariation(Ped, Toggle.Drawable, Table, 0, 0)
 					if Toggle.Table.Extra then
-						local Extras = Toggle.Table.Extra
-						for k,v in pairs(Extras) do
+						Extras = Toggle.Table.Extra
+						for _, v in pairs(Extras) do
 							local ExtraCur = {Drawable = GetPedDrawableVariation(Ped, v.Drawable),  Texture = GetPedTextureVariation(Ped, v.Drawable), Id = v.Drawable}
 							SetPedComponentVariation(Ped, v.Drawable, v.Id, v.Tex, 0)
 							LastEquipped[v.Name] = ExtraCur
@@ -864,10 +862,10 @@ function ToggleClothing(whic, extra)
 				SetPedComponentVariation(Ped, Toggle.Drawable, Last.Drawable, Last.Texture, 0)
 				LastEquipped[which] = false
 				if Toggle.Table.Extra then
-					local Extras = Toggle.Table.Extra
-					for k,v in pairs(Extras) do
+					Extras = Toggle.Table.Extra
+					for _, v in pairs(Extras) do
 						if LastEquipped[v.Name] then
-							local Last = LastEquipped[v.Name]
+							Last = LastEquipped[v.Name]
 							SetPedComponentVariation(Ped, Last.Id, Last.Drawable, Last.Texture, 0)
 							LastEquipped[v.Name] = false
 						end
@@ -885,16 +883,13 @@ RegisterNetEvent('qb-radialmenu:ToggleClothing', ToggleClothing)
 function ToggleProps(whic)
 	local which = whic
 	if type(whic) == "table" then
-    	which = tostring(whic.id)
-	else
-		which = whic
+		which = tostring(whic.id)
 	end
 	Wait(50)
 
 	if Cooldown then return end
 	local Prop = Props[which]
 	local Ped = PlayerPedId()
-	local Gender = IsMpPed(Ped)
 	local Cur = { -- Lets get out currently equipped prop.
 		Id = Prop.Prop,
 		Ped = Ped,
@@ -914,7 +909,7 @@ function ToggleProps(whic)
 	else
 		local Gender = IsMpPed(Ped)
 		if not Gender then Notify(Lang:t("info.wrong_ped")) return false end -- We dont really allow for variants on ped models, Its possible, but im pretty sure 95% of ped models dont really have variants.
-		local variations = Prop.Variants[Gender]
+		variations = Prop.Variants[Gender]
 		for k,v in pairs(variations) do
 			if Cur.Prop == k then
 				PlayToggleEmote(Prop.Emote.On, function() SetPedPropIndex(Ped, Prop.Prop, v, Cur.Texture, true) end) return true
@@ -946,52 +941,10 @@ AddEventHandler('onResourceStop', function(resource) -- Mostly for development, 
 	end
 end)
 
-function log(l) -- Just a simple logging thing, to easily log all kinds of stuff.
-	if l == nil then print("nil") return end
-	--[[if not Config.Debug then return end
-	if type(l) == "table" then print(json.encode(l)) elseif type(l) == "boolean" then print(l) else print(l.." | "..type(l)) end]]
-end
-
-function GetKey(str)
-	local Key = Keys[string.upper(str)]
-	if Key then return Key else return false end
-end
-
 function IncurCooldown(ms)
 	CreateThread(function()
 		Cooldown = true Wait(ms) Cooldown = false
 	end)
-end
-
-function PairsKeys(t, f)
-	local a = {}
-	for n in pairs(t) do table.insert(a, n) end
-	table.sort(a, f)
-	local i = 0
-	local iter = function ()
-		i = i + 1
-		if a[i] == nil then return nil
-		else return a[i], t[a[i]] end
-	end
-	return iter
-end
-
-function Text(x, y, scale, text, colour, align, force, w)
-	local align = align or 0
-	local colour = colour or Config.GUI.TextColor
-	SetTextFont(Config.GUI.TextFont)
-	SetTextJustification(align)
-	SetTextScale(scale, scale)
-	SetTextColour(colour[1], colour[2], colour[3], 255)
-	if Config.GUI.TextOutline then SetTextOutline() end
-	if w then SetTextWrap(w.x, w.y) end
-	SetTextEntry("STRING")
-	AddTextComponentString(text)
-	DrawText(x,y)
-end
-
-function FirstUpper(str)
-	return (str:gsub("^%l", string.upper))
 end
 
 function Notify(message, color) -- However you want your notifications to be shown, you can switch it up here.
@@ -1006,7 +959,7 @@ end
 
 RegisterNetEvent('dpc:EquipLast', function()
 	local Ped = PlayerPedId()
-	for k,v in pairs(LastEquipped) do
+	for _, v in pairs(LastEquipped) do
 		if v then
 			if v.Drawable then SetPedComponentVariation(Ped, v.ID, v.Drawable, v.Texture, 0)
 			elseif v.Prop then ClearPedProp(Ped, v.ID) SetPedPropIndex(Ped, v.ID, v.Prop, v.Texture, true) end

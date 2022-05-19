@@ -131,7 +131,7 @@ local function SetupSubItems()
 end
 
 local function selectOption(t, t2)
-    for k, v in pairs(t) do
+    for _, v in pairs(t) do
         if v.items then
             local found, hasAction, val = selectOption(v.items, t2)
             if found then return true, hasAction, val end
@@ -332,8 +332,8 @@ RegisterNUICallback('closeRadial', function(data, cb)
     cb('ok')
 end)
 
-RegisterNUICallback('selectItem', function(data, cb)
-    local itemData = data.itemData
+RegisterNUICallback('selectItem', function(inData, cb)
+    local itemData = inData.itemData
     local found, action, data = selectOption(FinalMenuItems, itemData)
     if data and found then
         if action then
