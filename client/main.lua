@@ -327,14 +327,14 @@ end)
 
 -- NUI Callbacks
 
-RegisterNUICallback('closeRadial', function(data)
+RegisterNUICallback('closeRadial', function(data, cb)
     setRadialState(false, false, data.delay)
+    cb('ok')
 end)
 
-RegisterNUICallback('selectItem', function(data)
+RegisterNUICallback('selectItem', function(data, cb)
     local itemData = data.itemData
     local found, action, data = selectOption(FinalMenuItems, itemData)
-
     if data and found then
         if action then
             action(data)
@@ -348,6 +348,7 @@ RegisterNUICallback('selectItem', function(data)
             TriggerServerEvent('QBCore:CallCommand', data.event, data)
         end
     end
+    cb('ok')
 end)
 
 exports('AddOption', AddOption)
