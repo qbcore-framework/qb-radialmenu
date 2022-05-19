@@ -332,8 +332,8 @@ RegisterNUICallback('closeRadial', function(data, cb)
     cb('ok')
 end)
 
-RegisterNUICallback('selectItem', function(data, cb)
-    local itemData = data.itemData
+RegisterNUICallback('selectItem', function(inData, cb)
+    local itemData = inData.itemData
     local found, action, data = selectOption(FinalMenuItems, itemData)
     if data and found then
         if action then
