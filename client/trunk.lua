@@ -228,12 +228,12 @@ CreateThread(function()
         local sleep = 1000
         if inTrunk then
             if not isKidnapped then
-                sleep = 0
                 local ped = PlayerPedId()
                 local vehicle = GetEntityAttachedTo(ped)
                 local drawPos = GetOffsetFromEntityInWorldCoords(vehicle, 0, -2.5, 0)
                 local plate = QBCore.Functions.GetPlate(vehicle)
                 if DoesEntityExist(vehicle) then
+                    sleep = 0
                     DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.75, Lang:t("general.get_out_trunk_button"))
                     if IsControlJustPressed(0, 38) then
                         if GetVehicleDoorAngleRatio(vehicle, 5) > 0 then
@@ -251,6 +251,7 @@ CreateThread(function()
                         sleep = 100
                     end
                     if GetVehicleDoorAngleRatio(vehicle, 5) > 0 then
+                        sleep = 0
                         DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.5, Lang:t("general.close_trunk_button"))
                         if IsControlJustPressed(0, 47) then
                             if not IsVehicleSeatFree(vehicle, -1) then
@@ -261,6 +262,7 @@ CreateThread(function()
                             sleep = 100
                         end
                     else
+                        sleep = 0
                         DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.5, Lang:t("general.open_trunk_button"))
                         if IsControlJustPressed(0, 47) then
                             if not IsVehicleSeatFree(vehicle, -1) then
