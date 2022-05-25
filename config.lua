@@ -466,14 +466,14 @@ Config.JobInteractions = {
         },{
             id = 'revivep',
             title = 'Revive',
-            icon = 'user-md',
+            icon = 'user-doctor',
             type = 'client',
             event = 'hospital:client:RevivePlayer',
             shouldClose = true
         },{
             id = 'treatwounds',
             title = 'Heal wounds',
-            icon = 'band-aid',
+            icon = 'bandage',
             type = 'client',
             event = 'hospital:client:TreatWounds',
             shouldClose = true
@@ -494,7 +494,7 @@ Config.JobInteractions = {
         }, {
             id = 'stretcheroptions',
             title = 'Stretcher',
-            icon = 'procedures',
+            icon = 'bed-pulse',
             items = {
                 {
                     id = 'spawnstretcher',
