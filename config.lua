@@ -459,7 +459,7 @@ Config.JobInteractions = {
         {
             id = 'statuscheck',
             title = 'Check Health Status',
-            icon = 'heartbeat',
+            icon = 'heart-pulse',
             type = 'client',
             event = 'hospital:client:CheckStatus',
             shouldClose = true
@@ -576,7 +576,7 @@ Config.JobInteractions = {
         }, {
             id = 'checkvehstatus',
             title = 'Check Tune Status',
-            icon = 'info-circle',
+            icon = 'circle-info',
             type = 'client',
             event = 'qb-tunerchip:client:TuneStatus',
             shouldClose = true
@@ -597,12 +597,12 @@ Config.JobInteractions = {
         }, {
             id = 'policeinteraction',
             title = 'Police Actions',
-            icon = 'tasks',
+            icon = 'list-check',
             items = {
                 {
                     id = 'statuscheck',
                     title = 'Check Health Status',
-                    icon = 'heartbeat',
+                    icon = 'heart-pulse',
                     type = 'client',
                     event = 'hospital:client:CheckStatus',
                     shouldClose = true
@@ -623,7 +623,7 @@ Config.JobInteractions = {
                 }, {
                     id = 'searchplayer',
                     title = 'Search',
-                    icon = 'search',
+                    icon = 'magnifying-glass',
                     type = 'client',
                     event = 'police:client:SearchPlayer',
                     shouldClose = true
