@@ -39,7 +39,7 @@ Config.MenuItems = {
             }, {
                 id = 'interactions',
                 title = 'Interaction',
-                icon = 'exclamation-triangle',
+                icon = 'triangle-exclamation',
                 items = {
                     {
                         id = 'handcuff',
@@ -72,14 +72,14 @@ Config.MenuItems = {
                     }, {
                         id = 'escort',
                         title = 'Kidnap',
-                        icon = 'user-friends',
+                        icon = 'user-group',
                         type = 'client',
                         event = 'police:client:KidnapPlayer',
                         shouldClose = true
                     }, {
                         id = 'escort2',
                         title = 'Escort',
-                        icon = 'user-friends',
+                        icon = 'user-group',
                         type = 'client',
                         event = 'police:client:EscortPlayer',
                         shouldClose = true
@@ -98,12 +98,12 @@ Config.MenuItems = {
     [2] = {
         id = 'general',
         title = 'General',
-        icon = 'list-alt',
+        icon = 'rectangle-list',
         items = {
             {
                 id = 'house',
                 title = 'House Interaction',
-                icon = 'home',
+                icon = 'house',
                 items = {
                     {
                         id = 'givehousekey',
@@ -131,14 +131,14 @@ Config.MenuItems = {
                     }, {
                         id = 'decoratehouse',
                         title = 'Decorate House',
-                        icon = 'boxes',
+                        icon = 'box',
                         type = 'client',
                         event = 'qb-houses:client:decorate',
                         shouldClose = true
                     }, {
                         id = 'houseLocations',
                         title = 'Interaction Locations',
-                        icon = 'home',
+                        icon = 'house',
                         items = {
                             {
                                 id = 'setstash',
@@ -150,7 +150,7 @@ Config.MenuItems = {
                             }, {
                                 id = 'setoutift',
                                 title = 'Set Wardrobe',
-                                icon = 'tshirt',
+                                icon = 'shirt',
                                 type = 'client',
                                 event = 'qb-houses:client:setLocation',
                                 shouldClose = true
@@ -168,7 +168,7 @@ Config.MenuItems = {
             }, {
                 id = 'clothesmenu',
                 title = 'Clothing',
-                icon = 'tshirt',
+                icon = 'shirt',
                 items = {
                     {
                         id = 'Hair',
@@ -180,7 +180,7 @@ Config.MenuItems = {
                     }, {
                         id = 'Ear',
                         title = 'Ear Piece',
-                        icon = 'deaf',
+                        icon = 'ear-deaf',
                         type = 'client',
                         event = 'qb-radialmenu:ToggleProps',
                         shouldClose = true
@@ -194,14 +194,14 @@ Config.MenuItems = {
                     }, {
                         id = 'Top',
                         title = 'Top',
-                        icon = 'tshirt',
+                        icon = 'shirt',
                         type = 'client',
                         event = 'qb-radialmenu:ToggleClothing',
                         shouldClose = true
                     }, {
                         id = 'Shirt',
                         title = 'Shirt',
-                        icon = 'tshirt',
+                        icon = 'shirt',
                         type = 'client',
                         event = 'qb-radialmenu:ToggleClothing',
                         shouldClose = true
@@ -487,7 +487,7 @@ Config.JobInteractions = {
         }, {
             id = 'escort',
             title = 'Escort',
-            icon = 'user-friends',
+            icon = 'user-group',
             type = 'client',
             event = 'police:client:EscortPlayer',
             shouldClose = true
@@ -616,7 +616,7 @@ Config.JobInteractions = {
                 }, {
                     id = 'escort',
                     title = 'Escort',
-                    icon = 'user-friends',
+                    icon = 'user-group',
                     type = 'client',
                     event = 'police:client:EscortPlayer',
                     shouldClose = true
@@ -644,7 +644,7 @@ Config.JobInteractions = {
                 {
                     id = 'spawnpion',
                     title = 'Cone',
-                    icon = 'exclamation-triangle',
+                    icon = 'triangle-exclamation',
                     type = 'client',
                     event = 'police:client:spawnCone',
                     shouldClose = false
