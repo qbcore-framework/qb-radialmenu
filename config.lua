@@ -607,6 +607,13 @@ Config.JobInteractions = {
                     event = 'hospital:client:CheckStatus',
                     shouldClose = true
                 }, {
+                    id = 'cuffplayer',
+                    title = 'Cuff Player',
+                    icon = 'user-lock',
+                    type = 'client',
+                    event = 'police:client:CuffPlayerSoft',
+                    shouldClose = true
+                }, {
                     id = 'checkstatus',
                     title = 'Check status',
                     icon = 'question',
