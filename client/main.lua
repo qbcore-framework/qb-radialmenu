@@ -61,7 +61,7 @@ local function SetupJobMenu()
         icon = 'briefcase',
         items = {}
     }
-    if Config.JobInteractions[PlayerData.job.name] and next(Config.JobInteractions[PlayerData.job.name]) then
+    if Config.JobInteractions[PlayerData.job.name] and next(Config.JobInteractions[PlayerData.job.name]) and PlayerData.job.onduty then
         JobMenu.items = Config.JobInteractions[PlayerData.job.name]
     end
 
@@ -131,7 +131,7 @@ local function SetupSubItems()
 end
 
 local function selectOption(t, t2)
-    for k, v in pairs(t) do
+    for _, v in pairs(t) do
         if v.items then
             local found, hasAction, val = selectOption(v.items, t2)
             if found then return true, hasAction, val end
@@ -327,14 +327,14 @@ end)
 
 -- NUI Callbacks
 
-RegisterNUICallback('closeRadial', function(data)
+RegisterNUICallback('closeRadial', function(data, cb)
     setRadialState(false, false, data.delay)
+    cb('ok')
 end)
 
-RegisterNUICallback('selectItem', function(data)
-    local itemData = data.itemData
+RegisterNUICallback('selectItem', function(inData, cb)
+    local itemData = inData.itemData
     local found, action, data = selectOption(FinalMenuItems, itemData)
-
     if data and found then
         if action then
             action(data)
@@ -348,6 +348,7 @@ RegisterNUICallback('selectItem', function(data)
             TriggerServerEvent('QBCore:CallCommand', data.event, data)
         end
     end
+    cb('ok')
 end)
 
 exports('AddOption', AddOption)

@@ -29,7 +29,7 @@ local function checkForVehicles()
     local PlayerPed = PlayerPedId()
     local PlayerPos = GetEntityCoords(PlayerPed)
     local veh = 0
-    for k, v in pairs(allowedStretcherVehicles) do
+    for _, v in pairs(allowedStretcherVehicles) do
         veh = GetClosestVehicle(PlayerPos.x, PlayerPos.y, PlayerPos.z, 7.5, GetHashKey(v), 70)
         if veh ~= 0 then
             break
