@@ -658,7 +658,7 @@ Config.JobInteractions = {
                 }, {
                     id = 'spawnschotten',
                     title = 'Speed Limit Sign',
-                    icon = 'sign',
+                    icon = 'sign-hanging',
                     type = 'client',
                     event = 'police:client:spawnRoadSign',
                     shouldClose = false
