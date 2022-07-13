@@ -159,7 +159,7 @@ local function SetupRadialMenu()
                 [1] = {
                     id = 'emergencybutton2',
                     title = Lang:t("options.emergency_button"),
-                    icon = 'exclamation-circle',
+                    icon = 'circle-exclamation',
                     type = 'client',
                     event = 'police:client:SendPoliceEmergencyAlert',
                     shouldClose = true,
