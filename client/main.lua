@@ -88,6 +88,17 @@ local function SetupVehicleMenu()
     if Vehicle ~= 0 then
         VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleDoors
         if Config.EnableExtraMenu then VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleExtras end
+        
+        if not IsVehicleOnAllWheels(Vehicle) then
+            VehicleMenu.items[#VehicleMenu.items+1] = {
+                id = 'vehicle-flip',
+                title = 'Flip Vehicle',
+                icon = 'car-burst',
+                type = 'client',
+                event = 'qb-radialmenu:flipVehicle',
+                shouldClose = true
+            }
+        end
 
         if IsPedInAnyVehicle(ped) then
             local seatIndex = #VehicleMenu.items+1
@@ -323,6 +334,11 @@ RegisterNetEvent('qb-radialmenu:client:ChangeSeat', function(data)
     else
         QBCore.Functions.Notify(Lang:t("error.race_harness_on"), 'error')
     end
+end)
+
+RegisterNetEvent('qb-radialmenu:flipVehicle', function()
+    local vehicle = getNearestVeh()
+    SetVehicleOnGroundProperly(vehicle)
 end)
 
 -- NUI Callbacks
