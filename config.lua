@@ -1,6 +1,7 @@
 Config = {}
 
 Config.EnableExtraMenu = true
+Config.Fliptime = 15000
 
 Config.MenuItems = {
     [1] = {
