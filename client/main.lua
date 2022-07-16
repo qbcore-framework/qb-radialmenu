@@ -338,7 +338,7 @@ end)
 
 RegisterNetEvent('qb-radialmenu:flipVehicle', function()
     TriggerEvent('animations:client:EmoteCommandStart', {"mechanic"})
-    QBCore.Functions.Progressbar("pick_grape", Lang:t("progress.pick_grapes"), Config.Fliptime, false, true, {
+    QBCore.Functions.Progressbar("pick_grape", Lang:t("progress.flipping_car"), Config.Fliptime, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
