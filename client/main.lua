@@ -344,7 +344,7 @@ RegisterNetEvent('qb-radialmenu:flipVehicle', function()
         disableMouse = false,
         disableCombat = true,
     }, {}, {}, {}, function() -- Done
-        local vehicle = getNearestVeh()
+        local vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
         SetVehicleOnGroundProperly(vehicle)
         TriggerEvent('animations:client:EmoteCommandStart', {"c"})
     end, function() -- Cancel
