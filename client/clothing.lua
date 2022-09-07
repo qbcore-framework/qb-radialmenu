@@ -692,6 +692,11 @@ local drawables = {
 		Remember = true,
 		Emote = {Dict = "clothingtie", Anim = "check_out_a", Move = 51, Dur = 2000}
 	},
+	["undershirt"] = {
+		Drawable = 8,
+		Table = {Standalone = true, male = 14, female = 14},
+		Emote = {Dict = "clothingtie", Anim = "try_tie_negative_a", Move = 51, Dur = 1200}
+	}
 }
 
 local Extras = {
