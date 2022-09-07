@@ -831,6 +831,13 @@ Config.Commands = {
         Desc = "Take your mask off/on",
         Button = 6,
         Name = "Mask"
+    },
+    ["undershirt"] = {
+        Func = function() ToggleClothing("undershirt") end,
+        Sprite = "shirt",
+        Desc = "Take your undershirt off/on",
+        Button = 0,
+        Name = "Undershirt"
     }
 }
 
