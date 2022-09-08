@@ -18,6 +18,9 @@ local Translations = {
         already_in_trunk = "Ya estas en el maletero",
         someone_in_trunk = "Alguien ya está en el maletero."
     },
+    progress = {
+        flipping_car = "Voltear el vehículo.."
+    },
     success = {
         extra_activated = "Extra %{extra} Ha sido activado",
         entered_trunk = "entraste en el maletero"
@@ -33,12 +36,12 @@ local Translations = {
         command_description = "Abrir Radial Menu",
         push_stretcher_button = "~g~E~w~ - empujar camilla",
         stop_pushing_stretcher_button = "~g~E~w~ - dejar de empujar",
-        lay_stretcher_button = "~g~G~w~ - Poner en camilla",
+        lay_stretcher_button = "[G] - Poner en camilla",
         push_position_drawtext = "Empuje aquí",
-        get_off_stretcher_button = "~g~G~w~ - Salir de la camilla",
-        get_out_trunk_button = "[~g~E~w~] Salir del maletero",
-        close_trunk_button = "[~g~G~w~] Cerrar el maletero",
-        open_trunk_button = "[~g~G~w~] Abrir el maletero",
+        get_off_stretcher_button = "[G] - Salir de la camilla",
+        get_out_trunk_button = "[E] Salir del maletero",
+        close_trunk_button = "[G] Cerrar el maletero",
+        open_trunk_button = "[G] Abrir el maletero",
         getintrunk_command_desc = "Meterse en el maletero",
         putintrunk_command_desc = "Poner jugador en maletero"
     },
