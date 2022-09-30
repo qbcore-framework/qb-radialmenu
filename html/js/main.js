@@ -1,17 +1,28 @@
 'use strict';
 
 var QBRadialMenu = null;
-
+var toggleConfig = false;
+var keybindConfig = false;
 $(document).ready(function(){
     window.addEventListener('message', function(event){
         switch (event.data.action) {
             case "ui":
+                toggleConfig = event.data.toggle;
+                keybindConfig = event.data.keybind;
                 if (event.data.radial) {
                     createMenu(event.data.items)
                     QBRadialMenu.open();
                 } else {
                     QBRadialMenu.close(true);
                 }
+                if (toggleConfig === false){
+                     $(document).on('keyup', function(e) {
+                         if(e.key == keybindConfig | e.key === keybindConfig.toLowerCase()){
+                             QBRadialMenu.close();
+                         }
+                     });
+                 }
+                
         }
     });
 });
@@ -42,9 +53,4 @@ $(document).on('keydown', function(e) {
             QBRadialMenu.close();
             break;
     }
-});
-
-// Close on any key up, hold/release support incase user changes keybind on the fivem side
-$(document).on('keyup', function(e) {
-    QBRadialMenu.close();
 });
