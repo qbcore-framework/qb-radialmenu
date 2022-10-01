@@ -21,12 +21,19 @@ $(document).ready(function(){
                              QBRadialMenu.close();
                          }
                      });
+                 } else {
+                    $(document).on('keydown', function(e) {
+                        switch(e.key) {
+                            case keybindConfig:
+                                QBRadialMenu.close();
+                                break;
+                        }
+                    });
                  }
                 
         }
     });
 });
-
 function createMenu(items) {
     QBRadialMenu = new RadialMenu({
         parent      : document.body,
