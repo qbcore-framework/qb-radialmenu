@@ -90,7 +90,7 @@ local function SetupVehicleMenu()
     if Vehicle ~= 0 then
         VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleDoors
         if Config.EnableExtraMenu then VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleExtras end
-        
+
         if not IsVehicleOnAllWheels(Vehicle) then
             VehicleMenu.items[#VehicleMenu.items+1] = {
                 id = 'vehicle-flip',
@@ -201,7 +201,7 @@ end
 
 local function setRadialState(bool, sendMessage, delay)
         -- Menuitems have to be added only once
-    if Config.UseWhilstWalking then 
+    if Config.UseWhilstWalking then
             if bool then
             SetupRadialMenu()
             PlaySoundFrontend(-1, "NAV", "HUD_AMMO_SHOP_SOUNDSET", 1)
@@ -220,7 +220,7 @@ local function setRadialState(bool, sendMessage, delay)
         end
         SetNuiFocus(bool, bool)
     end
-    
+
     if sendMessage then
         SendNUIMessage({
             action = "ui",
