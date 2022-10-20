@@ -7,6 +7,8 @@ local vehicleIndex = nil
 
 local DynamicMenuItems = {}
 local FinalMenuItems = {}
+local controlsToToggle = {24,0,1,2, 142, 257, 346} -- if not using toggle
+
 -- Functions
 
 local function deepcopy(orig) -- modified the deep copy function from http://lua-users.org/wiki/CopyTable
@@ -88,7 +90,7 @@ local function SetupVehicleMenu()
     if Vehicle ~= 0 then
         VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleDoors
         if Config.EnableExtraMenu then VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleExtras end
-        
+
         if not IsVehicleOnAllWheels(Vehicle) then
             VehicleMenu.items[#VehicleMenu.items+1] = {
                 id = 'vehicle-flip',
@@ -186,22 +188,46 @@ local function SetupRadialMenu()
     end
 end
 
-local function setRadialState(bool, sendMessage, delay)
-    -- Menuitems have to be added only once
+local function controlToggle(bool)
+    for i = 1, #controlsToToggle,1 do
+        if bool then
+            exports['qb-smallresources']:addDisableControls(controlsToToggle[i])
+        else
+            exports['qb-smallresources']:removeDisableControls(controlsToToggle[i])
+        end
+    end
+end
 
-    if bool then
-        TriggerEvent('qb-radialmenu:client:onRadialmenuOpen')
-        SetupRadialMenu()
+
+local function setRadialState(bool, sendMessage, delay)
+        -- Menuitems have to be added only once
+    if Config.UseWhilstWalking then
+        if bool then
+            SetupRadialMenu()
+            PlaySoundFrontend(-1, "NAV", "HUD_AMMO_SHOP_SOUNDSET", 1)
+            controlToggle(true)
+        else
+            controlToggle(false)
+        end
+        SetNuiFocus(bool, bool)
+        SetNuiFocusKeepInput(bool, true)
     else
-        TriggerEvent('qb-radialmenu:client:onRadialmenuClose')
+        if bool then
+            TriggerEvent('qb-radialmenu:client:onRadialmenuOpen')
+            SetupRadialMenu()
+        else
+            TriggerEvent('qb-radialmenu:client:onRadialmenuClose')
+        end
+        SetNuiFocus(bool, bool)
     end
 
-    SetNuiFocus(bool, bool)
     if sendMessage then
         SendNUIMessage({
             action = "ui",
             radial = bool,
-            items = FinalMenuItems
+            items = FinalMenuItems,
+            toggle = Config.Toggle,
+            keybind = Config.Keybind
         })
     end
     if delay then Wait(500) end
@@ -217,7 +243,7 @@ RegisterCommand('radialmenu', function()
     end
 end)
 
-RegisterKeyMapping('radialmenu', Lang:t("general.command_description"), 'keyboard', 'F1')
+RegisterKeyMapping('radialmenu', Lang:t("general.command_description"), 'keyboard', Config.Keybind)
 
 -- Events
 
