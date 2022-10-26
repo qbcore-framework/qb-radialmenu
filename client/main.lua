@@ -1,5 +1,6 @@
 QBCore = exports['qb-core']:GetCoreObject()
 PlayerData = QBCore.Functions.GetPlayerData() -- Setting this for when you restart the resource in game
+PlayerJob = PlayerData.job
 local inRadialMenu = false
 
 local jobIndex = nil
@@ -55,14 +56,16 @@ local function RemoveOption(id)
 end
 
 local function SetupJobMenu()
+    local JobInteractionCheck = PlayerData.job.name
+    if PlayerData.job.type == "leo" then JobInteractionCheck = "police" end
     local JobMenu = {
         id = 'jobinteractions',
         title = 'Work',
         icon = 'briefcase',
         items = {}
     }
-    if Config.JobInteractions[PlayerData.job.name] and next(Config.JobInteractions[PlayerData.job.name]) and PlayerData.job.onduty then
-        JobMenu.items = Config.JobInteractions[PlayerData.job.name]
+    if Config.JobInteractions[JobInteractionCheck] and next(Config.JobInteractions[JobInteractionCheck]) and PlayerData.job.onduty then
+        JobMenu.items = Config.JobInteractions[JobInteractionCheck]
     end
 
     if #JobMenu.items == 0 then
@@ -88,7 +91,7 @@ local function SetupVehicleMenu()
     if Vehicle ~= 0 then
         VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleDoors
         if Config.EnableExtraMenu then VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleExtras end
-        
+
         if not IsVehicleOnAllWheels(Vehicle) then
             VehicleMenu.items[#VehicleMenu.items+1] = {
                 id = 'vehicle-flip',
@@ -156,7 +159,7 @@ local function selectOption(t, t2)
 end
 
 local function IsPoliceOrEMS()
-    return (PlayerData.job.name == "police" or PlayerData.job.name == "ambulance")
+    return (PlayerData.job.name == "police" or PlayerData.job.type == "leo" or PlayerData.job.name == "ambulance")
 end
 
 local function IsDowned()
