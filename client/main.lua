@@ -57,14 +57,16 @@ local function RemoveOption(id)
 end
 
 local function SetupJobMenu()
+    local JobInteractionCheck = PlayerData.job.name
+    if PlayerData.job.type == "leo" then JobInteractionCheck = "police" end
     local JobMenu = {
         id = 'jobinteractions',
         title = 'Work',
         icon = 'briefcase',
         items = {}
     }
-    if Config.JobInteractions[PlayerData.job.name] and next(Config.JobInteractions[PlayerData.job.name]) and PlayerData.job.onduty then
-        JobMenu.items = Config.JobInteractions[PlayerData.job.name]
+    if Config.JobInteractions[JobInteractionCheck] and next(Config.JobInteractions[JobInteractionCheck]) and PlayerData.job.onduty then
+        JobMenu.items = Config.JobInteractions[JobInteractionCheck]
     end
 
     if #JobMenu.items == 0 then
@@ -158,7 +160,7 @@ local function selectOption(t, t2)
 end
 
 local function IsPoliceOrEMS()
-    return (PlayerData.job.name == "police" or PlayerData.job.name == "ambulance")
+    return (PlayerData.job.name == "police" or PlayerData.job.type == "leo" or PlayerData.job.name == "ambulance")
 end
 
 local function IsDowned()
