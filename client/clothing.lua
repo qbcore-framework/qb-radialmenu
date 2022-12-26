@@ -686,7 +686,7 @@ local drawables = {
 		Table = {Standalone = true, male = 0, female = 0 },
 		Emote = {Dict = "mp_masks@standard_car@ds@", Anim = "put_on_mask", Move = 51, Dur = 800}
 	},
-	["hair"] = {
+	["Hair"] = {
 		Drawable = 2,
 		Table = variations.hair,
 		Remember = true,
