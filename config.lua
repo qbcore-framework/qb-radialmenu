@@ -268,6 +268,13 @@ Config.MenuItems = {
                                 event = 'qb-radialmenu:ToggleClothing',
                                 shouldClose = true
                             }, {
+                                id = 'Bagoff',
+                                title = 'Bagoff',
+                                icon = 'bag-shopping',
+                                type = 'client',
+                                event = 'qb-radialmenu:ToggleClothing',
+                                shouldClose = true
+                            }, {
                                 id = 'Bracelet',
                                 title = 'Bracelet',
                                 icon = 'user',
