@@ -240,8 +240,8 @@ Config.MenuItems = {
                                 event = 'qb-radialmenu:ToggleProps',
                                 shouldClose = true
                             }, {
-                                id = 'Visor',
-                                title = 'Visor',
+                                id = 'visor',
+                                title = 'visor',
                                 icon = 'hat-cowboy-side',
                                 type = 'client',
                                 event = 'qb-radialmenu:ToggleProps',
@@ -282,8 +282,8 @@ Config.MenuItems = {
                                 event = 'qb-radialmenu:ToggleProps',
                                 shouldClose = true
                             }, {
-                                id = 'Gloves',
-                                title = 'Gloves',
+                                id = 'gloves',
+                                title = 'gloves',
                                 icon = 'mitten',
                                 type = 'client',
                                 event = 'qb-radialmenu:ToggleClothing',
