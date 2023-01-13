@@ -700,9 +700,9 @@ local Extras = {
 		Table = {
 			Standalone = true, male = 252, female = 74,
 			Extra = {
-				{Drawable = 8, Id = 15, Tex = 0, Name = "Extra Undershirt"},
-				{Drawable = 3, Id = 15, Tex = 0, Name = "Extra Gloves"},
-				{Drawable = 10, Id = 0, Tex = 0, Name = "Extra Decals"},
+				{Drawable = 8, Id = {male = 15, female = 15}, Tex = 0, Name = "Extra Undershirt"},
+				{Drawable = 3, Id = {male = 15, female = 15}, Tex = 0, Name = "Extra Gloves"},
+				{Drawable = 10, Id = {male = 0, female = 0}, Tex = 0, Name = "Extra Decals"},
 				}
 			},
 		Emote = {Dict = "clothingtie", Anim = "try_tie_negative_a", Move = 51, Dur = 1200}
@@ -849,7 +849,7 @@ function ToggleClothing(whic, extra)
 						local extraToggled = Toggle.Table.Extra
 						for _, v in pairs(extraToggled) do
 							local ExtraCur = {Drawable = GetPedDrawableVariation(Ped, v.Drawable),  Texture = GetPedTextureVariation(Ped, v.Drawable), Id = v.Drawable}
-							SetPedComponentVariation(Ped, v.Drawable, v.Id, v.Tex, 0)
+							SetPedComponentVariation(Ped, v.Drawable, v.Id[Gender], v.Tex, 0)
 							LastEquipped[v.Name] = ExtraCur
 						end
 					end
