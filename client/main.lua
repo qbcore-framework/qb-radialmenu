@@ -79,6 +79,28 @@ local function SetupJobMenu()
     end
 end
 
+local function SetupGangMenu()
+    local GangInteractionCheck = PlayerData.gang.name
+    local GangMenu = {
+        id = 'GangInteractions',
+        title = 'Gang',
+        icon = 'mask',
+        items = {}
+    }
+    if Config.GangInteractions[GangInteractionCheck] and next(Config.GangInteractions[GangInteractionCheck]) then
+        GangMenu.items = Config.GangInteractions[GangInteractionCheck]
+    end
+
+    if #GangMenu.items == 0 then
+        if gangIndex then
+            RemoveOption(gangIndex)
+            gangIndex = nil
+        end
+    else
+        gangIndex = AddOption(GangMenu, gangIndex)
+    end
+end
+
 local function SetupVehicleMenu()
     local VehicleMenu = {
         id = 'vehicle',
@@ -142,6 +164,7 @@ end
 
 local function SetupSubItems()
     SetupJobMenu()
+    SetupGangMenu()
     SetupVehicleMenu()
 end
 
@@ -376,7 +399,7 @@ RegisterNetEvent('qb-radialmenu:flipVehicle', function()
         SetVehicleOnGroundProperly(vehicle)
         TriggerEvent('animations:client:EmoteCommandStart', {"c"})
     end, function() -- Cancel
-        QBCore.Functions.Notify(Lang:t("task.cancel_task"), "error")
+        QBCore.Functions.Notify(Lang:t("error.cancel_task"), "error")
         TriggerEvent('animations:client:EmoteCommandStart', {"c"})
     end)
 end)

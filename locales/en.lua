@@ -16,7 +16,8 @@ local Translations = {
         trunk_closed = "The trunk is closed",
         cant_enter_trunk = "You can't get in this trunk",
         already_in_trunk = "You're already in the trunk",
-        someone_in_trunk = "Someone is already in the trunk"
+        someone_in_trunk = "Someone is already in the trunk",
+        cancel_task = "Task cancelled"
     },
     progress = {
         flipping_car = "Flipping vehicle.."

@@ -707,6 +707,70 @@ Config.JobInteractions = {
     }
 }
 
+Config.GangInteractions = {     --- Gang Specific Interactions
+                                --- Drugs are for example you may change it...
+    ["triads"] = {
+        {
+            id = 'cornerselling',
+            title = 'Corner Selling',
+            icon = 'cannabis',
+            type = 'client',
+            event = 'qb-drugs:client:cornerselling',
+            shouldClose = true
+        },
+    },
+    ["families"] = {
+        {
+            id = 'cornerselling',
+            title = 'Corner Selling',
+            icon = 'cannabis',
+            type = 'client',
+            event = 'qb-drugs:client:cornerselling',
+            shouldClose = true
+        },
+    },
+    ["cartel"] = {
+        {
+            id = 'cornerselling',
+            title = 'Corner Selling',
+            icon = 'cannabis',
+            type = 'client',
+            event = 'qb-drugs:client:cornerselling',
+            shouldClose = true
+        },
+    },
+    ["vagos"] = {
+        {
+            id = 'cornerselling',
+            title = 'Corner Selling',
+            icon = 'cannabis',
+            type = 'client',
+            event = 'qb-drugs:client:cornerselling',
+            shouldClose = true
+        },
+    },
+    ["ballas"] = {
+        {
+            id = 'cornerselling',
+            title = 'Corner Selling',
+            icon = 'cannabis',
+            type = 'client',
+            event = 'qb-drugs:client:cornerselling',
+            shouldClose = true
+        },
+    },
+    ["lostmc"] = {
+        {
+            id = 'cornerselling',
+            title = 'Corner Selling',
+            icon = 'cannabis',
+            type = 'client',
+            event = 'qb-drugs:client:cornerselling',
+            shouldClose = true
+        },
+    },
+}
+
 Config.TrunkClasses = {
     [0] = {allowed = true, x = 0.0, y = -1.5, z = 0.0}, -- Coupes
     [1] = {allowed = true, x = 0.0, y = -2.0, z = 0.0}, -- Sedans
