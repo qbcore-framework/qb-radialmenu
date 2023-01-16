@@ -4,6 +4,7 @@ local inRadialMenu = false
 
 local jobIndex = nil
 local vehicleIndex = nil
+local gangIndex = nil
 
 local DynamicMenuItems = {}
 local FinalMenuItems = {}
