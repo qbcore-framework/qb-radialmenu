@@ -21,6 +21,9 @@ local Translations = {
     progress = {
         flipping_car = "Flipping vehicle.."
     },
+    task = {
+        cancek_task = "Canceling..."
+    },
     success = {
         extra_activated = "Extra %{extra} has been activated",
         entered_trunk = "You're in the trunk"
