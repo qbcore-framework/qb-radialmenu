@@ -537,6 +537,13 @@ Config.JobInteractions = {
             type = 'client',
             event = 'qb-taxi:client:DoTaxiNpc',
             shouldClose = true
+        }, {
+            id = 'cance_npc_mission',
+            title = 'Cancel NPC Mission',
+            icon = 'xmark',
+            type = 'client',
+            event = 'qb-taxi:client:CancelTaxiNpc',
+            shouldClose = true
         }
     },
     ["tow"] = {
