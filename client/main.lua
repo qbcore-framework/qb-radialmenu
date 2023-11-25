@@ -11,6 +11,17 @@ local controlsToToggle = { 24, 0, 1, 2, 142, 257, 346 } -- if not using toggle
 
 -- Functions
 
+local function split(inputstr, sep)
+    if sep == nil then
+            sep = "%s"
+    end
+    local t={}
+    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+            table.insert(t, str)
+    end
+    return t
+end
+
 local function deepcopy(orig) -- modified the deep copy function from http://lua-users.org/wiki/CopyTable
     local orig_type = type(orig)
     local copy
@@ -402,6 +413,9 @@ RegisterNUICallback('selectItem', function(inData, cb)
             TriggerServerEvent(data.event, data)
         elseif data.type == 'command' then
             ExecuteCommand(data.event)
+        elseif data.type == "export" then
+            local splits = split(data.export, ".")
+            exports[splits[1]][splits[2]]()
         elseif data.type == 'qbcommand' then
             TriggerServerEvent('QBCore:CallCommand', data.event, data)
         end
