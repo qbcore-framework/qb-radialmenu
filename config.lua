@@ -5,6 +5,148 @@ Config.UseWhilstWalking = false -- use whilst walking
 Config.EnableExtraMenu = true
 Config.Fliptime = 15000
 
+Config.ClothingItems = {
+    clothes = {
+        "top",
+        "pants",
+        "shoes",
+        "neck",
+        "mask",
+        "vest",
+        "bag",
+    },
+    props = {
+        "ear",
+        "helmet",
+        "glasses",
+        "bracelet",
+        "watch",
+    }
+}
+
+Config.ClothingNaked = {
+    ["male"] = {
+        ["shirt"] = {
+            model = 15,
+            variant =  0,
+        },
+        ["gloves"] = {
+            model = 15,
+            variant = 0,
+        },
+        ["jacket"] = {
+            model = 15,
+            variant = 0,
+        },
+        ["pants"] = {
+            model = 61,
+            variant = 0,
+        },
+        ["shoes"] = {
+            model = 34,
+            variant = 0,
+        },
+        ["neck"] = {
+            model = 0,
+            variant = 0,
+        },
+        ["mask"] = {
+            model = 0,
+            variant = 0,
+        },
+        ["vest"] = {
+            model = 0,
+            variant = 0,
+        },
+        ["bag"] = {
+            model = 0,
+            variant = 0,
+        },
+        --PROPS
+        ["ear"] = {
+            model = -1,
+            variant = -1,
+        },
+        ["helmet"] = {
+            model = -1,
+            variant = -1,
+        },
+        ["glasses"] = {
+            model = 0,
+            variant = -1,
+        },
+        ["bracelet"] = {
+            model = -1,
+            variant = -1,
+        },
+
+        ["watch"] = {
+            model = -1,
+            variant = -1,
+        },
+    },
+    ["female"] = {
+        ["shirt"] = {
+            model = 15,
+            variant =  0,
+        },
+        ["gloves"] = {
+            model = 15,
+            variant = 0,
+        },
+        ["jacket"] = {
+            model = 15,
+            variant = 0,
+        },
+        ["pants"] = {
+            model = 15,
+            variant = 0,
+        },
+        ["shoes"] = {
+            model = 35,
+            variant = 0,
+        },
+        ["neck"] = {
+            model = 0,
+            variant = 0,
+        },
+        ["mask"] = {
+            model = 0,
+            variant = 0,
+        },
+        ["vest"] = {
+            model = 0,
+            variant = 0,
+        },
+        ["bag"] = {
+            model = 0,
+            variant = 0,
+        },
+        --PROPS
+        ["ear"] = {
+            model = -1,
+            variant = -1,
+        },
+        ["helmet"] = {
+            model = -1,
+            variant = -1,
+        },
+        ["glasses"] = {
+            model = 5,
+            variant = 0,
+        },
+        ["bracelet"] = {
+            model = -1,
+            variant = -1,
+        },
+
+        ["watch"] = {
+            model = -1,
+            variant = -1,
+        },
+    }
+}
+
 Config.MenuItems = {
     [1] = {
         id = 'citizen',
@@ -172,53 +314,39 @@ Config.MenuItems = {
                 icon = 'shirt',
                 items = {
                     {
-                        id = 'Hair',
-                        title = 'Hair',
-                        icon = 'user',
-                        type = 'client',
-                        event = 'qb-radialmenu:ToggleClothing',
-                        shouldClose = true
-                    }, {
-                        id = 'Ear',
+                        id = 'ear',
                         title = 'Ear Piece',
                         icon = 'ear-deaf',
                         type = 'client',
-                        event = 'qb-radialmenu:ToggleProps',
+                        event = 'qb-radialmenu:TakeOffProps',
                         shouldClose = true
                     }, {
-                        id = 'Neck',
+                        id = 'neck',
                         title = 'Neck',
                         icon = 'user-tie',
                         type = 'client',
-                        event = 'qb-radialmenu:ToggleClothing',
+                        event = 'qb-radialmenu:TakeOffClothing',
                         shouldClose = true
                     }, {
-                        id = 'Top',
+                        id = 'top',
                         title = 'Top',
                         icon = 'shirt',
                         type = 'client',
-                        event = 'qb-radialmenu:ToggleClothing',
+                        event = 'qb-radialmenu:TakeOffClothing',
                         shouldClose = true
-                    }, {
-                        id = 'Shirt',
-                        title = 'Shirt',
-                        icon = 'shirt',
-                        type = 'client',
-                        event = 'qb-radialmenu:ToggleClothing',
-                        shouldClose = true
-                    }, {
-                        id = 'Pants',
+                    },  {
+                        id = 'pants',
                         title = 'Pants',
                         icon = 'user',
                         type = 'client',
-                        event = 'qb-radialmenu:ToggleClothing',
+                        event = 'qb-radialmenu:TakeOffClothing',
                         shouldClose = true
                     }, {
-                        id = 'Shoes',
+                        id = 'shoes',
                         title = 'Shoes',
                         icon = 'shoe-prints',
                         type = 'client',
-                        event = 'qb-radialmenu:ToggleClothing',
+                        event = 'qb-radialmenu:TakeOffClothing',
                         shouldClose = true
                     }, {
                         id = 'meer',
@@ -226,69 +354,55 @@ Config.MenuItems = {
                         icon = 'plus',
                         items = {
                             {
-                                id = 'Hat',
-                                title = 'Hat',
+                                id = 'helmet',
+                                title = 'Helmet',
                                 icon = 'hat-cowboy-side',
                                 type = 'client',
-                                event = 'qb-radialmenu:ToggleProps',
+                                event = 'qb-radialmenu:TakeOffProps',
                                 shouldClose = true
                             }, {
-                                id = 'Glasses',
+                                id = 'glasses',
                                 title = 'Glasses',
                                 icon = 'glasses',
                                 type = 'client',
-                                event = 'qb-radialmenu:ToggleProps',
+                                event = 'qb-radialmenu:TakeOffProps',
                                 shouldClose = true
-                            }, {
-                                id = 'Visor',
-                                title = 'Visor',
-                                icon = 'hat-cowboy-side',
-                                type = 'client',
-                                event = 'qb-radialmenu:ToggleProps',
-                                shouldClose = true
-                            }, {
-                                id = 'Mask',
+                            },{
+                                id = 'mask',
                                 title = 'Mask',
                                 icon = 'masks-theater',
                                 type = 'client',
-                                event = 'qb-radialmenu:ToggleClothing',
+                                event = 'qb-radialmenu:TakeOffClothing',
                                 shouldClose = true
                             }, {
-                                id = 'Vest',
+                                id = 'vest',
                                 title = 'Vest',
                                 icon = 'vest',
                                 type = 'client',
-                                event = 'qb-radialmenu:ToggleClothing',
+                                event = 'qb-radialmenu:TakeOffClothing',
                                 shouldClose = true
                             }, {
-                                id = 'Bag',
+                                id = 'bag',
                                 title = 'Bag',
                                 icon = 'bag-shopping',
                                 type = 'client',
-                                event = 'qb-radialmenu:ToggleClothing',
+                                event = 'qb-radialmenu:TakeOffClothing',
                                 shouldClose = true
                             }, {
-                                id = 'Bracelet',
+                                id = 'bracelet',
                                 title = 'Bracelet',
                                 icon = 'user',
                                 type = 'client',
-                                event = 'qb-radialmenu:ToggleProps',
+                                event = 'qb-radialmenu:TakeOffProps',
                                 shouldClose = true
                             }, {
-                                id = 'Watch',
+                                id = 'watch',
                                 title = 'Watch',
                                 icon = 'stopwatch',
                                 type = 'client',
-                                event = 'qb-radialmenu:ToggleProps',
+                                event = 'qb-radialmenu:TakeOffProps',
                                 shouldClose = true
-                            }, {
-                                id = 'Gloves',
-                                title = 'Gloves',
-                                icon = 'mitten',
-                                type = 'client',
-                                event = 'qb-radialmenu:ToggleClothing',
-                                shouldClose = true
-                            }
+                            },
                         }
                     }
                 }
