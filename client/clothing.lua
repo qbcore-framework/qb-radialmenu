@@ -39,7 +39,7 @@ local clothes = {
     },
     ["helmet"] = {
         index = nil,
-        texture = nil        
+        texture = nil
     },
 
     ["glasses"] = {
@@ -107,7 +107,7 @@ local emotes = {
         on = {Dict = "clothingspecs", Anim = "take_off", Move = 51, Dur = 1400},
         off = {Dict = "clothingspecs", Anim = "take_off", Move = 51, Dur = 1400}
     },
-    
+
 }
 
 local function IsMpPed(ped)
@@ -256,12 +256,12 @@ local function TakeOffClothing(data)
     if type(data) == "table" then
         which = tostring(data.id)
 	end
-    
+
     if PlayerData.metadata['isdead'] then return end
     if IsPedNaked(ped, which) then return end
     PlayToggleEmote(emotes[which].off)
     if which == "top" then
-        
+
         clothes["top"].shirt_index = GetPedDrawableVariation(ped, 8)
         clothes["top"].shirt_texture = GetPedTextureVariation(ped, 8)
         clothes["top"].jacket_index = GetPedDrawableVariation(ped, 11)
@@ -286,7 +286,7 @@ local function TakeOffClothing(data)
         }
     elseif which == "pants" then
         clothes["pants"].index = GetPedDrawableVariation(ped, 4)
-        clothes["pants"].texture = GetPedTextureVariation(ped, 4)    
+        clothes["pants"].texture = GetPedTextureVariation(ped, 4)
 
         SetPedComponentVariation(ped, 4, Config.ClothingNaked[Gender]["pants"].model, Config.ClothingNaked[Gender]["pants"].variant, 2)
 
@@ -298,7 +298,7 @@ local function TakeOffClothing(data)
         }
     elseif which == "shoes" then
         clothes["shoes"].index = GetPedDrawableVariation(ped, 6)
-        clothes["shoes"].texture = GetPedTextureVariation(ped, 6)    
+        clothes["shoes"].texture = GetPedTextureVariation(ped, 6)
 
         SetPedComponentVariation(ped, 6, Config.ClothingNaked[Gender]["shoes"].model, Config.ClothingNaked[Gender]["shoes"].variant, 2)
 
@@ -310,7 +310,7 @@ local function TakeOffClothing(data)
         }
     elseif which == "neck" then
         clothes["neck"].index = GetPedDrawableVariation(ped, 7)
-        clothes["neck"].texture = GetPedTextureVariation(ped, 7)    
+        clothes["neck"].texture = GetPedTextureVariation(ped, 7)
 
         SetPedComponentVariation(ped, 7, Config.ClothingNaked[Gender]["neck"].model, Config.ClothingNaked[Gender]["neck"].variant, 2)
 
@@ -322,7 +322,7 @@ local function TakeOffClothing(data)
         }
     elseif which == "mask" then
         clothes["mask"].index = GetPedDrawableVariation(ped, 1)
-        clothes["mask"].texture = GetPedTextureVariation(ped, 1)    
+        clothes["mask"].texture = GetPedTextureVariation(ped, 1)
 
         SetPedComponentVariation(ped, 1, Config.ClothingNaked[Gender]["mask"].model, Config.ClothingNaked[Gender]["mask"].variant, 2)
 
@@ -334,7 +334,7 @@ local function TakeOffClothing(data)
         }
     elseif which == "vest" then
         clothes["vest"].index = GetPedDrawableVariation(ped, 9)
-        clothes["vest"].texture = GetPedTextureVariation(ped, 9)    
+        clothes["vest"].texture = GetPedTextureVariation(ped, 9)
 
         SetPedComponentVariation(ped, 9, Config.ClothingNaked[Gender]["vest"].model, Config.ClothingNaked[Gender]["vest"].variant, 2)
 
@@ -346,7 +346,7 @@ local function TakeOffClothing(data)
         }
     elseif which == "bag" then
         clothes["bag"].index = GetPedDrawableVariation(ped, 5)
-        clothes["bag"].texture = GetPedTextureVariation(ped, 5)    
+        clothes["bag"].texture = GetPedTextureVariation(ped, 5)
 
         SetPedComponentVariation(ped, 5, Config.ClothingNaked[Gender]["bag"].model, Config.ClothingNaked[Gender]["bag"].variant, 2)
 
@@ -416,7 +416,7 @@ local function TakeOffProps(data)
             model = clothes["watch"].index,
             variant = clothes["watch"].texture
         }
-            
+
     end
     TriggerServerEvent("qb-radialmenu:server:giveitem", which, 1, false, info)
 end
@@ -449,7 +449,7 @@ RegisterNetEvent('qb-radialmenu:WearClothes', function(data, type)
                 gloves_variant = clothes["top"].gloves_texture,
                 gender = Gender
             }
-    
+
             TriggerServerEvent("qb-radialmenu:server:giveitem", "top", 1, false, info)
         end
         clothes["top"].shirt_index = nil
@@ -458,9 +458,9 @@ RegisterNetEvent('qb-radialmenu:WearClothes', function(data, type)
         clothes["top"].jacket_variant = nil
         clothes["top"].gloves_model = nil
         clothes["top"].gloves_variant = nil
-        SetPedComponentVariation(ped, 3, data.info.gloves_model, data.info.gloves_variant, 2)        
-        SetPedComponentVariation(ped, 8, data.info.shirt_model, data.info.shirt_variant, 2)        
-        SetPedComponentVariation(ped, 11, data.info.jacket_model, data.info.jacket_variant, 2)  
+        SetPedComponentVariation(ped, 3, data.info.gloves_model, data.info.gloves_variant, 2)
+        SetPedComponentVariation(ped, 8, data.info.shirt_model, data.info.shirt_variant, 2)
+        SetPedComponentVariation(ped, 11, data.info.jacket_model, data.info.jacket_variant, 2)
 
     elseif type == "pants" then
         clothes["pants"].index = GetPedDrawableVariation(ped, 4)
@@ -471,7 +471,7 @@ RegisterNetEvent('qb-radialmenu:WearClothes', function(data, type)
                 variant = clothes["pants"].texture,
                 gender = Gender
             }
-    
+
             TriggerServerEvent("qb-radialmenu:server:giveitem", "pants", 1, false, info)
         end
         clothes["pants"].index = nil
@@ -486,7 +486,7 @@ RegisterNetEvent('qb-radialmenu:WearClothes', function(data, type)
                 variant = clothes["shoes"].texture,
                 gender = Gender
             }
-    
+
             TriggerServerEvent("qb-radialmenu:server:giveitem", "shoes", 1, false, info)
         end
         clothes["shoes"].index = nil
@@ -501,7 +501,7 @@ RegisterNetEvent('qb-radialmenu:WearClothes', function(data, type)
                 variant = clothes["neck"].texture,
                 gender = Gender
             }
-    
+
             TriggerServerEvent("qb-radialmenu:server:giveitem", "neck", 1, false, info)
         end
         clothes["neck"].index = nil
@@ -516,7 +516,7 @@ RegisterNetEvent('qb-radialmenu:WearClothes', function(data, type)
                 variant = clothes["mask"].texture,
                 gender = Gender
             }
-    
+
             TriggerServerEvent("qb-radialmenu:server:giveitem", "mask", 1, false, info)
         end
         clothes["mask"].index = nil
@@ -531,7 +531,7 @@ RegisterNetEvent('qb-radialmenu:WearClothes', function(data, type)
                 variant = clothes["vest"].texture,
                 gender = Gender
             }
-    
+
             TriggerServerEvent("qb-radialmenu:server:giveitem", "vest", 1, false, info)
         end
         clothes["vest"].index = nil
@@ -546,7 +546,7 @@ RegisterNetEvent('qb-radialmenu:WearClothes', function(data, type)
                 variant = clothes["bag"].texture,
                 gender = Gender
             }
-    
+
             TriggerServerEvent("qb-radialmenu:server:giveitem", "bag", 1, false, info)
         end
         clothes["bag"].index = nil
@@ -562,101 +562,101 @@ RegisterNetEvent('qb-radialmenu:WearProps', function(data, type)
     if type == "helmet" then
         if not naked then
             PlayToggleEmote(emotes["helmet"].off)
-    
+
             clothes["helmet"].index = GetPedPropIndex(ped, 0)
             clothes["helmet"].texture = GetPedPropTextureIndex(ped, 0)
             ClearPedProp(ped, 0)
-    
+
             local info = {
                 model = clothes["helmet"].index,
                 variant = clothes["helmet"].texture
             }
-    
+
             TriggerServerEvent("qb-radialmenu:server:giveitem", "helmet", 1, false, info)
         end
         PlayToggleEmote(emotes["helmet"].on)
-        SetPedPropIndex(ped, 0, data.info.model, data.info.variant, 2) 
-    
+        SetPedPropIndex(ped, 0, data.info.model, data.info.variant, 2)
+
         clothes["helmet"].index = nil
         clothes["helmet"].texture = nil
     elseif type == "ear" then
         if not naked then
             PlayToggleEmote(emotes["ear"].off)
-    
+
             clothes["ear"].index = GetPedPropIndex(ped, 2)
             clothes["ear"].texture = GetPedPropTextureIndex(ped, 2)
             ClearPedProp(ped, 2)
-    
+
             local info = {
                 model = clothes["ear"].index,
                 variant = clothes["ear"].texture
             }
-    
+
             TriggerServerEvent("qb-radialmenu:server:giveitem", "ear", 1, false, info)
         end
         PlayToggleEmote(emotes["ear"].on)
-        SetPedPropIndex(ped, 2, data.info.model, data.info.variant, 2) 
-    
+        SetPedPropIndex(ped, 2, data.info.model, data.info.variant, 2)
+
         clothes["ear"].index = nil
         clothes["ear"].texture = nil
     elseif type == "glasses" then
         if not naked then
             PlayToggleEmote(emotes["glasses"].off)
-    
+
             clothes["glasses"].index = GetPedPropIndex(ped, 1)
             clothes["glasses"].texture = GetPedPropTextureIndex(ped, 1)
             ClearPedProp(ped, 1)
-    
+
             local info = {
                 model = clothes["glasses"].index,
                 variant = clothes["glasses"].texture
             }
-    
+
             TriggerServerEvent("qb-radialmenu:server:giveitem", "glasses", 1, false, info)
         end
         PlayToggleEmote(emotes["glasses"].on)
-        SetPedPropIndex(ped, 1, data.info.model, data.info.variant, 2) 
-    
+        SetPedPropIndex(ped, 1, data.info.model, data.info.variant, 2)
+
         clothes["glasses"].index = nil
         clothes["glasses"].texture = nil
     elseif type == "bracelet" then
         if not naked then
             PlayToggleEmote(emotes["bracelet"].off)
-    
+
             clothes["bracelet"].index = GetPedPropIndex(ped, 7)
             clothes["bracelet"].texture = GetPedPropTextureIndex(ped, 7)
             ClearPedProp(ped, 7)
-    
+
             local info = {
                 model = clothes["bracelet"].index,
                 variant = clothes["bracelet"].texture
             }
-    
+
             TriggerServerEvent("qb-radialmenu:server:giveitem", "bracelet", 1, false, info)
         end
         PlayToggleEmote(emotes["bracelet"].on)
-        SetPedPropIndex(ped, 7, data.info.model, data.info.variant, 2) 
-    
+        SetPedPropIndex(ped, 7, data.info.model, data.info.variant, 2)
+
         clothes["bracelet"].index = nil
         clothes["bracelet"].texture = nil
     elseif type == "watch" then
         if not naked then
             PlayToggleEmote(emotes["watch"].off)
-    
+
             clothes["watch"].index = GetPedPropIndex(ped, 6)
             clothes["watch"].texture = GetPedPropTextureIndex(ped, 6)
             ClearPedProp(ped, 6)
-    
+
             local info = {
                 model = clothes["watch"].index,
                 variant = clothes["watch"].texture
             }
-    
+
             TriggerServerEvent("qb-radialmenu:server:giveitem", "watch", 1, false, info)
         end
         PlayToggleEmote(emotes["watch"].on)
-        SetPedPropIndex(ped, 6, data.info.model, data.info.variant, 2) 
-    
+        SetPedPropIndex(ped, 6, data.info.model, data.info.variant, 2)
+
         clothes["watch"].index = nil
         clothes["watch"].texture = nil
     end
