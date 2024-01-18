@@ -238,7 +238,7 @@ local function IncurCooldown(ms)
 	end)
 end
 
-local function PlayToggleEmote(e, cb)
+local function PlayToggleEmote(e)
 	local Ped = PlayerPedId()
 	while not HasAnimDictLoaded(e.Dict) do RequestAnimDict(e.Dict) Wait(100) end
 	if IsPedInAnyVehicle(Ped) then e.Move = 51 end
