@@ -1,4 +1,3 @@
-Cooldown = false
 local clothes = {
     ["top"] = {
         shirt_index = nil,

@@ -13,7 +13,7 @@ RegisterNetEvent('qb-radialmenu:server:removeitem', function(item, amount, slot)
 end)
 
 
-for i, v in ipairs(Config.ClothingItems.clothes) do
+for _, v in ipairs(Config.ClothingItems.clothes) do
 	QBCore.Functions.CreateUseableItem(v, function(source, item)
 		local Player = QBCore.Functions.GetPlayer(source)
 		
@@ -23,7 +23,7 @@ for i, v in ipairs(Config.ClothingItems.clothes) do
 	end)
 end
 
-for i, v in ipairs(Config.ClothingItems.props) do
+for _, v in ipairs(Config.ClothingItems.props) do
 	QBCore.Functions.CreateUseableItem(v, function(source, item)
 		local Player = QBCore.Functions.GetPlayer(source)
 		
