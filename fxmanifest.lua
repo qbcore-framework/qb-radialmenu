@@ -1,7 +1,8 @@
 fx_version 'cerulean'
 game 'gta5'
-
-description 'QB-RadialMenu'
+lua54 'yes'
+author 'Kakarot'
+description 'Allows players quick access to a menu for various actions'
 version '1.2.0'
 
 ui_page 'html/index.html'
@@ -31,5 +32,3 @@ files {
     'html/js/main.js',
     'html/js/RadialMenu.js',
 }
-
-lua54 'yes'
