@@ -204,10 +204,12 @@ local function setRadialState(bool, sendMessage, delay)
     -- Menuitems have to be added only once
     if Config.UseWhilstWalking then
         if bool then
+            TriggerEvent('qb-radialmenu:client:onRadialmenuOpen')
             SetupRadialMenu()
             PlaySoundFrontend(-1, "NAV", "HUD_AMMO_SHOP_SOUNDSET", 1)
             controlToggle(true)
         else
+            TriggerEvent('qb-radialmenu:client:onRadialmenuClose')
             controlToggle(false)
         end
         SetNuiFocus(bool, bool)
