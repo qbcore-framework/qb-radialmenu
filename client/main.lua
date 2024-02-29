@@ -49,6 +49,7 @@ end
 local function AddOption(data, id)
     local menuID = id ~= nil and id or (#DynamicMenuItems + 1)
     DynamicMenuItems[menuID] = deepcopy(data)
+    DynamicMenuItems[menuID].res = GetInvokingResource()
     return menuID
 end
 
@@ -383,6 +384,14 @@ RegisterNetEvent('qb-radialmenu:flipVehicle', function()
         QBCore.Functions.Notify(Lang:t("task.cancel_task"), "error")
         StopAnimTask(PlayerPedId(), 'mini@repair', 'fixing_a_ped', 1.0)
     end)
+end)
+
+AddEventHandler('onClientResourceStop', function(resource)
+    for k, v in pairs(DynamicMenuItems) do
+        if v.res == resource then
+            DynamicMenuItems[k] = nil
+        end
+    end
 end)
 
 -- NUI Callbacks
