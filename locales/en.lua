@@ -28,6 +28,7 @@ local Translations = {
     info = {
         no_variants = "There don't seem to be any variants for this",
         wrong_ped = "This ped model does not allow for this option",
+        wrong_gender = "This clothe is not for your gender",
         nothing_to_remove = "You don't appear to have anything to remove",
         already_wearing = "You are already wearing that",
         switched_seats = "You are now on the %{seat}"
