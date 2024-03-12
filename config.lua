@@ -86,13 +86,6 @@ Config.MenuItems = {
                         type = 'client',
                         event = 'police:client:EscortPlayer',
                         shouldClose = true
-                    }, {
-                        id = 'escort554',
-                        title = 'Hostage',
-                        icon = 'child',
-                        type = 'client',
-                        event = 'A5:Client:TakeHostage',
-                        shouldClose = true
                     }
                 }
             }
