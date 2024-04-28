@@ -1,8 +1,8 @@
 local variations = {
-	jackets = {male = {}, female = {}},
-	hair = {male = {}, female = {}},
-	bags = {male = {}, female = {}},
-	visor = {male = {}, female = {}},
+	jackets = { male = {}, female = {} },
+	hair = { male = {}, female = {} },
+	bags = { male = {}, female = {} },
+	visor = { male = {}, female = {} },
 	gloves = {
 		male = {
 			[16] = 4,
@@ -412,355 +412,357 @@ end
 
 CreateThread(function()
 	-- male visor/Hat variations
-	addNewVariation("visor", "male", 9, 10)
-	addNewVariation("visor", "male", 18, 67)
-	addNewVariation("visor", "male", 82, 67)
-	addNewVariation("visor", "male", 44, 45)
-	addNewVariation("visor", "male", 50, 68)
-	addNewVariation("visor", "male", 51, 69)
-	addNewVariation("visor", "male", 52, 70)
-	addNewVariation("visor", "male", 53, 71)
-	addNewVariation("visor", "male", 62, 72)
-	addNewVariation("visor", "male", 65, 66)
-	addNewVariation("visor", "male", 73, 74)
-	addNewVariation("visor", "male", 76, 77)
-	addNewVariation("visor", "male", 79, 78)
-	addNewVariation("visor", "male", 80, 81)
-	addNewVariation("visor", "male", 91, 92)
-	addNewVariation("visor", "male", 104, 105)
-	addNewVariation("visor", "male", 109, 110)
-	addNewVariation("visor", "male", 116, 117)
-	addNewVariation("visor", "male", 118, 119)
-	addNewVariation("visor", "male", 123, 124)
-	addNewVariation("visor", "male", 125, 126)
-	addNewVariation("visor", "male", 127, 128)
-	addNewVariation("visor", "male", 130, 131)
-	addNewVariation("visor", "male", 135, 136)
-	addNewVariation("visor", "male", 137, 138)
-	addNewVariation("visor", "male", 139, 140)
-	addNewVariation("visor", "male", 142, 143)
-	addNewVariation("visor", "male", 147, 148)
-	addNewVariation("visor", "male", 151, 152)
-	addNewVariation("visor", "male", 127, 128)
-	addNewVariation("visor", "male", 130, 131)
+	addNewVariation('visor', 'male', 9, 10)
+	addNewVariation('visor', 'male', 18, 67)
+	addNewVariation('visor', 'male', 82, 67)
+	addNewVariation('visor', 'male', 44, 45)
+	addNewVariation('visor', 'male', 50, 68)
+	addNewVariation('visor', 'male', 51, 69)
+	addNewVariation('visor', 'male', 52, 70)
+	addNewVariation('visor', 'male', 53, 71)
+	addNewVariation('visor', 'male', 62, 72)
+	addNewVariation('visor', 'male', 65, 66)
+	addNewVariation('visor', 'male', 73, 74)
+	addNewVariation('visor', 'male', 76, 77)
+	addNewVariation('visor', 'male', 79, 78)
+	addNewVariation('visor', 'male', 80, 81)
+	addNewVariation('visor', 'male', 91, 92)
+	addNewVariation('visor', 'male', 104, 105)
+	addNewVariation('visor', 'male', 109, 110)
+	addNewVariation('visor', 'male', 116, 117)
+	addNewVariation('visor', 'male', 118, 119)
+	addNewVariation('visor', 'male', 123, 124)
+	addNewVariation('visor', 'male', 125, 126)
+	addNewVariation('visor', 'male', 127, 128)
+	addNewVariation('visor', 'male', 130, 131)
+	addNewVariation('visor', 'male', 135, 136)
+	addNewVariation('visor', 'male', 137, 138)
+	addNewVariation('visor', 'male', 139, 140)
+	addNewVariation('visor', 'male', 142, 143)
+	addNewVariation('visor', 'male', 147, 148)
+	addNewVariation('visor', 'male', 151, 152)
+	addNewVariation('visor', 'male', 127, 128)
+	addNewVariation('visor', 'male', 130, 131)
 	-- female visor/Hat variations
-	addNewVariation("visor", "female", 43, 44)
-	addNewVariation("visor", "female", 49, 67)
-	addNewVariation("visor", "female", 64, 65)
-	addNewVariation("visor", "female", 65, 64)
-	addNewVariation("visor", "female", 51, 69)
-	addNewVariation("visor", "female", 50, 68)
-	addNewVariation("visor", "female", 52, 70)
-	addNewVariation("visor", "female", 62, 71)
-	addNewVariation("visor", "female", 72, 73)
-	addNewVariation("visor", "female", 75, 76)
-	addNewVariation("visor", "female", 78, 77)
-	addNewVariation("visor", "female", 79, 80)
-	addNewVariation("visor", "female", 18, 66)
-	addNewVariation("visor", "female", 66, 81)
-	addNewVariation("visor", "female", 81, 66)
-	addNewVariation("visor", "female", 86, 84)
-	addNewVariation("visor", "female", 90, 91)
-	addNewVariation("visor", "female", 103, 104)
-	addNewVariation("visor", "female", 108, 109)
-	addNewVariation("visor", "female", 115, 116)
-	addNewVariation("visor", "female", 117, 118)
-	addNewVariation("visor", "female", 122, 123)
-	addNewVariation("visor", "female", 124, 125)
-	addNewVariation("visor", "female", 126, 127)
-	addNewVariation("visor", "female", 129, 130)
-	addNewVariation("visor", "female", 134, 135)
-	addNewVariation("visor", "female", 136, 137)
-	addNewVariation("visor", "female", 138, 139)
-	addNewVariation("visor", "female", 141, 142)
-	addNewVariation("visor", "female", 146, 147)
-	addNewVariation("visor", "female", 150, 151)
+	addNewVariation('visor', 'female', 43, 44)
+	addNewVariation('visor', 'female', 49, 67)
+	addNewVariation('visor', 'female', 64, 65)
+	addNewVariation('visor', 'female', 65, 64)
+	addNewVariation('visor', 'female', 51, 69)
+	addNewVariation('visor', 'female', 50, 68)
+	addNewVariation('visor', 'female', 52, 70)
+	addNewVariation('visor', 'female', 62, 71)
+	addNewVariation('visor', 'female', 72, 73)
+	addNewVariation('visor', 'female', 75, 76)
+	addNewVariation('visor', 'female', 78, 77)
+	addNewVariation('visor', 'female', 79, 80)
+	addNewVariation('visor', 'female', 18, 66)
+	addNewVariation('visor', 'female', 66, 81)
+	addNewVariation('visor', 'female', 81, 66)
+	addNewVariation('visor', 'female', 86, 84)
+	addNewVariation('visor', 'female', 90, 91)
+	addNewVariation('visor', 'female', 103, 104)
+	addNewVariation('visor', 'female', 108, 109)
+	addNewVariation('visor', 'female', 115, 116)
+	addNewVariation('visor', 'female', 117, 118)
+	addNewVariation('visor', 'female', 122, 123)
+	addNewVariation('visor', 'female', 124, 125)
+	addNewVariation('visor', 'female', 126, 127)
+	addNewVariation('visor', 'female', 129, 130)
+	addNewVariation('visor', 'female', 134, 135)
+	addNewVariation('visor', 'female', 136, 137)
+	addNewVariation('visor', 'female', 138, 139)
+	addNewVariation('visor', 'female', 141, 142)
+	addNewVariation('visor', 'female', 146, 147)
+	addNewVariation('visor', 'female', 150, 151)
 	-- male bags
-	addNewVariation("bags", "male", 45, 44)
-	addNewVariation("bags", "male", 41, 40)
-	addNewVariation("bags", "male", 82, 81)
-	addNewVariation("bags", "male", 86, 85)
+	addNewVariation('bags', 'male', 45, 44)
+	addNewVariation('bags', 'male', 41, 40)
+	addNewVariation('bags', 'male', 82, 81)
+	addNewVariation('bags', 'male', 86, 85)
 	-- female bags
-	addNewVariation("bags", "female", 45, 44)
-	addNewVariation("bags", "female", 41, 40)
-	addNewVariation("bags", "female", 82, 81)
-	addNewVariation("bags", "female", 86, 85)
+	addNewVariation('bags', 'female', 45, 44)
+	addNewVariation('bags', 'female', 41, 40)
+	addNewVariation('bags', 'female', 82, 81)
+	addNewVariation('bags', 'female', 86, 85)
 	-- male hair
-	addNewVariation("hair", "male", 7, 15, true)
-	addNewVariation("hair", "male", 43, 15, true)
-	addNewVariation("hair", "male", 9, 43, true)
-	addNewVariation("hair", "male", 11, 43, true)
-	addNewVariation("hair", "male", 15, 43, true)
-	addNewVariation("hair", "male", 16, 43, true)
-	addNewVariation("hair", "male", 17, 43, true)
-	addNewVariation("hair", "male", 20, 43, true)
-	addNewVariation("hair", "male", 22, 43, true)
-	addNewVariation("hair", "male", 45, 43, true)
-	addNewVariation("hair", "male", 47, 43, true)
-	addNewVariation("hair", "male", 49, 43, true)
-	addNewVariation("hair", "male", 51, 43, true)
-	addNewVariation("hair", "male", 52, 43, true)
-	addNewVariation("hair", "male", 53, 43, true)
-	addNewVariation("hair", "male", 56, 43, true)
-	addNewVariation("hair", "male", 58, 43, true)
+	addNewVariation('hair', 'male', 7, 15, true)
+	addNewVariation('hair', 'male', 43, 15, true)
+	addNewVariation('hair', 'male', 9, 43, true)
+	addNewVariation('hair', 'male', 11, 43, true)
+	addNewVariation('hair', 'male', 15, 43, true)
+	addNewVariation('hair', 'male', 16, 43, true)
+	addNewVariation('hair', 'male', 17, 43, true)
+	addNewVariation('hair', 'male', 20, 43, true)
+	addNewVariation('hair', 'male', 22, 43, true)
+	addNewVariation('hair', 'male', 45, 43, true)
+	addNewVariation('hair', 'male', 47, 43, true)
+	addNewVariation('hair', 'male', 49, 43, true)
+	addNewVariation('hair', 'male', 51, 43, true)
+	addNewVariation('hair', 'male', 52, 43, true)
+	addNewVariation('hair', 'male', 53, 43, true)
+	addNewVariation('hair', 'male', 56, 43, true)
+	addNewVariation('hair', 'male', 58, 43, true)
 	-- female hair
-	addNewVariation("hair", "female", 1, 49, true)
-	addNewVariation("hair", "female", 2, 49, true)
-	addNewVariation("hair", "female", 7, 49, true)
-	addNewVariation("hair", "female", 9, 49, true)
-	addNewVariation("hair", "female", 10, 49, true)
-	addNewVariation("hair", "female", 11, 48, true)
-	addNewVariation("hair", "female", 14, 53, true)
-	addNewVariation("hair", "female", 15, 42, true)
-	addNewVariation("hair", "female", 21, 42, true)
-	addNewVariation("hair", "female", 23, 42, true)
-	addNewVariation("hair", "female", 31, 53, true)
-	addNewVariation("hair", "female", 39, 49, true)
-	addNewVariation("hair", "female", 40, 49, true)
-	addNewVariation("hair", "female", 42, 53, true)
-	addNewVariation("hair", "female", 45, 49, true)
-	addNewVariation("hair", "female", 48, 49, true)
-	addNewVariation("hair", "female", 49, 48, true)
-	addNewVariation("hair", "female", 52, 53, true)
-	addNewVariation("hair", "female", 53, 42, true)
-	addNewVariation("hair", "female", 54, 55, true)
-	addNewVariation("hair", "female", 59, 42, true)
-	addNewVariation("hair", "female", 59, 54, true)
-	addNewVariation("hair", "female", 68, 53, true)
-	addNewVariation("hair", "female", 76, 48, true)
+	addNewVariation('hair', 'female', 1, 49, true)
+	addNewVariation('hair', 'female', 2, 49, true)
+	addNewVariation('hair', 'female', 7, 49, true)
+	addNewVariation('hair', 'female', 9, 49, true)
+	addNewVariation('hair', 'female', 10, 49, true)
+	addNewVariation('hair', 'female', 11, 48, true)
+	addNewVariation('hair', 'female', 14, 53, true)
+	addNewVariation('hair', 'female', 15, 42, true)
+	addNewVariation('hair', 'female', 21, 42, true)
+	addNewVariation('hair', 'female', 23, 42, true)
+	addNewVariation('hair', 'female', 31, 53, true)
+	addNewVariation('hair', 'female', 39, 49, true)
+	addNewVariation('hair', 'female', 40, 49, true)
+	addNewVariation('hair', 'female', 42, 53, true)
+	addNewVariation('hair', 'female', 45, 49, true)
+	addNewVariation('hair', 'female', 48, 49, true)
+	addNewVariation('hair', 'female', 49, 48, true)
+	addNewVariation('hair', 'female', 52, 53, true)
+	addNewVariation('hair', 'female', 53, 42, true)
+	addNewVariation('hair', 'female', 54, 55, true)
+	addNewVariation('hair', 'female', 59, 42, true)
+	addNewVariation('hair', 'female', 59, 54, true)
+	addNewVariation('hair', 'female', 68, 53, true)
+	addNewVariation('hair', 'female', 76, 48, true)
 	-- male Top/Jacket variations
-	addNewVariation("jackets", "male", 29, 30)
-	addNewVariation("jackets", "male", 31, 32)
-	addNewVariation("jackets", "male", 42, 43)
-	addNewVariation("jackets", "male", 59, 60)
-	addNewVariation("jackets", "male", 68, 69)
-	addNewVariation("jackets", "male", 74, 75)
-	addNewVariation("jackets", "male", 87, 88)
-	addNewVariation("jackets", "male", 93, 94)
-	addNewVariation("jackets", "male", 99, 100)
-	addNewVariation("jackets", "male", 101, 102)
-	addNewVariation("jackets", "male", 103, 104)
-	addNewVariation("jackets", "male", 126, 127)
-	addNewVariation("jackets", "male", 129, 130)
-	addNewVariation("jackets", "male", 131, 132)
-	addNewVariation("jackets", "male", 184, 185)
-	addNewVariation("jackets", "male", 188, 189)
-	addNewVariation("jackets", "male", 194, 195)
-	addNewVariation("jackets", "male", 196, 197)
-	addNewVariation("jackets", "male", 198, 199)
-	addNewVariation("jackets", "male", 200, 203)
-	addNewVariation("jackets", "male", 202, 205)
-	addNewVariation("jackets", "male", 206, 207)
-	addNewVariation("jackets", "male", 209, 212)
-	addNewVariation("jackets", "male", 210, 211)
-	addNewVariation("jackets", "male", 217, 218)
-	addNewVariation("jackets", "male", 229, 230)
-	addNewVariation("jackets", "male", 232, 233)
-	addNewVariation("jackets", "male", 235, 236)
-	addNewVariation("jackets", "male", 241, 242)
-	addNewVariation("jackets", "male", 251, 253)
-	addNewVariation("jackets", "male", 256, 261)
-	addNewVariation("jackets", "male", 262, 263)
-	addNewVariation("jackets", "male", 265, 266)
-	addNewVariation("jackets", "male", 267, 268)
-	addNewVariation("jackets", "male", 279, 280)
-	addNewVariation("jackets", "male", 292, 293)
-	addNewVariation("jackets", "male", 294, 295)
-	addNewVariation("jackets", "male", 296, 297)
-	addNewVariation("jackets", "male", 300, 303)
-	addNewVariation("jackets", "male", 301, 302)
-	addNewVariation("jackets", "male", 305, 306)
-	addNewVariation("jackets", "male", 311, 312)
-	addNewVariation("jackets", "male", 300, 303)
-	addNewVariation("jackets", "male", 301, 302)
-	addNewVariation("jackets", "male", 305, 306)
-	addNewVariation("jackets", "male", 311, 312)
-	addNewVariation("jackets", "male", 314, 315)
-	addNewVariation("jackets", "male", 316, 317)
-	addNewVariation("jackets", "male", 318, 319)
-	addNewVariation("jackets", "male", 321, 322)
-	addNewVariation("jackets", "male", 330, 331)
-	addNewVariation("jackets", "male", 336, 337)
-	addNewVariation("jackets", "male", 339, 126)
-	addNewVariation("jackets", "male", 340, 341)
-	addNewVariation("jackets", "male", 343, 344)
-	addNewVariation("jackets", "male", 346, 234)
-	addNewVariation("jackets", "male", 347, 260)
-	addNewVariation("jackets", "male", 348, 349)
-	addNewVariation("jackets", "male", 352, 353)
-	addNewVariation("jackets", "male", 354, 355)
-	addNewVariation("jackets", "male", 359, 360)
+	addNewVariation('jackets', 'male', 29, 30)
+	addNewVariation('jackets', 'male', 31, 32)
+	addNewVariation('jackets', 'male', 42, 43)
+	addNewVariation('jackets', 'male', 59, 60)
+	addNewVariation('jackets', 'male', 68, 69)
+	addNewVariation('jackets', 'male', 74, 75)
+	addNewVariation('jackets', 'male', 87, 88)
+	addNewVariation('jackets', 'male', 93, 94)
+	addNewVariation('jackets', 'male', 99, 100)
+	addNewVariation('jackets', 'male', 101, 102)
+	addNewVariation('jackets', 'male', 103, 104)
+	addNewVariation('jackets', 'male', 126, 127)
+	addNewVariation('jackets', 'male', 129, 130)
+	addNewVariation('jackets', 'male', 131, 132)
+	addNewVariation('jackets', 'male', 184, 185)
+	addNewVariation('jackets', 'male', 188, 189)
+	addNewVariation('jackets', 'male', 194, 195)
+	addNewVariation('jackets', 'male', 196, 197)
+	addNewVariation('jackets', 'male', 198, 199)
+	addNewVariation('jackets', 'male', 200, 203)
+	addNewVariation('jackets', 'male', 202, 205)
+	addNewVariation('jackets', 'male', 206, 207)
+	addNewVariation('jackets', 'male', 209, 212)
+	addNewVariation('jackets', 'male', 210, 211)
+	addNewVariation('jackets', 'male', 217, 218)
+	addNewVariation('jackets', 'male', 229, 230)
+	addNewVariation('jackets', 'male', 232, 233)
+	addNewVariation('jackets', 'male', 235, 236)
+	addNewVariation('jackets', 'male', 241, 242)
+	addNewVariation('jackets', 'male', 251, 253)
+	addNewVariation('jackets', 'male', 256, 261)
+	addNewVariation('jackets', 'male', 262, 263)
+	addNewVariation('jackets', 'male', 265, 266)
+	addNewVariation('jackets', 'male', 267, 268)
+	addNewVariation('jackets', 'male', 279, 280)
+	addNewVariation('jackets', 'male', 292, 293)
+	addNewVariation('jackets', 'male', 294, 295)
+	addNewVariation('jackets', 'male', 296, 297)
+	addNewVariation('jackets', 'male', 300, 303)
+	addNewVariation('jackets', 'male', 301, 302)
+	addNewVariation('jackets', 'male', 305, 306)
+	addNewVariation('jackets', 'male', 311, 312)
+	addNewVariation('jackets', 'male', 300, 303)
+	addNewVariation('jackets', 'male', 301, 302)
+	addNewVariation('jackets', 'male', 305, 306)
+	addNewVariation('jackets', 'male', 311, 312)
+	addNewVariation('jackets', 'male', 314, 315)
+	addNewVariation('jackets', 'male', 316, 317)
+	addNewVariation('jackets', 'male', 318, 319)
+	addNewVariation('jackets', 'male', 321, 322)
+	addNewVariation('jackets', 'male', 330, 331)
+	addNewVariation('jackets', 'male', 336, 337)
+	addNewVariation('jackets', 'male', 339, 126)
+	addNewVariation('jackets', 'male', 340, 341)
+	addNewVariation('jackets', 'male', 343, 344)
+	addNewVariation('jackets', 'male', 346, 234)
+	addNewVariation('jackets', 'male', 347, 260)
+	addNewVariation('jackets', 'male', 348, 349)
+	addNewVariation('jackets', 'male', 352, 353)
+	addNewVariation('jackets', 'male', 354, 355)
+	addNewVariation('jackets', 'male', 359, 360)
 	-- female Top/Jacket variations
-	addNewVariation("jackets", "female", 53, 52)
-	addNewVariation("jackets", "female", 57, 58)
-	addNewVariation("jackets", "female", 62, 63)
-	addNewVariation("jackets", "female", 84, 85)
-	addNewVariation("jackets", "female", 90, 91)
-	addNewVariation("jackets", "female", 92, 93)
-	addNewVariation("jackets", "female", 94, 95)
-	addNewVariation("jackets", "female", 117, 118)
-	addNewVariation("jackets", "female", 120, 121)
-	addNewVariation("jackets", "female", 128, 129)
-	addNewVariation("jackets", "female", 187, 186)
-	addNewVariation("jackets", "female", 190, 191)
-	addNewVariation("jackets", "female", 196, 197)
-	addNewVariation("jackets", "female", 198, 199)
-	addNewVariation("jackets", "female", 200, 201)
-	addNewVariation("jackets", "female", 202, 205)
-	addNewVariation("jackets", "female", 204, 207)
-	addNewVariation("jackets", "female", 210, 211)
-	addNewVariation("jackets", "female", 213, 216)
-	addNewVariation("jackets", "female", 214, 215)
-	addNewVariation("jackets", "female", 225, 226)
-	addNewVariation("jackets", "female", 227, 228)
-	addNewVariation("jackets", "female", 239, 240)
-	addNewVariation("jackets", "female", 242, 243)
-	addNewVariation("jackets", "female", 244, 364)
-	addNewVariation("jackets", "female", 245, 246)
-	addNewVariation("jackets", "female", 249, 250)
-	addNewVariation("jackets", "female", 259, 261)
-	addNewVariation("jackets", "female", 265, 270)
-	addNewVariation("jackets", "female", 271, 272)
-	addNewVariation("jackets", "female", 274, 275)
-	addNewVariation("jackets", "female", 276, 277)
-	addNewVariation("jackets", "female", 280, 281)
-	addNewVariation("jackets", "female", 292, 293)
-	addNewVariation("jackets", "female", 305, 306)
-	addNewVariation("jackets", "female", 307, 308)
-	addNewVariation("jackets", "female", 311, 314)
-	addNewVariation("jackets", "female", 312, 313)
-	addNewVariation("jackets", "female", 316, 317)
-	addNewVariation("jackets", "female", 325, 326)
-	addNewVariation("jackets", "female", 327, 328)
-	addNewVariation("jackets", "female", 329, 330)
-	addNewVariation("jackets", "female", 332, 333)
-	addNewVariation("jackets", "female", 339, 340)
-	addNewVariation("jackets", "female", 345, 346)
-	addNewVariation("jackets", "female", 351, 352)
-	addNewVariation("jackets", "female", 354, 121)
-	addNewVariation("jackets", "female", 355, 356)
-	addNewVariation("jackets", "female", 357, 359)
-	addNewVariation("jackets", "female", 358, 360)
-	addNewVariation("jackets", "female", 362, 363)
-	addNewVariation("jackets", "female", 366, 367)
-	addNewVariation("jackets", "female", 365, 269)
-	addNewVariation("jackets", "female", 370, 371)
-	addNewVariation("jackets", "female", 372, 373)
-	addNewVariation("jackets", "female", 378, 379)
+	addNewVariation('jackets', 'female', 53, 52)
+	addNewVariation('jackets', 'female', 57, 58)
+	addNewVariation('jackets', 'female', 62, 63)
+	addNewVariation('jackets', 'female', 84, 85)
+	addNewVariation('jackets', 'female', 90, 91)
+	addNewVariation('jackets', 'female', 92, 93)
+	addNewVariation('jackets', 'female', 94, 95)
+	addNewVariation('jackets', 'female', 117, 118)
+	addNewVariation('jackets', 'female', 120, 121)
+	addNewVariation('jackets', 'female', 128, 129)
+	addNewVariation('jackets', 'female', 187, 186)
+	addNewVariation('jackets', 'female', 190, 191)
+	addNewVariation('jackets', 'female', 196, 197)
+	addNewVariation('jackets', 'female', 198, 199)
+	addNewVariation('jackets', 'female', 200, 201)
+	addNewVariation('jackets', 'female', 202, 205)
+	addNewVariation('jackets', 'female', 204, 207)
+	addNewVariation('jackets', 'female', 210, 211)
+	addNewVariation('jackets', 'female', 213, 216)
+	addNewVariation('jackets', 'female', 214, 215)
+	addNewVariation('jackets', 'female', 225, 226)
+	addNewVariation('jackets', 'female', 227, 228)
+	addNewVariation('jackets', 'female', 239, 240)
+	addNewVariation('jackets', 'female', 242, 243)
+	addNewVariation('jackets', 'female', 244, 364)
+	addNewVariation('jackets', 'female', 245, 246)
+	addNewVariation('jackets', 'female', 249, 250)
+	addNewVariation('jackets', 'female', 259, 261)
+	addNewVariation('jackets', 'female', 265, 270)
+	addNewVariation('jackets', 'female', 271, 272)
+	addNewVariation('jackets', 'female', 274, 275)
+	addNewVariation('jackets', 'female', 276, 277)
+	addNewVariation('jackets', 'female', 280, 281)
+	addNewVariation('jackets', 'female', 292, 293)
+	addNewVariation('jackets', 'female', 305, 306)
+	addNewVariation('jackets', 'female', 307, 308)
+	addNewVariation('jackets', 'female', 311, 314)
+	addNewVariation('jackets', 'female', 312, 313)
+	addNewVariation('jackets', 'female', 316, 317)
+	addNewVariation('jackets', 'female', 325, 326)
+	addNewVariation('jackets', 'female', 327, 328)
+	addNewVariation('jackets', 'female', 329, 330)
+	addNewVariation('jackets', 'female', 332, 333)
+	addNewVariation('jackets', 'female', 339, 340)
+	addNewVariation('jackets', 'female', 345, 346)
+	addNewVariation('jackets', 'female', 351, 352)
+	addNewVariation('jackets', 'female', 354, 121)
+	addNewVariation('jackets', 'female', 355, 356)
+	addNewVariation('jackets', 'female', 357, 359)
+	addNewVariation('jackets', 'female', 358, 360)
+	addNewVariation('jackets', 'female', 362, 363)
+	addNewVariation('jackets', 'female', 366, 367)
+	addNewVariation('jackets', 'female', 365, 269)
+	addNewVariation('jackets', 'female', 370, 371)
+	addNewVariation('jackets', 'female', 372, 373)
+	addNewVariation('jackets', 'female', 378, 379)
 end)
 
 local drawables = {
-	["Top"] = {
+	['Top'] = {
 		Drawable = 11,
 		Table = variations.jackets,
-		Emote = {Dict = "missmic4", Anim = "michael_tux_fidget", Move = 51, Dur = 1500}
+		Emote = { Dict = 'missmic4', Anim = 'michael_tux_fidget', Move = 51, Dur = 1500 }
 	},
-	["gloves"] = {
+	['gloves'] = {
 		Drawable = 3,
 		Table = variations.gloves,
 		Remember = true,
-		Emote = {Dict = "nmt_3_rcm-10", Anim = "cs_nigel_dual-10", Move = 51, Dur = 1200}
+		Emote = { Dict = 'nmt_3_rcm-10', Anim = 'cs_nigel_dual-10', Move = 51, Dur = 1200 }
 	},
-	["Shoes"] = {
+	['Shoes'] = {
 		Drawable = 6,
-		Table = {Standalone = true, male = 34, female = 35},
-		Emote = {Dict = "random@domestic", Anim = "pickup_low", Move = 0, Dur = 1200}
+		Table = { Standalone = true, male = 34, female = 35 },
+		Emote = { Dict = 'random@domestic', Anim = 'pickup_low', Move = 0, Dur = 1200 }
 	},
-	["Neck"] = {
+	['Neck'] = {
 		Drawable = 7,
-		Table = {Standalone = true, male = 0, female = 0 },
-		Emote = {Dict = "clothingtie", Anim = "try_tie_positive_a", Move = 51, Dur = 2100}
+		Table = { Standalone = true, male = 0, female = 0 },
+		Emote = { Dict = 'clothingtie', Anim = 'try_tie_positive_a', Move = 51, Dur = 2100 }
 	},
-	["Vest"] = {
+	['Vest'] = {
 		Drawable = 9,
-		Table = {Standalone = true, male = 0, female = 0 },
-		Emote = {Dict = "clothingtie", Anim = "try_tie_negative_a", Move = 51, Dur = 1200}
+		Table = { Standalone = true, male = 0, female = 0 },
+		Emote = { Dict = 'clothingtie', Anim = 'try_tie_negative_a', Move = 51, Dur = 1200 }
 	},
-	["Bag"] = {
+	['Bag'] = {
 		Drawable = 5,
 		Table = variations.bags,
-		Emote = {Dict = "anim@heists@ornate_bank@grab_cash", Anim = "intro", Move = 51, Dur = 1600}
+		Emote = { Dict = 'anim@heists@ornate_bank@grab_cash', Anim = 'intro', Move = 51, Dur = 1600 }
 	},
-	["Mask"] = {
+	['Mask'] = {
 		Drawable = 1,
-		Table = {Standalone = true, male = 0, female = 0 },
-		Emote = {Dict = "mp_masks@standard_car@ds@", Anim = "put_on_mask", Move = 51, Dur = 800}
+		Table = { Standalone = true, male = 0, female = 0 },
+		Emote = { Dict = 'mp_masks@standard_car@ds@', Anim = 'put_on_mask', Move = 51, Dur = 800 }
 	},
-	["hair"] = {
+	['hair'] = {
 		Drawable = 2,
 		Table = variations.hair,
 		Remember = true,
-		Emote = {Dict = "clothingtie", Anim = "check_out_a", Move = 51, Dur = 2000}
+		Emote = { Dict = 'clothingtie', Anim = 'check_out_a', Move = 51, Dur = 2000 }
 	},
 }
 
 local Extras = {
-	["Shirt"] = {
+	['Shirt'] = {
 		Drawable = 11,
 		Table = {
-			Standalone = true, male = 252, female = 74,
+			Standalone = true,
+			male = 252,
+			female = 74,
 			Extra = {
-				{Drawable = 8, Id = 15, Tex = 0, Name = "Extra Undershirt"},
-				{Drawable = 3, Id = 15, Tex = 0, Name = "Extra Gloves"},
-				{Drawable = 10, Id = 0, Tex = 0, Name = "Extra Decals"},
-				}
-			},
-		Emote = {Dict = "clothingtie", Anim = "try_tie_negative_a", Move = 51, Dur = 1200}
+				{ Drawable = 8,  Id = 15, Tex = 0, Name = 'Extra Undershirt' },
+				{ Drawable = 3,  Id = 15, Tex = 0, Name = 'Extra Gloves' },
+				{ Drawable = 10, Id = 0,  Tex = 0, Name = 'Extra Decals' },
+			}
+		},
+		Emote = { Dict = 'clothingtie', Anim = 'try_tie_negative_a', Move = 51, Dur = 1200 }
 	},
-	["Pants"] = {
+	['Pants'] = {
 		Drawable = 4,
-		Table = {Standalone = true, male = 61, female = 14},
-		Emote = {Dict = "re@construction", Anim = "out_of_breath", Move = 51, Dur = 1300}
+		Table = { Standalone = true, male = 61, female = 14 },
+		Emote = { Dict = 're@construction', Anim = 'out_of_breath', Move = 51, Dur = 1300 }
 	},
-	["Bagoff"] = {
+	['Bagoff'] = {
 		Drawable = 5,
-		Table = {Standalone = true, male = 0, female = 0},
-		Emote = {Dict = "clothingtie", Anim = "try_tie_negative_a", Move = 51, Dur = 1200}
+		Table = { Standalone = true, male = 0, female = 0 },
+		Emote = { Dict = 'clothingtie', Anim = 'try_tie_negative_a', Move = 51, Dur = 1200 }
 	},
 }
 
 local Props = {
-	["visor"] = {
+	['visor'] = {
 		Prop = 0,
 		Variants = variations.visor,
 		Emote = {
-			On = {Dict = "mp_masks@standard_car@ds@", Anim = "put_on_mask", Move = 51, Dur = 600},
-			Off = {Dict = "missheist_agency2ahelmet", Anim = "take_off_helmet_stand", Move = 51, Dur = 1200}
+			On = { Dict = 'mp_masks@standard_car@ds@', Anim = 'put_on_mask', Move = 51, Dur = 600 },
+			Off = { Dict = 'missheist_agency2ahelmet', Anim = 'take_off_helmet_stand', Move = 51, Dur = 1200 }
 		}
 	},
-	["Hat"] = {
+	['Hat'] = {
 		Prop = 0,
 		Emote = {
-			On = {Dict = "mp_masks@standard_car@ds@", Anim = "put_on_mask", Move = 51, Dur = 600},
-			Off = {Dict = "missheist_agency2ahelmet", Anim = "take_off_helmet_stand", Move = 51, Dur = 1200}
+			On = { Dict = 'mp_masks@standard_car@ds@', Anim = 'put_on_mask', Move = 51, Dur = 600 },
+			Off = { Dict = 'missheist_agency2ahelmet', Anim = 'take_off_helmet_stand', Move = 51, Dur = 1200 }
 		}
 	},
-	["Glasses"] = {
+	['Glasses'] = {
 		Prop = 1,
 		Emote = {
-			On = {Dict = "clothingspecs", Anim = "take_off", Move = 51, Dur = 1400},
-			Off = {Dict = "clothingspecs", Anim = "take_off", Move = 51, Dur = 1400}
+			On = { Dict = 'clothingspecs', Anim = 'take_off', Move = 51, Dur = 1400 },
+			Off = { Dict = 'clothingspecs', Anim = 'take_off', Move = 51, Dur = 1400 }
 		}
 	},
-	["Ear"] = {
+	['Ear'] = {
 		Prop = 2,
 		Emote = {
-			On = {Dict = "mp_cp_stolen_tut", Anim = "b_think", Move = 51, Dur = 900},
-			Off = {Dict = "mp_cp_stolen_tut", Anim = "b_think", Move = 51, Dur = 900}
+			On = { Dict = 'mp_cp_stolen_tut', Anim = 'b_think', Move = 51, Dur = 900 },
+			Off = { Dict = 'mp_cp_stolen_tut', Anim = 'b_think', Move = 51, Dur = 900 }
 		}
 	},
-	["Watch"] = {
+	['Watch'] = {
 		Prop = 6,
 		Emote = {
-			On = {Dict = "nmt_3_rcm-10", Anim = "cs_nigel_dual-10", Move = 51, Dur = 1200},
-			Off = {Dict = "nmt_3_rcm-10", Anim = "cs_nigel_dual-10", Move = 51, Dur = 1200}
+			On = { Dict = 'nmt_3_rcm-10', Anim = 'cs_nigel_dual-10', Move = 51, Dur = 1200 },
+			Off = { Dict = 'nmt_3_rcm-10', Anim = 'cs_nigel_dual-10', Move = 51, Dur = 1200 }
 		}
 	},
-	["Bracelet"] = {
+	['Bracelet'] = {
 		Prop = 7,
 		Emote = {
-			On = {Dict = "nmt_3_rcm-10", Anim = "cs_nigel_dual-10", Move = 51, Dur = 1200},
-			Off = {Dict = "nmt_3_rcm-10", Anim = "cs_nigel_dual-10", Move = 51, Dur = 1200}
+			On = { Dict = 'nmt_3_rcm-10', Anim = 'cs_nigel_dual-10', Move = 51, Dur = 1200 },
+			Off = { Dict = 'nmt_3_rcm-10', Anim = 'cs_nigel_dual-10', Move = 51, Dur = 1200 }
 		}
 	},
 }
@@ -770,17 +772,21 @@ Cooldown = false
 
 local function PlayToggleEmote(e, cb)
 	local Ped = PlayerPedId()
-	while not HasAnimDictLoaded(e.Dict) do RequestAnimDict(e.Dict) Wait(100) end
+	while not HasAnimDictLoaded(e.Dict) do
+		RequestAnimDict(e.Dict)
+		Wait(100)
+	end
 	if IsPedInAnyVehicle(Ped) then e.Move = 51 end
 	TaskPlayAnim(Ped, e.Dict, e.Anim, 3.0, 3.0, e.Dur, e.Move, 0, false, false, false)
-	local Pause = e.Dur-500 if Pause < 500 then Pause = 500 end
+	local Pause = e.Dur - 500
+	if Pause < 500 then Pause = 500 end
 	IncurCooldown(Pause)
 	Wait(Pause) -- Lets wait for the emote to play for a bit then do the callback.
 	cb()
 end
 
 function ResetClothing(anim)
-	if type(anim) == "table" then
+	if type(anim) == 'table' then
 		anim = true
 	end
 	local Ped = PlayerPedId()
@@ -788,8 +794,12 @@ function ResetClothing(anim)
 	if anim then TaskPlayAnim(Ped, e.Dict, e.Anim, 3.0, 3.0, 3000, e.Move, 0, false, false, false) end
 	for _, v in pairs(LastEquipped) do
 		if v then
-			if v.Drawable then SetPedComponentVariation(Ped, v.Id, v.Drawable, v.Texture, 0)
-			elseif v.Prop then ClearPedProp(Ped, v.Id) SetPedPropIndex(Ped, v.Id, v.Prop, v.Texture, true) end
+			if v.Drawable then
+				SetPedComponentVariation(Ped, v.Id, v.Drawable, v.Texture, 0)
+			elseif v.Prop then
+				ClearPedProp(Ped, v.Id)
+				SetPedPropIndex(Ped, v.Id, v.Prop, v.Texture, true)
+			end
 		end
 	end
 	LastEquipped = {}
@@ -799,16 +809,17 @@ RegisterNetEvent('qb-radialmenu:ResetClothing', ResetClothing)
 
 function ToggleClothing(whic, extra)
 	local which = whic
-	if type(whic) == "table" then
+	if type(whic) == 'table' then
 		which = tostring(whic.id)
 	end
 	Wait(50)
 
-    if which == "Shirt" or which == "Pants" or which == "Bagoff" then
-        extra = true
-    end
+	if which == 'Shirt' or which == 'Pants' or which == 'Bagoff' then
+		extra = true
+	end
 	if Cooldown then return end
-	local Toggle = drawables[which] if extra then Toggle = Extras[which] end
+	local Toggle = drawables[which]
+	if extra then Toggle = Extras[which] end
 	local Ped = PlayerPedId()
 	local Cur = { -- Lets check what we are currently wearing.
 		Drawable = GetPedDrawableVariation(Ped, Toggle.Drawable),
@@ -817,28 +828,41 @@ function ToggleClothing(whic, extra)
 		Texture = GetPedTextureVariation(Ped, Toggle.Drawable),
 	}
 	local Gender = IsMpPed(Ped)
-	if which ~= "Mask" then
-		if not Gender then Notify(Lang:t("info.wrong_ped")) return false end -- We cancel the command here if the person is not using a multiplayer model.
+	if which ~= 'Mask' then
+		if not Gender then
+			Notify(Lang:t('info.wrong_ped'))
+			return false
+		end                                                            -- We cancel the command here if the person is not using a multiplayer model.
 	end
 	local Table = Toggle.Table[Gender]
 	if not Toggle.Table.Standalone then -- "Standalone" is for things that dont require a variant, like the shoes just need to be switched to a specific drawable. Looking back at this i should have planned ahead, but it all works so, meh!
-		for k,v in pairs(Table) do
+		for k, v in pairs(Table) do
 			if not Toggle.Remember then
 				if k == Cur.Drawable then
-					PlayToggleEmote(Toggle.Emote, function() SetPedComponentVariation(Ped, Toggle.Drawable, v, Cur.Texture, 0) end) return true
+					PlayToggleEmote(Toggle.Emote, function() SetPedComponentVariation(Ped, Toggle.Drawable, v, Cur.Texture, 0) end)
+					return true
 				end
 			else
 				if not LastEquipped[which] then
 					if k == Cur.Drawable then
-						PlayToggleEmote(Toggle.Emote, function() LastEquipped[which] = Cur SetPedComponentVariation(Ped, Toggle.Drawable, v, Cur.Texture, 0) end) return true
+						PlayToggleEmote(Toggle.Emote, function()
+							LastEquipped[which] = Cur
+							SetPedComponentVariation(Ped, Toggle.Drawable, v, Cur.Texture, 0)
+						end)
+						return true
 					end
 				else
 					local Last = LastEquipped[which]
-					PlayToggleEmote(Toggle.Emote, function() SetPedComponentVariation(Ped, Toggle.Drawable, Last.Drawable, Last.Texture, 0) LastEquipped[which] = false end) return true
+					PlayToggleEmote(Toggle.Emote, function()
+						SetPedComponentVariation(Ped, Toggle.Drawable, Last.Drawable, Last.Texture, 0)
+						LastEquipped[which] = false
+					end)
+					return true
 				end
 			end
 		end
-		Notify(Lang:t("info.no_variants")) return
+		Notify(Lang:t('info.no_variants'))
+		return
 	else
 		if not LastEquipped[which] then
 			if Cur.Drawable ~= Table then
@@ -848,7 +872,7 @@ function ToggleClothing(whic, extra)
 					if Toggle.Table.Extra then
 						local extraToggled = Toggle.Table.Extra
 						for _, v in pairs(extraToggled) do
-							local ExtraCur = {Drawable = GetPedDrawableVariation(Ped, v.Drawable),  Texture = GetPedTextureVariation(Ped, v.Drawable), Id = v.Drawable}
+							local ExtraCur = { Drawable = GetPedDrawableVariation(Ped, v.Drawable), Texture = GetPedTextureVariation(Ped, v.Drawable), Id = v.Drawable }
 							SetPedComponentVariation(Ped, v.Drawable, v.Id, v.Tex, 0)
 							LastEquipped[v.Name] = ExtraCur
 						end
@@ -875,14 +899,15 @@ function ToggleClothing(whic, extra)
 			return true
 		end
 	end
-	Notify(Lang:t("info.already_wearing")) return false
+	Notify(Lang:t('info.already_wearing'))
+	return false
 end
 
 RegisterNetEvent('qb-radialmenu:ToggleClothing', ToggleClothing)
 
 function ToggleProps(whic)
 	local which = whic
-	if type(whic) == "table" then
+	if type(whic) == 'table' then
 		which = tostring(whic.id)
 	end
 	Wait(50)
@@ -898,40 +923,52 @@ function ToggleProps(whic)
 	}
 	if not Prop.Variants then
 		if Cur.Prop ~= -1 then -- If we currently are wearing this prop, remove it and save the one we were wearing into the LastEquipped table.
-			PlayToggleEmote(Prop.Emote.Off, function() LastEquipped[which] = Cur ClearPedProp(Ped, Prop.Prop) end) return true
+			PlayToggleEmote(Prop.Emote.Off, function()
+				LastEquipped[which] = Cur
+				ClearPedProp(Ped, Prop.Prop)
+			end)
+			return true
 		else
 			local Last = LastEquipped[which] -- Detect that we have already taken our prop off, lets put it back on.
 			if Last then
-				PlayToggleEmote(Prop.Emote.On, function() SetPedPropIndex(Ped, Prop.Prop, Last.Prop, Last.Texture, true) end) LastEquipped[which] = false return true
+				PlayToggleEmote(Prop.Emote.On, function() SetPedPropIndex(Ped, Prop.Prop, Last.Prop, Last.Texture, true) end)
+				LastEquipped[which] = false
+				return true
 			end
 		end
-		Notify(Lang:t("info.nothing_to_remove")) return false
+		Notify(Lang:t('info.nothing_to_remove'))
+		return false
 	else
 		local Gender = IsMpPed(Ped)
-		if not Gender then Notify(Lang:t("info.wrong_ped")) return false end -- We dont really allow for variants on ped models, Its possible, but im pretty sure 95% of ped models dont really have variants.
+		if not Gender then
+			Notify(Lang:t('info.wrong_ped'))
+			return false
+		end                                                            -- We dont really allow for variants on ped models, Its possible, but im pretty sure 95% of ped models dont really have variants.
 		variations = Prop.Variants[Gender]
-		for k,v in pairs(variations) do
+		for k, v in pairs(variations) do
 			if Cur.Prop == k then
-				PlayToggleEmote(Prop.Emote.On, function() SetPedPropIndex(Ped, Prop.Prop, v, Cur.Texture, true) end) return true
+				PlayToggleEmote(Prop.Emote.On, function() SetPedPropIndex(Ped, Prop.Prop, v, Cur.Texture, true) end)
+				return true
 			end
 		end
-		Notify(Lang:t("info.no_variants")) return false
+		Notify(Lang:t('info.no_variants'))
+		return false
 	end
 end
 
 RegisterNetEvent('qb-radialmenu:ToggleProps', ToggleProps)
 
-for k,v in pairs(Config.Commands) do
+for k, v in pairs(Config.Commands) do
 	RegisterCommand(k, v.Func)
 	--log("Created /"..k.." ("..v.Desc..")") -- Useful for translation checking.
-	TriggerEvent("chat:addSuggestion", "/"..k, v.Desc)
+	TriggerEvent('chat:addSuggestion', '/' .. k, v.Desc)
 end
 
 if Config.ExtrasEnabled then
-	for k,v in pairs(Config.ExtraCommands) do
+	for k, v in pairs(Config.ExtraCommands) do
 		RegisterCommand(k, v.Func)
 		--log("Created /"..k.." ("..v.Desc..")") -- Useful for translation checking.
-		TriggerEvent("chat:addSuggestion", "/"..k, v.Desc)
+		TriggerEvent('chat:addSuggestion', '/' .. k, v.Desc)
 	end
 end
 
@@ -943,7 +980,9 @@ end)
 
 function IncurCooldown(ms)
 	CreateThread(function()
-		Cooldown = true Wait(ms) Cooldown = false
+		Cooldown = true
+		Wait(ms)
+		Cooldown = false
 	end)
 end
 
@@ -952,17 +991,22 @@ function Notify(message, color) -- However you want your notifications to be sho
 end
 
 function IsMpPed(ped)
-	local male = `mp_m_freemode_01` local female = `mp_f_freemode_01`
+	local male = `mp_m_freemode_01`
+	local female = `mp_f_freemode_01`
 	local CurrentModel = GetEntityModel(ped)
-	if CurrentModel == male then return "male" elseif CurrentModel == female then return "female" else return false end
+	if CurrentModel == male then return 'male' elseif CurrentModel == female then return 'female' else return false end
 end
 
 RegisterNetEvent('dpc:EquipLast', function()
 	local Ped = PlayerPedId()
 	for _, v in pairs(LastEquipped) do
 		if v then
-			if v.Drawable then SetPedComponentVariation(Ped, v.ID, v.Drawable, v.Texture, 0)
-			elseif v.Prop then ClearPedProp(Ped, v.ID) SetPedPropIndex(Ped, v.ID, v.Prop, v.Texture, true) end
+			if v.Drawable then
+				SetPedComponentVariation(Ped, v.ID, v.Drawable, v.Texture, 0)
+			elseif v.Prop then
+				ClearPedProp(Ped, v.ID)
+				SetPedPropIndex(Ped, v.ID, v.Prop, v.Texture, true)
+			end
 		end
 	end
 	LastEquipped = {}

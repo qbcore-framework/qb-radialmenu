@@ -1,27 +1,27 @@
 local isAttached = false
 local stretcherObject = nil
 local isLayingOnBed = false
-local detachKeys = {157, 158, 160, 164, 165, 73, 36}
+local detachKeys = { 157, 158, 160, 164, 165, 73, 36 }
 
 -- Add your vehicles here that will allow Ambulance to get a stretcher out.
 local allowedStretcherVehicles = {
-    "ambulance",
+    'ambulance',
 }
 
 -- Functions
 
 local function DrawText3Ds(x, y, z, text)
-	SetTextScale(0.35, 0.35)
+    SetTextScale(0.35, 0.35)
     SetTextFont(4)
     SetTextProportional(1)
     SetTextColour(255, 255, 255, 215)
-    BeginTextCommandDisplayText("STRING")
+    BeginTextCommandDisplayText('STRING')
     SetTextCentre(true)
     AddTextComponentSubstringPlayerName(text)
-    SetDrawOrigin(x,y,z, 0)
+    SetDrawOrigin(x, y, z, 0)
     EndTextCommandDisplayText(0.0, 0.0)
     local factor = (string.len(text)) / 370
-    DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)
+    DrawRect(0.0, 0.0 + 0.0125, 0.017 + factor, 0.03, 0, 0, 0, 75)
     ClearDrawOrigin()
 end
 
@@ -60,7 +60,7 @@ local function GetClosestPlayer()
     local closestPlayer = -1
     local coords = GetEntityCoords(PlayerPedId())
     local player = PlayerId()
-    for i=1, #closestPlayers, 1 do
+    for i = 1, #closestPlayers, 1 do
         if closestPlayers[i] ~= player then
             local pos = GetEntityCoords(GetPlayerPed(closestPlayers[i]))
             local distance = #(pos - coords)
@@ -69,13 +69,13 @@ local function GetClosestPlayer()
                 closestDistance = distance
             end
         end
-	end
-	return closestPlayer, closestDistance
+    end
+    return closestPlayer, closestDistance
 end
 
 local function LayOnStretcher()
-    local inBedDicts = "anim@gangops@morgue@table@"
-    local inBedAnims = "ko_front"
+    local inBedDicts = 'anim@gangops@morgue@table@'
+    local inBedAnims = 'ko_front'
     local ped = PlayerPedId()
     local coords = GetEntityCoords(ped)
     local player, distance = GetClosestPlayer()
@@ -88,7 +88,7 @@ local function LayOnStretcher()
         end
     else
         if distance < 2.0 then
-            TriggerServerEvent('qb-radialmenu:Stretcher:BusyCheck', GetPlayerServerId(player), "lay")
+            TriggerServerEvent('qb-radialmenu:Stretcher:BusyCheck', GetPlayerServerId(player), 'lay')
         else
             loadAnim(inBedDicts)
             if stretcherObject and #(coords - GetEntityCoords(stretcherObject)) <= 3.0 then
@@ -115,7 +115,7 @@ local function attachToStretcher()
     if stretcherObject then
         if closestPlayer == -1 then
             NetworkRequestControlOfEntity(stretcherObject)
-            loadAnim("anim@heists@box_carry@")
+            loadAnim('anim@heists@box_carry@')
             TaskPlayAnim(ped, 'anim@heists@box_carry@', 'idle', 8.0, 8.0, -1, 50, 0, false, false, false)
             SetTimeout(150, function()
                 AttachEntityToEntity(stretcherObject, ped, GetPedBoneIndex(ped, 28422), 0.0, -1.0, -0.50, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2)
@@ -123,10 +123,10 @@ local function attachToStretcher()
             FreezeEntityPosition(stretcherObject, false)
         else
             if distance < 2.0 then
-                TriggerServerEvent('qb-radialmenu:Stretcher:BusyCheck', GetPlayerServerId(closestPlayer), "attach")
+                TriggerServerEvent('qb-radialmenu:Stretcher:BusyCheck', GetPlayerServerId(closestPlayer), 'attach')
             else
                 NetworkRequestControlOfEntity(stretcherObject)
-                loadAnim("anim@heists@box_carry@")
+                loadAnim('anim@heists@box_carry@')
                 TaskPlayAnim(ped, 'anim@heists@box_carry@', 'idle', 8.0, 8.0, -1, 50, 0, false, false, false)
                 SetTimeout(150, function()
                     AttachEntityToEntity(stretcherObject, ped, GetPedBoneIndex(ped, 28422), 0.0, -1.0, -1.0, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2)
@@ -148,8 +148,8 @@ end
 RegisterNetEvent('qb-radialmenu:client:TakeStretcher', function()
     local vehicle = checkForVehicles()
     if vehicle ~= 0 then
-        RequestModel("prop_ld_binbag_01")
-        while not HasModelLoaded("prop_ld_binbag_01") do
+        RequestModel('prop_ld_binbag_01')
+        while not HasModelLoaded('prop_ld_binbag_01') do
             Wait(0)
         end
         local obj = CreateObject(`prop_ld_binbag_01`, GetEntityCoords(PlayerPedId()), true)
@@ -163,10 +163,10 @@ RegisterNetEvent('qb-radialmenu:client:TakeStretcher', function()
                 isAttached = true
             end)
         else
-            QBCore.Functions.Notify(Lang:t("error.obj_not_found"), 'error')
+            QBCore.Functions.Notify(Lang:t('error.obj_not_found'), 'error')
         end
     else
-        QBCore.Functions.Notify(Lang:t("error.not_near_ambulance"), 'error')
+        QBCore.Functions.Notify(Lang:t('error.not_near_ambulance'), 'error')
     end
 end)
 
@@ -186,7 +186,7 @@ RegisterNetEvent('qb-radialmenu:client:RemoveStretcher', function()
                 isLayingOnBed = false
             end
         else
-            QBCore.Functions.Notify(Lang:t("error.far_away"), 'error')
+            QBCore.Functions.Notify(Lang:t('error.far_away'), 'error')
         end
     end
 end)
@@ -201,7 +201,7 @@ RegisterNetEvent('qb-radialmenu:client:RemoveStretcherFromArea', function(player
                     if IsEntityPlayingAnim(ped, 'anim@heists@box_carry@', 'idle', false) then
                         detachStretcher()
                     end
-                    if IsEntityPlayingAnim(ped, "anim@gangops@morgue@table@", "ko_front", false) then
+                    if IsEntityPlayingAnim(ped, 'anim@gangops@morgue@table@', 'ko_front', false) then
                         local coords = GetOffsetFromEntityInWorldCoords(ped, 0.85, 0.0, 0)
                         ClearPedTasks(ped)
                         DetachEntity(ped, false, true)
@@ -216,9 +216,9 @@ end)
 
 RegisterNetEvent('qb-radialmenu:Stretcher:client:BusyCheck', function(otherId, type)
     local ped = PlayerPedId()
-    if type == "lay" then
-        loadAnim("anim@gangops@morgue@table@")
-        if IsEntityPlayingAnim(ped, "anim@gangops@morgue@table@", "ko_front", 3) then
+    if type == 'lay' then
+        loadAnim('anim@gangops@morgue@table@')
+        if IsEntityPlayingAnim(ped, 'anim@gangops@morgue@table@', 'ko_front', 3) then
             TriggerServerEvent('qb-radialmenu:server:BusyResult', true, otherId, type)
         else
             TriggerServerEvent('qb-radialmenu:server:BusyResult', false, otherId, type)
@@ -235,9 +235,9 @@ end)
 
 RegisterNetEvent('qb-radialmenu:client:Result', function(isBusy, type)
     local ped = PlayerPedId()
-    local inBedDicts = "anim@gangops@morgue@table@"
-    local inBedAnims = "ko_front"
-    if type == "lay" then
+    local inBedDicts = 'anim@gangops@morgue@table@'
+    local inBedAnims = 'ko_front'
+    if type == 'lay' then
         if not isBusy then
             NetworkRequestControlOfEntity(stretcherObject)
             loadAnim(inBedDicts)
@@ -245,13 +245,13 @@ RegisterNetEvent('qb-radialmenu:client:Result', function(isBusy, type)
             AttachEntityToEntity(ped, stretcherObject, 0, 0, 0.0, 1.6, 0.0, 0.0, 360.0, 0.0, false, false, false, false, 2)
             isLayingOnBed = true
         else
-            QBCore.Functions.Notify(Lang:t("error.stretcher_in_use"), "error")
+            QBCore.Functions.Notify(Lang:t('error.stretcher_in_use'), 'error')
             isLayingOnBed = false
         end
     else
         if not isBusy then
             NetworkRequestControlOfEntity(stretcherObject)
-            loadAnim("anim@heists@box_carry@")
+            loadAnim('anim@heists@box_carry@')
             TaskPlayAnim(ped, 'anim@heists@box_carry@', 'idle', 8.0, 8.0, -1, 50, 0, false, false, false)
             SetTimeout(150, function()
                 AttachEntityToEntity(stretcherObject, ped, GetPedBoneIndex(ped, 28422), 0.0, -1.0, -1.0, 195.0, 180.0, 180.0, 90.0, false, false, true, false, 2)
@@ -259,7 +259,7 @@ RegisterNetEvent('qb-radialmenu:client:Result', function(isBusy, type)
             FreezeEntityPosition(stretcherObject, false)
             isAttached = true
         else
-            QBCore.Functions.Notify(Lang:t("error.stretcher_in_use"), "error")
+            QBCore.Functions.Notify(Lang:t('error.stretcher_in_use'), 'error')
             isAttached = false
         end
     end
@@ -295,7 +295,7 @@ CreateThread(function()
             if distance <= 1.0 then
                 if not isAttached then
                     sleep = 0
-                    DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z, Lang:t("general.push_stretcher_button"))
+                    DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z, Lang:t('general.push_stretcher_button'))
                     if IsControlJustPressed(0, 51) then
                         attachToStretcher()
                         isAttached = true
@@ -307,7 +307,7 @@ CreateThread(function()
                     end
                 else
                     sleep = 0
-                    DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z, Lang:t("general.stop_pushing_stretcher_button"))
+                    DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z, Lang:t('general.stop_pushing_stretcher_button'))
                     if IsControlJustPressed(0, 51) then
                         detachStretcher()
                         isAttached = false
@@ -318,7 +318,7 @@ CreateThread(function()
                 if not isLayingOnBed then
                     if not isAttached then
                         sleep = 0
-                        DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z + 0.2, Lang:t("general.lay_stretcher_button"))
+                        DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z + 0.2, Lang:t('general.lay_stretcher_button'))
                         if IsControlJustPressed(0, 47) or IsDisabledControlJustPressed(0, 47) then
                             LayOnStretcher()
                             sleep = 100
@@ -328,11 +328,11 @@ CreateThread(function()
             elseif distance <= 2 then
                 if not isLayingOnBed then
                     sleep = 0
-                    DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z, Lang:t("general.push_position_drawtext"))
+                    DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z, Lang:t('general.push_position_drawtext'))
                 else
                     if not isAttached then
                         sleep = 0
-                        DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z + 0.2, Lang:t("general.get_off_stretcher_button"))
+                        DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z + 0.2, Lang:t('general.get_off_stretcher_button'))
                         if IsControlJustPressed(0, 47) or IsDisabledControlJustPressed(0, 47) then
                             getOffStretcher()
                             sleep = 100

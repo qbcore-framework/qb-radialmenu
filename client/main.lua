@@ -59,7 +59,7 @@ end
 
 local function SetupJobMenu()
     local JobInteractionCheck = PlayerData.job.name
-    if PlayerData.job.type == "leo" then JobInteractionCheck = "police" end
+    if PlayerData.job.type == 'leo' then JobInteractionCheck = 'police' end
     local JobMenu = {
         id = 'jobinteractions',
         title = 'Work',
@@ -110,10 +110,10 @@ local function SetupVehicleMenu()
             VehicleMenu.items[seatIndex] = deepcopy(Config.VehicleSeats)
 
             local seatTable = {
-                [1] = Lang:t("options.driver_seat"),
-                [2] = Lang:t("options.passenger_seat"),
-                [3] = Lang:t("options.rear_left_seat"),
-                [4] = Lang:t("options.rear_right_seat"),
+                [1] = Lang:t('options.driver_seat'),
+                [2] = Lang:t('options.passenger_seat'),
+                [3] = Lang:t('options.rear_left_seat'),
+                [4] = Lang:t('options.rear_right_seat'),
             }
 
             local AmountOfSeats = GetVehicleModelNumberOfSeats(GetEntityModel(Vehicle))
@@ -121,7 +121,7 @@ local function SetupVehicleMenu()
                 local newIndex = #VehicleMenu.items[seatIndex].items + 1
                 VehicleMenu.items[seatIndex].items[newIndex] = {
                     id = i - 2,
-                    title = seatTable[i] or Lang:t("options.other_seats"),
+                    title = seatTable[i] or Lang:t('options.other_seats'),
                     icon = 'caret-up',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -161,11 +161,11 @@ local function selectOption(t, t2)
 end
 
 local function IsPoliceOrEMS()
-    return (PlayerData.job.name == "police" or PlayerData.job.type == "leo" or PlayerData.job.name == "ambulance")
+    return (PlayerData.job.name == 'police' or PlayerData.job.type == 'leo' or PlayerData.job.name == 'ambulance')
 end
 
 local function IsDowned()
-    return (PlayerData.metadata["isdead"] or PlayerData.metadata["inlaststand"])
+    return (PlayerData.metadata['isdead'] or PlayerData.metadata['inlaststand'])
 end
 
 local function SetupRadialMenu()
@@ -174,7 +174,7 @@ local function SetupRadialMenu()
         FinalMenuItems = {
             [1] = {
                 id = 'emergencybutton2',
-                title = Lang:t("options.emergency_button"),
+                title = Lang:t('options.emergency_button'),
                 icon = 'circle-exclamation',
                 type = 'client',
                 event = 'police:client:SendPoliceEmergencyAlert',
@@ -207,7 +207,7 @@ local function setRadialState(bool, sendMessage, delay)
         if bool then
             TriggerEvent('qb-radialmenu:client:onRadialmenuOpen')
             SetupRadialMenu()
-            PlaySoundFrontend(-1, "NAV", "HUD_AMMO_SHOP_SOUNDSET", 1)
+            PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', 1)
             controlToggle(true)
         else
             TriggerEvent('qb-radialmenu:client:onRadialmenuClose')
@@ -227,7 +227,7 @@ local function setRadialState(bool, sendMessage, delay)
 
     if sendMessage then
         SendNUIMessage({
-            action = "ui",
+            action = 'ui',
             radial = bool,
             items = FinalMenuItems,
             toggle = Config.Toggle,
@@ -241,13 +241,13 @@ end
 -- Command
 
 RegisterCommand('radialmenu', function()
-    if ((IsDowned() and IsPoliceOrEMS()) or not IsDowned()) and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not inRadialMenu then
+    if ((IsDowned() and IsPoliceOrEMS()) or not IsDowned()) and not PlayerData.metadata['ishandcuffed'] and not IsPauseMenuActive() and not inRadialMenu then
         setRadialState(true, true)
         SetCursorLocation(0.5, 0.5)
     end
 end)
 
-RegisterKeyMapping('radialmenu', Lang:t("general.command_description"), 'keyboard', Config.Keybind)
+RegisterKeyMapping('radialmenu', Lang:t('general.command_description'), 'keyboard', Config.Keybind)
 
 -- Events
 
@@ -267,12 +267,12 @@ RegisterNetEvent('QBCore:Player:SetPlayerData', function(val)
 end)
 
 RegisterNetEvent('qb-radialmenu:client:noPlayers', function()
-    QBCore.Functions.Notify(Lang:t("error.no_people_nearby"), 'error', 2500)
+    QBCore.Functions.Notify(Lang:t('error.no_people_nearby'), 'error', 2500)
 end)
 
 RegisterNetEvent('qb-radialmenu:client:openDoor', function(data)
     local string = data.id
-    local replace = string:gsub("door", "")
+    local replace = string:gsub('door', '')
     local door = tonumber(replace)
     local ped = PlayerPedId()
     local closestVehicle = GetVehiclePedIsIn(ped) ~= 0 and GetVehiclePedIsIn(ped) or getNearestVeh()
@@ -300,13 +300,13 @@ RegisterNetEvent('qb-radialmenu:client:openDoor', function(data)
             end
         end
     else
-        QBCore.Functions.Notify(Lang:t("error.no_vehicle_found"), 'error', 2500)
+        QBCore.Functions.Notify(Lang:t('error.no_vehicle_found'), 'error', 2500)
     end
 end)
 
 RegisterNetEvent('qb-radialmenu:client:setExtra', function(data)
     local string = data.id
-    local replace = string:gsub("extra", "")
+    local replace = string:gsub('extra', '')
     local extra = tonumber(replace)
     local ped = PlayerPedId()
     local veh = GetVehiclePedIsIn(ped)
@@ -316,16 +316,16 @@ RegisterNetEvent('qb-radialmenu:client:setExtra', function(data)
             if DoesExtraExist(veh, extra) then
                 if IsVehicleExtraTurnedOn(veh, extra) then
                     SetVehicleExtra(veh, extra, 1)
-                    QBCore.Functions.Notify(Lang:t("error.extra_deactivated", { extra = extra }), 'error', 2500)
+                    QBCore.Functions.Notify(Lang:t('error.extra_deactivated', { extra = extra }), 'error', 2500)
                 else
                     SetVehicleExtra(veh, extra, 0)
-                    QBCore.Functions.Notify(Lang:t("success.extra_activated", { extra = extra }), 'success', 2500)
+                    QBCore.Functions.Notify(Lang:t('success.extra_activated', { extra = extra }), 'success', 2500)
                 end
             else
-                QBCore.Functions.Notify(Lang:t("error.extra_not_present", { extra = extra }), 'error', 2500)
+                QBCore.Functions.Notify(Lang:t('error.extra_not_present', { extra = extra }), 'error', 2500)
             end
         else
-            QBCore.Functions.Notify(Lang:t("error.not_driver"), 'error', 2500)
+            QBCore.Functions.Notify(Lang:t('error.not_driver'), 'error', 2500)
         end
     end
 end)
@@ -354,20 +354,20 @@ RegisterNetEvent('qb-radialmenu:client:ChangeSeat', function(data)
         if IsSeatFree then
             if kmh <= 100.0 then
                 SetPedIntoVehicle(PlayerPedId(), Veh, data.id)
-                QBCore.Functions.Notify(Lang:t("info.switched_seats", { seat = data.title }))
+                QBCore.Functions.Notify(Lang:t('info.switched_seats', { seat = data.title }))
             else
-                QBCore.Functions.Notify(Lang:t("error.vehicle_driving_fast"), 'error')
+                QBCore.Functions.Notify(Lang:t('error.vehicle_driving_fast'), 'error')
             end
         else
-            QBCore.Functions.Notify(Lang:t("error.seat_occupied"), 'error')
+            QBCore.Functions.Notify(Lang:t('error.seat_occupied'), 'error')
         end
     else
-        QBCore.Functions.Notify(Lang:t("error.race_harness_on"), 'error')
+        QBCore.Functions.Notify(Lang:t('error.race_harness_on'), 'error')
     end
 end)
 
 RegisterNetEvent('qb-radialmenu:flipVehicle', function()
-    QBCore.Functions.Progressbar("pick_grape", Lang:t("progress.flipping_car"), Config.Fliptime, false, true, {
+    QBCore.Functions.Progressbar('pick_grape', Lang:t('progress.flipping_car'), Config.Fliptime, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -381,7 +381,7 @@ RegisterNetEvent('qb-radialmenu:flipVehicle', function()
         SetVehicleOnGroundProperly(vehicle)
         StopAnimTask(PlayerPedId(), 'mini@repair', 'fixing_a_ped', 1.0)
     end, function() -- Cancel
-        QBCore.Functions.Notify(Lang:t("task.cancel_task"), "error")
+        QBCore.Functions.Notify(Lang:t('task.cancel_task'), 'error')
         StopAnimTask(PlayerPedId(), 'mini@repair', 'fixing_a_ped', 1.0)
     end)
 end)

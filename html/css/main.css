@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 
 h1 {
     font-weight: normal;
@@ -15,7 +15,7 @@ div.info * {
 
 #icons {
     display: none;
-    filter:url(#drop-shadow);
+    filter: url(#drop-shadow);
 }
 
 .container {
@@ -26,7 +26,6 @@ div.info * {
 #vehicle {
     fill: white;
 }
-
 
 div.menuHolder {
     user-select: none;
@@ -46,7 +45,7 @@ svg.icons {
 svg.menu {
     position: absolute;
     overflow: visible;
-    transition: .1s;
+    transition: 0.1s;
     transition-timing-function: ease-out;
 }
 
@@ -71,7 +70,7 @@ svg.menu > g.sector > path {
 
 svg.menu > g.sector > text,
 svg.menu > g.sector > use {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     margin-top: 5px;
     font-size: 2.8px;
     letter-spacing: 0.2px;
@@ -82,11 +81,10 @@ svg.menu > g.sector > use {
 
 svg.menu > g.sector:hover > path {
     fill: #dc143c;
-
 }
 
 svg.menu > g.center:hover > circle {
-    fill:#dc143c;
+    fill: #dc143c;
 }
 
 svg.menu > g.center > circle {
