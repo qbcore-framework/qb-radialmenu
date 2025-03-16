@@ -41,7 +41,8 @@ end
 local function getNearestVeh()
     local pos = GetEntityCoords(PlayerPedId())
     local entityWorld = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 20.0, 0.0)
-    local rayHandle = CastRayPointToPoint(pos.x, pos.y, pos.z, entityWorld.x, entityWorld.y, entityWorld.z, 10, PlayerPedId(), 0)
+    local rayHandle = CastRayPointToPoint(pos.x, pos.y, pos.z, entityWorld.x, entityWorld.y, entityWorld.z, 10,
+        PlayerPedId(), 0)
     local _, _, _, _, vehicleHandle = GetRaycastResult(rayHandle)
     return vehicleHandle
 end
@@ -405,16 +406,24 @@ RegisterNUICallback('selectItem', function(inData, cb)
     local itemData = inData.itemData
     local found, action, data = selectOption(FinalMenuItems, itemData)
     if data and found then
+        local args = type(data.args) == "table" and table.unpack(data.args) or data
+
         if action then
-            action(data)
+            action(args)
         elseif data.type == 'client' then
-            TriggerEvent(data.event, data)
+            TriggerEvent(data.event, args)
         elseif data.type == 'server' then
-            TriggerServerEvent(data.event, data)
+            TriggerServerEvent(data.event, args)
+        elseif data.type == "export" then
+            local splits = QBCore.Shared.SplitStr(data.export, ".")
+
+            if #splits == 2 then
+                exports[splits[1]][splits[2]](args)
+            end
         elseif data.type == 'command' then
             ExecuteCommand(data.event)
         elseif data.type == 'qbcommand' then
-            TriggerServerEvent('QBCore:CallCommand', data.event, data)
+            TriggerServerEvent('QBCore:CallCommand', data.event, args)
         end
     end
     cb('ok')
