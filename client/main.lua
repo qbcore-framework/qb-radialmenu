@@ -1,4 +1,4 @@
-QBCore = exports['qb-core']:GetCoreObject()
+QBCore = exports['qb-core']:GetCoreObject({ 'Functions' })
 PlayerData = QBCore.Functions.GetPlayerData() -- Setting this for when you restart the resource in game
 local inRadialMenu = false
 
@@ -262,7 +262,8 @@ RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
 end)
 
 -- This will update all the PlayerData that doesn't get updated with a specific event other than this like the metadata
-RegisterNetEvent('QBCore:Player:SetPlayerData', function(val)
+RegisterNetEvent('QBCore:Client:OnPlayerUpdated', function(key, val)
+    if key ~= 'all' then return end
     PlayerData = val
 end)
 

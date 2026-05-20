@@ -832,7 +832,7 @@ function ToggleClothing(whic, extra)
 		if not Gender then
 			Notify(Lang:t('info.wrong_ped'))
 			return false
-		end                                                            -- We cancel the command here if the person is not using a multiplayer model.
+		end -- We cancel the command here if the person is not using a multiplayer model.
 	end
 	local Table = Toggle.Table[Gender]
 	if not Toggle.Table.Standalone then -- "Standalone" is for things that dont require a variant, like the shoes just need to be switched to a specific drawable. Looking back at this i should have planned ahead, but it all works so, meh!
@@ -943,7 +943,7 @@ function ToggleProps(whic)
 		if not Gender then
 			Notify(Lang:t('info.wrong_ped'))
 			return false
-		end                                                            -- We dont really allow for variants on ped models, Its possible, but im pretty sure 95% of ped models dont really have variants.
+		end -- We dont really allow for variants on ped models, Its possible, but im pretty sure 95% of ped models dont really have variants.
 		variations = Prop.Variants[Gender]
 		for k, v in pairs(variations) do
 			if Cur.Prop == k then

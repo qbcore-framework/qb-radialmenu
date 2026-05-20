@@ -3,7 +3,7 @@ game 'gta5'
 lua54 'yes'
 author 'Kakarot'
 description 'Allows players quick access to a menu for various actions'
-version '1.2.0'
+version '1.5.0'
 
 ui_page 'html/index.html'
 
