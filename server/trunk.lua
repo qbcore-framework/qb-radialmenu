@@ -7,6 +7,24 @@ function IsCloseToTarget(source, target)
 end
 
 RegisterNetEvent('qb-radialmenu:trunk:server:Door', function(open, plate, door)
+    local src = source
+    local ped = GetPlayerPed(src)
+    if ped <= 0 then return end
+
+    local playerCoords = GetEntityCoords(ped)
+    if not playerCoords then return end
+
+    local vehicle = GetClosestVehicle(playerCoords.x, playerCoords.y, playerCoords.z, 10.0, 0, 70)
+    if vehicle == 0 then return end
+
+    local targetPlate = QBCore.Shared.Trim(plate)
+    local closestVehiclePlate = QBCore.Shared.Trim(GetVehicleNumberPlateText(vehicle))
+    if not targetPlate or not closestVehiclePlate or targetPlate ~= closestVehiclePlate then return end
+
+    local vehicleCoords = GetEntityCoords(vehicle)
+    if not vehicleCoords then return end
+    if #(playerCoords - vehicleCoords) > 2.0 then return end
+
     TriggerClientEvent('qb-radialmenu:trunk:client:Door', -1, plate, door, open)
 end)
 
